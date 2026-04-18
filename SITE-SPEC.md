@@ -9,63 +9,79 @@
 
 ---
 
+## Information Architecture
+
+**Department-first IA.** A thin club shell (identity, governance, venue, contact) plus three self-contained department sub-sites. Each department owns its training, news, results, gallery, and courses at whatever depth its content justifies. The home page aggregates cross-department signals (latest news, next Schnupperkurs, training-times teaser).
+
+Rationale: ~95% of substantive content is archery-specific. A topic-first IA (top-level `/meisterschaften/`, `/bilder-medien/`, `/training-kurse/`) would imply club-wide scope while hiding the fact that those sections are BSG-only, and would force duplicated paths between `/bogenschiessen/training` and `/training-kurse/`. Department-first avoids the duplication and scales cleanly as Fußball and Tischtennis grow.
+
+---
+
 ## Site Structure
 
 ```
 sv-fasanenhof/
-├── index.html
-├── ueber-uns/
-│   ├── index.html
-│   ├── geschichte.html
-│   ├── vorstand.html
+├── index.html                          Home: hero, 3 dept cards, cross-dept news, venue teaser, CTAs
+│
+├── verein/                             Club identity
+│   ├── index.html                      Overview + links to subpages
+│   ├── historie.html                   Club history since 1965 (incl. Ehrenmitglieder)
+│   ├── vorstand.html                   Main board + dept leads (anchors per dept)
 │   ├── satzung.html
-│   ├── beitraege-beitritt.html
-│   ├── ehrenmitglieder.html
-│   └── standort-anfahrt.html
-├── sportabteilungen/
-│   ├── index.html
-│   ├── bogenschiessen/
+│   └── beitraege.html                  Fees & Beitritt
+│
+├── standort/
+│   └── index.html                      Logauweg 21, Da Angelo, public-access rules, Anfahrt (U6), Parken
+│
+├── bogenschiessen/                     BSG (deep)
+│   ├── index.html                      Landing: 65 Schützen, Alter 8–80, Bogentypen, CTAs
+│   ├── training.html                   3 Orte, Zeiten, Saisons (Outdoor/Indoor), Ausbilder
+│   ├── schnupperkurse.html             Ablauf, Preise, AGBs, Buchung
+│   ├── ausruestung.html                Recurve, Langbogen, Blankbogen, Compound, Leihmaterial
+│   ├── schiessordnung.html             Regeln & Sicherheit
+│   ├── meisterschaften/
+│   │   ├── index.html                  Aktuelle Ergebnisse (2025, 2024)
+│   │   └── archiv.html                 2016–2023
+│   ├── galerie/
+│   │   ├── index.html                  Jahresübersicht
+│   │   ├── 2024.html
+│   │   ├── 2023.html
+│   │   └── …
+│   ├── wissen/                         Educational content (archery-specific pedagogy)
 │   │   ├── index.html
-│   │   ├── training.html
-│   │   ├── kurse.html
-│   │   ├── regelwerk.html
-│   │   └── meisterschaften.html
-│   ├── fussball/
-│   │   └── index.html
-│   └── tischtennis/
-│       └── index.html
-├── anfahrt-sportstaetten/
-│   ├── index.html
-│   ├── hauptgelände.html
-│   ├── schulzentrum-hengstaecker.html
-│   └── anne-frank-schule.html
-├── training-kurse/
-│   ├── index.html
-│   └── schnupperkurse.html
-├── meisterschaften/
-│   ├── index.html
-│   └── archiv.html
-├── bilder-medien/
-│   ├── index.html
-│   ├── galerie-2024.html
-│   ├── galerie-2023.html
-│   ├── galerie-2022.html
-│   └── presse.html
-├── aktuelles/
-│   ├── index.html
-│   └── [news-posts].html
-├── infos-service/
-│   ├── index.html
-│   ├── regelkunde.html
-│   ├── sachkunde.html
-│   └── wheelchair-archery.html
-├── sponsoren/
-│   └── index.html
+│   │   ├── regelkunde.html
+│   │   ├── sachkunde.html
+│   │   ├── wusstest-du.html
+│   │   ├── boschi-mit-rolli.html
+│   │   ├── boschi-im-alter.html
+│   │   ├── bedienungsanleitungen.html
+│   │   └── webinare.html
+│   ├── aktuelles/
+│   │   └── index.html                  BSG-Newsfeed
+│   ├── presse.html                     Press coverage (archery-only today)
+│   └── sponsoren.html                  Archery sponsors
+│
+├── fussball/
+│   └── index.html                      Landing (training/teams/spielplan added as content arrives)
+│
+├── tischtennis/
+│   └── index.html                      Landing (training added as content arrives)
+│
 ├── kontakt/
+│   └── index.html                      Form, dept contacts, address, map
+│
+├── impressum/
 │   └── index.html
-└── impressum/
+└── datenschutz/
     └── index.html
 ```
+
+**Notes on placement decisions:**
+
+- **Presse & Sponsoren sit under `/bogenschiessen/`**, not at top level, because today's content is archery-only. Promote to root if the Hauptverein acquires its own.
+- **News is per-department**, with the home page aggregating. Simpler than a club-wide feed with tags, and matches who writes what.
+- **Educational content lives at `/bogenschiessen/wissen/`**, not a top-level `/infos-service/`. All of it is archery pedagogy.
+- **Training locations are described on `/bogenschiessen/training.html`**, not as separate pages per venue. The public-facing venue page (`/standort/`) focuses on the Hauptgelände; the schools are training sites used only by BSG.
 
 ---
 
@@ -73,216 +89,181 @@ sv-fasanenhof/
 
 ### Old Site → New Site Mapping
 
-| Old URL                             | New Path                                          | Notes                         |
-|-------------------------------------|---------------------------------------------------|-------------------------------|
-| **sv-fasanenhof.de**                |                                                   |                               |
-| `/`                                 | `/index.html`                                     | Main homepage                 |
-|                                     | `/ueber-uns/index.html`                           | Club info from SV site        |
-|                                     | `/sportabteilungen/bogenschiessen/index.html`     | Archery section               |
-|                                     | `/anfahrt-sportstaetten/index.html`               | Venue info + Da Angelo hours  |
-|                                     | `/anfahrt-sportstaetten/hauptgelände.html`        | Public access rules           |
-|                                     | `/kontakt/index.html`                             | Contact info                  |
-| **bsg-fasanenhof.jimdofree.com**    |                                                   |                               |
-| `/home/`                            | `/sportabteilungen/bogenschiessen/index.html`     | Main archery content          |
-| `/verein/vorstand/`                 | `/ueber-uns/vorstand.html`                        | Kuno Betz, Birgit Dirksmöller |
-| `/verein/schiessordnung/`           | `/sportabteilungen/bogenschiessen/regelwerk.html` | Shooting regulations          |
-| `/verein/datenschutzerklaerung/`    | `/impressum/index.html`                           | Privacy section               |
-| `/verein/satzung/`                  | `/ueber-uns/satzung.html`                         | Statutes                      |
-| `/verein/historie/`                 | `/ueber-uns/geschichte.html`                      | Club history                  |
-| `/verein/beitraege-beitritt/`       | `/ueber-uns/beitraege-beitritt.html`              | Fees & membership             |
-| `/verein/hauptverein/`              | `/index.html`                                     | Link back to main             |
-| `/aktuelles/`                       | `/aktuelles/index.html`                           | News section                  |
-| `/training/`                        | `/sportabteilungen/bogenschiessen/training.html`  | Training overview             |
-| `/training/trainingzeiten/`         | `/sportabteilungen/bogenschiessen/training.html`  | 3 locations + schedules       |
-| `/training/ausbilder/`              | `/sportabteilungen/bogenschiessen/training.html`  | Instructor info               |
-| `/training/schnupperkurse/`         | `/training-kurse/schnupperkurse.html`             | Taster courses + AGBs         |
-| `/training/events/`                 | `/aktuelles/index.html`                           | Events in news                |
-| `/meisterschaften/`                 | `/meisterschaften/index.html`                     | Recent results                |
-| `/meisterschaften/2025-*/`          | `/meisterschaften/index.html`                     | Latest results                |
-| `/meisterschaften/2024-*/`          | `/meisterschaften/index.html`                     | 2024 results                  |
-| `/meisterschaften/2023-*/`          | `/meisterschaften/archiv.html`                    | Archive section               |
-| `/meisterschaften/2022-*/`          | `/meisterschaften/archiv.html`                    | Archive section               |
-| `/meisterschaften/2021-*/`          | `/meisterschaften/archiv.html`                    | Archive section               |
-| `/meisterschaften/2016-2020-links/` | `/meisterschaften/archiv.html`                    | Archive section               |
-| `/bilder/2024/`                     | `/bilder-medien/galerie-2024.html`                | Photo gallery                 |
-| `/bilder/2023/`                     | `/bilder-medien/galerie-2023.html`                | Photo gallery                 |
-| `/bilder/2022/`                     | `/bilder-medien/galerie-2022.html`                | Photo gallery                 |
-| `/bilder/2020-2021/`                | `/bilder-medien/index.html`                       | Older galleries               |
-| `/presse/`                          | `/bilder-medien/presse.html`                      | Press coverage                |
-| `/infos/`                           | `/infos-service/index.html`                       | Educational content           |
-| `/infos/ehrenmitglieder/`           | `/ueber-uns/ehrenmitglieder.html`                 | Honorary members              |
-| `/infos/wusstet-du/`                | `/infos-service/index.html`                       | Did you know...               |
-| `/infos/boSchi-mit-rolli/`          | `/infos-service/wheelchair-archery.html`          | Wheelchair archery            |
-| `/infos/boSchi-im-alter/`           | `/infos-service/index.html`                       | Senior archery info           |
-| `/infos/sachkunde/`                 | `/infos-service/sachkunde.html`                   | Expertise articles            |
-| `/infos/kleine-regelkunde/`         | `/infos-service/regelkunde.html`                  | Rules overview                |
-| `/links/`                           | `/infos-service/index.html`                       | External links                |
-| `/sponsoren/`                       | `/sponsoren/index.html`                           | Sponsors                      |
-| `/sponsoren/sponsorensuche/`        | `/sponsoren/index.html`                           | Sponsorship info              |
+| Old URL                             | New Path                                        | Notes                            |
+|-------------------------------------|-------------------------------------------------|----------------------------------|
+| **sv-fasanenhof.de**                |                                                 |                                  |
+| `/`                                 | `/index.html`                                   | Main homepage                    |
+|                                     | `/verein/index.html`                            | Club info landing                |
+|                                     | `/bogenschiessen/index.html`                    | Archery landing                  |
+|                                     | `/standort/index.html`                          | Venue + Da Angelo + access rules |
+|                                     | `/kontakt/index.html`                           | Contact info                     |
+| **bsg-fasanenhof.jimdofree.com**    |                                                 |                                  |
+| `/home/`                            | `/bogenschiessen/index.html`                    | Main archery content             |
+| `/verein/vorstand/`                 | `/verein/vorstand.html`                         | Kuno Betz, Birgit Dirksmöller    |
+| `/verein/schiessordnung/`           | `/bogenschiessen/schiessordnung.html`           | Shooting regulations             |
+| `/verein/datenschutzerklaerung/`    | `/datenschutz/index.html`                       | Privacy                          |
+| `/verein/satzung/`                  | `/verein/satzung.html`                          | Statutes                         |
+| `/verein/historie/`                 | `/verein/historie.html`                         | Club history                     |
+| `/verein/beitraege-beitritt/`       | `/verein/beitraege.html`                        | Fees & membership                |
+| `/verein/hauptverein/`              | `/index.html`                                   | Link back to main                |
+| `/aktuelles/`                       | `/bogenschiessen/aktuelles/index.html`          | BSG news (aggregated on home)    |
+| `/training/`                        | `/bogenschiessen/training.html`                 | Training overview                |
+| `/training/trainingzeiten/`         | `/bogenschiessen/training.html`                 | 3 Orte + Zeiten                  |
+| `/training/ausbilder/`              | `/bogenschiessen/training.html`                 | Instructor info                  |
+| `/training/schnupperkurse/`         | `/bogenschiessen/schnupperkurse.html`           | Taster courses + AGBs            |
+| `/training/events/`                 | `/bogenschiessen/aktuelles/index.html`          | Events in news                   |
+| `/meisterschaften/`                 | `/bogenschiessen/meisterschaften/index.html`    | Recent results                   |
+| `/meisterschaften/2025-*/`          | `/bogenschiessen/meisterschaften/index.html`    | Latest results                   |
+| `/meisterschaften/2024-*/`          | `/bogenschiessen/meisterschaften/index.html`    | 2024 results                     |
+| `/meisterschaften/2023-*/`          | `/bogenschiessen/meisterschaften/archiv.html`   | Archive                          |
+| `/meisterschaften/2022-*/`          | `/bogenschiessen/meisterschaften/archiv.html`   | Archive                          |
+| `/meisterschaften/2021-*/`          | `/bogenschiessen/meisterschaften/archiv.html`   | Archive                          |
+| `/meisterschaften/2016-2020-links/` | `/bogenschiessen/meisterschaften/archiv.html`   | Archive                          |
+| `/bilder/2024/`                     | `/bogenschiessen/galerie/2024.html`             | Photo gallery                    |
+| `/bilder/2023/`                     | `/bogenschiessen/galerie/2023.html`             | Photo gallery                    |
+| `/bilder/2022/`                     | `/bogenschiessen/galerie/2022.html`             | Photo gallery                    |
+| `/bilder/2020-2021/`                | `/bogenschiessen/galerie/index.html`            | Older galleries                  |
+| `/presse/`                          | `/bogenschiessen/presse.html`                   | Press coverage                   |
+| `/infos/`                           | `/bogenschiessen/wissen/index.html`             | Educational hub                  |
+| `/infos/ehrenmitglieder/`           | `/verein/historie.html`                         | Folded into history              |
+| `/infos/wusstet-du/`                | `/bogenschiessen/wissen/wusstest-du.html`       | Did you know…                    |
+| `/infos/boSchi-mit-rolli/`          | `/bogenschiessen/wissen/boschi-mit-rolli.html`  | Wheelchair archery               |
+| `/infos/boSchi-im-alter/`           | `/bogenschiessen/wissen/boschi-im-alter.html`   | Senior archery                   |
+| `/infos/sachkunde/`                 | `/bogenschiessen/wissen/sachkunde.html`         | Expertise articles               |
+| `/infos/kleine-regelkunde/`         | `/bogenschiessen/wissen/regelkunde.html`        | Rules overview                   |
+| `/links/`                           | `/bogenschiessen/wissen/index.html`             | External links section           |
+| `/sponsoren/`                       | `/bogenschiessen/sponsoren.html`                | Sponsors                         |
+| `/sponsoren/sponsorensuche/`        | `/bogenschiessen/sponsoren.html`                | Sponsorship info                 |
 
 ---
 
 ## Page Content Summary
 
-### Core Pages (Must Have)
+### Home
 
 #### `/index.html`
+- 60-year celebration hero
+- Three department cards (Bogenschießen, Fußball, Tischtennis)
+- Aggregated latest news across departments
+- Next Schnupperkurs CTA
+- Training-times teaser
+- Venue/Da-Angelo snippet
 
-- Welcome message (60 years celebration)
-- Sports overview (Archery, Football, Table Tennis)
-- Latest news teaser
-- Quick training times
-- Venue/restaurant info
+### Club Shell
 
-#### `/ueber-uns/index.html`
+#### `/verein/index.html`
+- Overview of the club
+- Links to sub-pages (history, board, statutes, fees)
+- Contact teaser
 
-- Club overview
-- Brief history
-- Contact info teaser
-- Links to subpages
-
-#### `/ueber-uns/geschichte.html`
-
+#### `/verein/historie.html`
 - Club history since 1965
+- Honorary members section
 
-#### `/ueber-uns/vorstand.html`
-
+#### `/verein/vorstand.html`
 - Main club board
-- Archery department leadership (Kuno Betz, Birgit Dirksmöller)
+- Department leads with anchors (`#bsg`, `#fussball`, `#tischtennis`)
+- Contact per role
 
-#### `/ueber-uns/satzung.html`
+#### `/verein/satzung.html`
+- Full statutes
 
-- Club statutes
-
-#### `/ueber-uns/beitraege-beitritt.html`
-
+#### `/verein/beitraege.html`
 - Membership fees
 - How to join
 
-#### `/ueber-uns/ehrenmitglieder.html`
+#### `/standort/index.html`
+- Logauweg 21, 70565 Stuttgart + map
+- Anfahrt: U6 Europaplatz, parking
+- Da Angelo restaurant (daily 17:00–22:30)
+- Public access rules (Tue–Fri 10–17; no bikes/scooters; footwear restrictions; Hausmeister authority)
 
-- Honorary members
+### Bogenschießen
 
-#### `/ueber-uns/standort-anfahrt.html`
+#### `/bogenschiessen/index.html`
+- 65 Schützen, Alter 8–80, Familienatmosphäre
+- Bow types: Recurve, Langbogen, Blankbogen, Compound
+- Department contact
+- Primary CTAs: Schnupperkurs, Training
 
-- Map
-- Directions (U6 Europaplatz)
-- Parking info
-
-### Archery Pages
-
-#### `/sportabteilungen/bogenschiessen/index.html`
-
-- Overview: 65 archers, ages 8-80, family atmosphere
-- Bow types (Recurve, Longbow, Blankbogen, Compound)
-- Contact for department
-
-#### `/sportabteilungen/bogenschiessen/training.html`
-
-- Training times at 3 locations:
-    - Logauweg (Apr-Nov): Mon/Wed/Fri 17-19, Sat 9-13, Sun 9:30-12
-    - Hengstäcker School: Tue/Wed 18-20
-    - Anne-Frank School (Oct-Mar): Thu 18:45-20:15
+#### `/bogenschiessen/training.html`
+- **Logauweg (Apr–Nov, outdoor):** Mo/Mi/Fr 17–19, Sa 9–13, So 9:30–12
+- **Hengstäcker Schule (Margarete-Steiff):** Di/Mi 18–20
+- **Anne-Frank-Gemeinschaftsschule (Oct–Mar, indoor):** Do 18:45–20:15
 - Instructor information
-- Booking/app for indoor training
+- Indoor booking/app
 
-#### `/sportabteilungen/bogenschiessen/kurse.html`
+#### `/bogenschiessen/schnupperkurse.html`
+- Course description, what to bring
+- Pricing (Jugend 50 €, Erwachsene 80 €)
+- Schedule (3 sessions, Di/Mi 18–20)
+- Full AGBs, booking
 
-- Taster course info
-- Pricing (Youth: 50€, Adults: 80€)
-- Schedule (3 sessions, Tue/Wed 18-20)
-- Full AGBs
+#### `/bogenschiessen/ausruestung.html`
+- Bow types in detail
+- Rental equipment (Leihmaterial)
 
-#### `/sportabteilungen/bogenschiessen/regelwerk.html`
-
+#### `/bogenschiessen/schiessordnung.html`
 - Shooting regulations
 - Safety guidelines
+- Facility usage rules
 
-#### `/sportabteilungen/bogenschiessen/meisterschaften.html`
-
-- Link to main championships section
-
-### Venue Pages
-
-#### `/anfahrt-sportstaetten/index.html`
-
-- All training locations overview
-- Restaurant "Da Angelo" (daily 17:00-22:30)
-
-#### `/anfahrt-sportstaetten/hauptgelände.html`
-
-- Logauweg 21, 70565 Stuttgart
-- Public access: Tue-Fri 10-17
-- Usage rules (no bikes, footwear restrictions, etc.)
-
-#### `/anfahrt-sportstaetten/schulzentrum-hengstaecker.html`
-
-- Hengstäcker, Gewann 12, 70567 Stuttgart
-
-#### `/anfahrt-sportstaetten/anne-frank-schule.html`
-
-- Hechingerstr. 73, 70567 Stuttgart
-
-### Championships Pages
-
-#### `/meisterschaften/index.html`
-
-- Recent results (2025, 2024)
+#### `/bogenschiessen/meisterschaften/index.html`
+- Recent results (2025, 2024) with structured entries
 - Link to archive
 
-#### `/meisterschaften/archiv.html`
+#### `/bogenschiessen/meisterschaften/archiv.html`
+- Historical results 2016–2023, collapsible by year
 
-- Historical results 2016-2023
+#### `/bogenschiessen/galerie/index.html`
+- Year index, thumbnails per year
 
-### Media Pages
+#### `/bogenschiessen/galerie/[year].html`
+- Lightbox gallery per year
 
-#### `/bilder-medien/index.html`
+#### `/bogenschiessen/wissen/index.html`
+- Overview of educational content
+- External links (was `/links/`)
 
-- Gallery overview
-- Year navigation
+#### `/bogenschiessen/wissen/{regelkunde,sachkunde,wusstest-du,boschi-mit-rolli,boschi-im-alter,bedienungsanleitungen,webinare}.html`
+- Article per topic
 
-#### `/bilder-medien/galerie-[YEAR].html`
+#### `/bogenschiessen/aktuelles/index.html`
+- BSG news feed (chronological)
 
-- Photo galleries by year
-
-#### `/bilder-medien/presse.html`
-
+#### `/bogenschiessen/presse.html`
 - Press coverage
 
-### Service Pages
+#### `/bogenschiessen/sponsoren.html`
+- Current archery sponsors
+- Sponsoring opportunities
 
-#### `/training-kurse/index.html`
+### Fußball
 
-- Course overview
+#### `/fussball/index.html`
+- Department overview (placeholder until content is written)
+- Future: teams, training, Spielplan
 
-#### `/training-kurse/schnupperkurse.html`
+### Tischtennis
 
-- Full course details and booking info
+#### `/tischtennis/index.html`
+- Department overview (placeholder until content is written)
+- Future: training times, Tischverfügbarkeit
 
-#### `/aktuelles/index.html`
-
-- News and events
-
-#### `/infos-service/index.html`
-
-- Educational articles overview
+### Service
 
 #### `/kontakt/index.html`
-
 - Contact form
-- Phone/email
-- Map
-
-#### `/sponsoren/index.html`
-
-- Current sponsors
-- Sponsorship opportunities
+- Department contacts
+- Phone, email, address, map
 
 #### `/impressum/index.html`
+- Legal notice per § 5 TMG
 
-- Legal notice
-- Privacy policy
+#### `/datenschutz/index.html`
+- GDPR privacy policy
 - Cookie policy
+- Your rights
 
 ---
 
@@ -293,13 +274,41 @@ sv-fasanenhof/
 ```
 content/
 ├── index.md
-├── ueber-uns/
+├── verein/
 │   ├── index.md
-│   ├── geschichte.md
-│   └── ...
-├── sportabteilungen/
-│   └── ...
-└── ...
+│   ├── historie.md
+│   ├── vorstand.md
+│   ├── satzung.md
+│   └── beitraege.md
+├── standort/
+│   └── index.md
+├── bogenschiessen/
+│   ├── index.md
+│   ├── training.md
+│   ├── schnupperkurse.md
+│   ├── ausruestung.md
+│   ├── schiessordnung.md
+│   ├── meisterschaften/
+│   │   ├── index.md
+│   │   └── archiv.md
+│   ├── galerie/
+│   │   ├── index.md
+│   │   └── 2024.md …
+│   ├── wissen/
+│   │   ├── index.md
+│   │   └── …
+│   ├── aktuelles/
+│   │   ├── index.md
+│   │   └── posts/*.md
+│   ├── presse.md
+│   └── sponsoren.md
+├── fussball/
+│   └── index.md
+├── tischtennis/
+│   └── index.md
+├── kontakt/index.md
+├── impressum/index.md
+└── datenschutz/index.md
 ```
 
 ### Output
@@ -311,6 +320,7 @@ content/
 ### Features
 
 - Template system (header/footer/navigation)
-- Markdown to HTML conversion
+- Markdown to HTML conversion with frontmatter
 - Asset bundling
+- Cross-department news aggregator for home page (pulls from `*/aktuelles/posts/*.md`)
 - Development server (optional)
