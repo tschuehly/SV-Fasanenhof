@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bogen — 1. SV Fasanenhof · Contemporary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;500;700;800;900&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0e10;
+    --panel: #16181c;
+    --panel-2: #1e2026;
+    --rule: #2a2d34;
+    --white: #f5f3ef;
+    --dim: #8c8f96;
+    --muted: #626571;
+
+    --dept-1: #e09a3c;
+    --dept-2: #2a4d2f;
+    --dept-deep: #0f1b10;
+    --dept-glow: rgba(224, 154, 60, 0.4);
+    --dept-glow-soft: rgba(224, 154, 60, 0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Geist', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(224, 154, 60, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(42, 77, 47, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: overlay;
+  }
+
+  main, header, section, footer, nav, div.ticker { position: relative; z-index: 3; }
+
+  /* TICKER */
+  .ticker {
+    background: var(--panel);
+    border-bottom: 1px solid var(--rule);
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 10px 0;
+    overflow: hidden;
+    display: flex;
+    color: var(--dim);
+  }
+  .ticker .track {
+    display: flex;
+    gap: 48px;
+    animation: ticker 60s linear infinite;
+    padding-left: 48px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .ticker .track span { display: inline-flex; gap: 12px; align-items: center; }
+  .ticker .track .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--dept-1);
+    box-shadow: 0 0 10px var(--dept-glow);
+  }
+  .ticker .track b { color: var(--white); font-weight: 500; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* NAV */
+  nav.main {
+    padding: 24px 40px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 48px;
+    align-items: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  nav.main .brand {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--white);
+  }
+  nav.main .brand a { color: inherit; text-decoration: none; }
+  nav.main .brand .slash { color: var(--dept-1); }
+  nav.main .brand small {
+    display: block;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+  nav.main ul { list-style: none; display: flex; gap: 4px; justify-content: center; }
+  nav.main li {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+  }
+  nav.main a {
+    color: var(--dim);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 2px;
+    transition: all 0.2s;
+    display: block;
+  }
+  nav.main a:hover { color: var(--white); background: var(--panel); }
+  nav.main a.active { color: var(--dept-1); background: var(--dept-glow-soft); box-shadow: inset 0 -2px 0 var(--dept-1); }
+  nav.main .cta {
+    padding: 12px 22px;
+    background: var(--dept-1);
+    color: var(--bg);
+    text-decoration: none;
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    border-radius: 2px;
+    transition: all 0.2s;
+    box-shadow: 0 0 24px var(--dept-glow);
+  }
+  nav.main .cta:hover { background: var(--white); }
+
+  /* ---------- DEPT HERO ---------- */
+  .dept-hero {
+    padding: 60px 40px;
+    min-height: 92vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  .dept-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1565701855249-8ad3b37bcd57?w=2400&auto=format&fit=crop&q=85');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    filter: grayscale(0.3) contrast(1.2) brightness(0.75);
+    mask-image: radial-gradient(ellipse at 70% 50%, black 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at 70% 50%, black 20%, transparent 80%);
+  }
+  .dept-hero::after {
+    content: '';
+    position: absolute;
+    right: -200px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--dept-glow) 0%, transparent 55%);
+    filter: blur(30px);
+    pointer-events: none;
+  }
+
+  .dept-hero .meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    position: relative;
+    z-index: 2;
+  }
+  .dept-hero .meta .crumb b { color: var(--dept-1); font-weight: 500; }
+  .dept-hero .meta .status {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--dim);
+  }
+  .dept-hero .meta .status::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--dept-1);
+    box-shadow: 0 0 14px var(--dept-glow);
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .dept-hero h1 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(120px, 26vw, 480px);
+    line-height: 0.82;
+    text-transform: uppercase;
+    letter-spacing: -0.035em;
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+  }
+  .dept-hero h1 .bogen { display: block; color: var(--white); }
+  .dept-hero h1 .schiessen {
+    display: block;
+    color: var(--dept-1);
+    text-shadow: 0 0 80px var(--dept-glow);
+    font-size: 0.6em;
+    margin-top: -0.05em;
+  }
+  .dept-hero h1 .small-01 {
+    font-size: 0.16em;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .dept-hero .lower {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    align-items: end;
+  }
+  .dept-hero .lower .intro {
+    font-size: 20px;
+    color: var(--white);
+    line-height: 1.35;
+    max-width: 26ch;
+    font-weight: 300;
+    border-left: 2px solid var(--dept-1);
+    padding-left: 20px;
+  }
+  .dept-hero .lower .intro b { color: var(--dept-1); font-weight: 500; }
+  .dept-hero .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .dept-hero .hero-stats .h {
+    padding: 24px 20px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    background: rgba(13,14,16,0.3);
+    backdrop-filter: blur(6px);
+  }
+  .dept-hero .hero-stats .h:last-child { border-right: none; }
+  .dept-hero .hero-stats .h .v {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--white);
+  }
+  .dept-hero .hero-stats .h.accent .v { color: var(--dept-1); text-shadow: 0 0 24px var(--dept-glow); }
+  .dept-hero .hero-stats .h .l {
+    font-family: 'Geist Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-top: 8px;
+  }
+
+  /* ---------- OVERVIEW ---------- */
+  .overview {
+    padding: 120px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .overview .side .num-wrap {
+    position: sticky;
+    top: 120px;
+  }
+  .overview .side .num {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: 200px;
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    color: var(--dept-1);
+    text-shadow: 0 0 60px var(--dept-glow);
+  }
+  .overview .side .num small { font-size: 0.3em; color: var(--muted); font-weight: 400; }
+  .overview .side .tag {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dept-1);
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--dept-1);
+  }
+  .overview .prose .kicker {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .overview .prose .kicker b { color: var(--dept-1); font-weight: 500; }
+  .overview .prose h2 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(56px, 6vw, 108px);
+    line-height: 0.88;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+    margin-bottom: 48px;
+  }
+  .overview .prose h2 .ac { color: var(--dept-1); }
+  .overview .prose p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--dim);
+    margin-bottom: 20px;
+  }
+  .overview .prose p strong { color: var(--white); font-weight: 500; }
+
+  /* ---------- TRAINING ---------- */
+  .training {
+    padding: 120px 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .training .head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 48px;
+    margin-bottom: 64px;
+  }
+  .training .head .kicker {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dept-1);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .training .head h2 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(64px, 8vw, 140px);
+    line-height: 0.88;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+  }
+  .training .head h2 .ac { color: var(--dept-1); }
+  .training .head .idx {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: 96px;
+    line-height: 1;
+    font-weight: 300;
+    color: var(--muted);
+  }
+  .training .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .training .loc {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 32px;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .training .loc:hover {
+    background: var(--panel-2);
+    border-color: var(--dept-1);
+    box-shadow: 0 0 40px rgba(224, 154, 60, 0.1);
+    transform: translateY(-4px);
+  }
+  .training .loc .idx {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--dept-1);
+    text-shadow: 0 0 20px var(--dept-glow);
+    margin-bottom: 20px;
+  }
+  .training .loc .idx small { font-size: 0.35em; color: var(--muted); font-weight: 400; }
+  .training .loc h3 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: 38px;
+    line-height: 0.95;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .training .loc .role {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .training .loc .season {
+    display: inline-block;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--dept-glow-soft);
+    color: var(--dept-1);
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .training .loc .sch {
+    display: grid;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .training .loc .sch .r {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--rule);
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+  }
+  .training .loc .sch .r:last-child { border-bottom: none; }
+  .training .loc .sch .r .d { color: var(--white); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+  .training .loc .sch .r .t { color: var(--dim); }
+  .training .loc .addr {
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ---------- SCHNUPPERKURS ---------- */
+  .schnupperkurs {
+    margin: 40px;
+    padding: 80px;
+    background: linear-gradient(135deg, #1a1410 0%, #2a2015 40%, #0f0c08 100%);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .schnupperkurs::before {
+    content: '';
+    position: absolute;
+    right: -200px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, var(--dept-glow) 0%, transparent 55%);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+  .schnupperkurs .target {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 400px;
+    height: 400px;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  .schnupperkurs > * { position: relative; z-index: 2; }
+  .schnupperkurs .kicker {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dept-1);
+    font-weight: 500;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .schnupperkurs .kicker::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--dept-1);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--dept-glow);
+    animation: blink 2s ease-in-out infinite;
+  }
+  .schnupperkurs h2 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(56px, 7vw, 120px);
+    line-height: 0.86;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+    margin-bottom: 32px;
+  }
+  .schnupperkurs h2 .ac { color: var(--dept-1); text-shadow: 0 0 60px var(--dept-glow); }
+  .schnupperkurs p {
+    font-size: 18px;
+    color: var(--dim);
+    line-height: 1.55;
+    margin-bottom: 48px;
+    max-width: 48ch;
+  }
+  .schnupperkurs .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 36px;
+    background: var(--dept-1);
+    color: var(--bg);
+    text-decoration: none;
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    border-radius: 2px;
+    box-shadow: 0 0 40px var(--dept-glow);
+    transition: all 0.3s;
+  }
+  .schnupperkurs .cta:hover { background: var(--white); gap: 20px; }
+  .schnupperkurs .facts {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 32px;
+    backdrop-filter: blur(8px);
+    display: grid;
+    gap: 4px;
+  }
+  .schnupperkurs .facts .r {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .schnupperkurs .facts .r:last-child { border-bottom: none; }
+  .schnupperkurs .facts .l {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .schnupperkurs .facts .v {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--white);
+  }
+  .schnupperkurs .facts .v.accent { color: var(--dept-1); }
+
+  /* ---------- BOWS ---------- */
+  .bows {
+    padding: 120px 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .bows .head {
+    margin-bottom: 64px;
+  }
+  .bows .head .kicker {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dept-1);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .bows .head h2 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(56px, 7vw, 120px);
+    line-height: 0.88;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+  }
+  .bows .head h2 .ac { color: var(--dept-1); }
+  .bows .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .bows .b {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 28px 24px;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .bows .b:hover {
+    background: var(--panel-2);
+    border-color: var(--dept-1);
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px rgba(224, 154, 60, 0.12);
+  }
+  .bows .b .idx {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dept-1);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .bows .b .icn {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 24px;
+    color: var(--dept-1);
+    filter: drop-shadow(0 0 12px var(--dept-glow));
+  }
+  .bows .b h3 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+  .bows .b p {
+    font-size: 13px;
+    color: var(--dim);
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+  .bows .b .lvl {
+    display: inline-block;
+    font-family: 'Geist Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--dept-glow-soft);
+    color: var(--dept-1);
+    padding: 4px 8px;
+    border-radius: 2px;
+  }
+
+  /* ---------- RESULTS TICKER ---------- */
+  .results {
+    padding: 120px 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .results .head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .results .head .kicker {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dept-1);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .results .head h2 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(56px, 7vw, 120px);
+    line-height: 0.88;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+  }
+  .results .head h2 .ac { color: var(--dept-1); }
+  .results .head a {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: var(--dept-1);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--dept-1);
+    padding-bottom: 4px;
+  }
+  .results .rows {
+    border-top: 1px solid var(--rule);
+  }
+  .results .r {
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr auto;
+    gap: 48px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+    transition: background 0.2s, padding 0.2s;
+  }
+  .results .r:hover { background: rgba(224, 154, 60, 0.04); padding-left: 16px; }
+  .results .r .yr {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 1;
+    color: var(--dept-1);
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+  .results .r .ev {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    line-height: 1.1;
+  }
+  .results .r .ev small {
+    display: block;
+    font-family: 'Geist', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--dim);
+    margin-top: 6px;
+  }
+  .results .r .loc { color: var(--dim); font-size: 14px; }
+  .results .r .pl {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dept-1);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    margin-top: 60px;
+    padding: 80px 40px 32px;
+    background: var(--panel);
+    border-top: 1px solid var(--rule);
+  }
+  footer .top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 80px;
+  }
+  footer .brand-big {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 96px;
+    line-height: 0.86;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+  }
+  footer .brand-big .ac { color: var(--dept-1); text-shadow: 0 0 40px var(--dept-glow); }
+  footer h5 {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 10px; font-size: 14px; }
+  footer a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--dept-1); }
+  footer p { color: var(--dim); line-height: 1.6; margin-top: 24px; max-width: 40ch; font-size: 14px; }
+  footer .bottom {
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (max-width: 900px) {
+    nav.main { grid-template-columns: auto 1fr; }
+    nav.main ul { display: none; }
+    .dept-hero .lower, .overview, .training .head, .training .grid, .bows .grid, .schnupperkurs, .results .head, .results .r, footer .top { grid-template-columns: 1fr; gap: 32px; }
+    .dept-hero .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .bows .grid { grid-template-columns: 1fr 1fr; }
+    .schnupperkurs { margin: 24px; padding: 40px; }
+    .schnupperkurs .target { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker">
+  <div class="track">
+    <span><span class="dot"></span>LOL 4 <b>Frühjahrsrunde 2025 läuft</b></span>
+    <span><span class="dot"></span>Schnupperkurs <b>nächster Termin in 14 Tagen</b></span>
+    <span><span class="dot"></span>65 Aktive <b>· Alter 8–80</b></span>
+    <span><span class="dot"></span>Württ. U18 Welzheim 2024</span>
+    <span><span class="dot"></span>LOL 1 Sommer <b>2024</b></span>
+    <span><span class="dot"></span>LOL 4 <b>Frühjahrsrunde 2025 läuft</b></span>
+    <span><span class="dot"></span>Schnupperkurs <b>nächster Termin in 14 Tagen</b></span>
+    <span><span class="dot"></span>65 Aktive <b>· Alter 8–80</b></span>
+    <span><span class="dot"></span>Württ. U18 Welzheim 2024</span>
+    <span><span class="dot"></span>LOL 1 Sommer <b>2024</b></span>
+  </div>
+</div>
+
+<nav class="main">
+  <div class="brand"><a href="index.html">SV<span class="slash">/</span>FASANENHOF</a><small>Abt. 01 · Bogen</small></div>
+  <ul>
+    <li><a href="index.html">Verein</a></li>
+    <li><a href="bogenschiessen.html" class="active">Bogen</a></li>
+    <li><a href="#">Fußball</a></li>
+    <li><a href="#">Tischtennis</a></li>
+    <li><a href="#">Standort</a></li>
+    <li><a href="#">Kontakt</a></li>
+  </ul>
+  <a href="#" class="cta">Schnupperkurs →</a>
+</nav>
+
+<header class="dept-hero">
+  <div class="meta">
+    <span class="crumb">SV<b>/</b>FASANENHOF · <b>ABT. 01</b> · BOGENSPORTABTEILUNG</span>
+    <span class="status">LIVE · LOL 4 Frühjahrsrunde</span>
+  </div>
+  <h1>
+    <span class="small-01">01 / 04 · EINE ABTEILUNG</span>
+    <span class="bogen">BOGEN</span>
+    <span class="schiessen">Schießen.</span>
+  </h1>
+  <div class="lower">
+    <p class="intro">Drei Trainingsorte, vier Bogenklassen, <b>65 aktive Schützen</b> zwischen 8 und 80 Jahren — die größte Abteilung des Vereins, seit 1965.</p>
+    <div class="hero-stats">
+      <div class="h accent"><div class="v">65</div><div class="l">Aktive Schützen</div></div>
+      <div class="h"><div class="v">3</div><div class="l">Trainingsorte</div></div>
+      <div class="h"><div class="v">4</div><div class="l">Bogenklassen</div></div>
+      <div class="h accent"><div class="v">8—80</div><div class="l">Altersspanne</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="overview">
+  <div class="side">
+    <div class="num-wrap">
+      <div class="num">01<small>/04</small></div>
+      <div class="tag">Bogensportabteilung · Seit 1965</div>
+    </div>
+  </div>
+  <div class="prose">
+    <div class="kicker"><b>§ 01</b> · Überblick</div>
+    <h2>Eine Abteilung. <span class="ac">Vier Bögen.</span> Drei Orte. Sechzig Jahre.</h2>
+    <p><strong>Seit Vereinsgründung 1965</strong> gehört Bogenschießen zum Fasanenhof. Was als kleine Gruppe begann, ist heute die größte und traditionsreichste Abteilung des Vereins — mit 65 aktiven Schützinnen und Schützen über drei Generationen.</p>
+    <p>Bei uns spannt der Neunjährige seinen ersten Recurve neben dem achtzigjährigen Landesmeister. Das klingt romantisch — ist aber die tägliche Realität einer Abteilung, die <strong>familiäre Atmosphäre</strong> nie gegen sportlichen Ehrgeiz ausgespielt hat.</p>
+    <p>Wir trainieren an drei Orten: auf dem Freiluftplatz am Logauweg (April–November), in der Hengstäcker-Schule (ganzjährig), und in der Anne-Frank-Gemeinschaftsschule (Winter). <strong>Alle vier Bogenklassen</strong> — Recurve, Compound, Langbogen, Blankbogen — finden bei uns ihren Platz.</p>
+    <p>Der Einstieg führt meist über einen <strong>Schnupperkurs</strong>: drei Abende, ein Leihbogen, unsere Trainer. Am Ende steht eine ehrliche Einschätzung.</p>
+  </div>
+</section>
+
+<section class="training">
+  <div class="head">
+    <div>
+      <div class="kicker">§ 01.1 · Trainingsorte</div>
+      <h2>Drei Hallen. <span class="ac">Ein Takt.</span></h2>
+    </div>
+    <div class="idx">03</div>
+  </div>
+  <div class="grid">
+    <article class="loc">
+      <div class="idx">01<small>/03</small></div>
+      <h3>Logauweg</h3>
+      <div class="role">Hauptgelände · Freiluftplatz</div>
+      <span class="season">Apr — Nov</span>
+      <div class="sch">
+        <div class="r"><span class="d">Mo</span><span class="t">17:00 – 19:00</span></div>
+        <div class="r"><span class="d">Mi</span><span class="t">17:00 – 19:00</span></div>
+        <div class="r"><span class="d">Fr</span><span class="t">17:00 – 19:00</span></div>
+        <div class="r"><span class="d">Sa</span><span class="t">09:00 – 13:00</span></div>
+        <div class="r"><span class="d">So</span><span class="t">09:30 – 12:00</span></div>
+      </div>
+      <div class="addr">Logauweg 21 · 70565 Stuttgart<br>Distanzen 10 – 70 m</div>
+    </article>
+    <article class="loc">
+      <div class="idx">02<small>/03</small></div>
+      <h3>Hengstäcker</h3>
+      <div class="role">Margarete-Steiff-Schule</div>
+      <span class="season">Ganzjährig</span>
+      <div class="sch">
+        <div class="r"><span class="d">Di</span><span class="t">18:00 – 20:00</span></div>
+        <div class="r"><span class="d">Mi</span><span class="t">18:00 – 20:00</span></div>
+      </div>
+      <div class="addr">Gewann 12 · 70567 Stuttgart<br>Schulhalle · bis 18 m</div>
+    </article>
+    <article class="loc">
+      <div class="idx">03<small>/03</small></div>
+      <h3>Anne Frank</h3>
+      <div class="role">Gemeinschaftsschule · Winter</div>
+      <span class="season">Okt — Mär</span>
+      <div class="sch">
+        <div class="r"><span class="d">Do</span><span class="t">18:45 – 20:15</span></div>
+      </div>
+      <div class="addr">Hechinger Straße 73 · 70567 Stuttgart<br>Sporthalle · Winterbetrieb</div>
+    </article>
+  </div>
+</section>
+
+<section class="schnupperkurs">
+  <svg class="target" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#e09a3c" stroke-width="2">
+      <circle cx="200" cy="200" r="190"/>
+      <circle cx="200" cy="200" r="155"/>
+      <circle cx="200" cy="200" r="120"/>
+      <circle cx="200" cy="200" r="85"/>
+      <circle cx="200" cy="200" r="50"/>
+      <circle cx="200" cy="200" r="18" fill="#e09a3c"/>
+    </g>
+  </svg>
+  <div>
+    <div class="kicker">§ 01.2 · Schnupperkurs · Live in 14 Tagen</div>
+    <h2>Drei Abende.<br>Ein Bogen. <span class="ac">Dein Start.</span></h2>
+    <p>Der Schnupperkurs ist der einfachste Weg in den Bogensport. Leihausrüstung, unsere erfahrenen Trainer an deiner Seite, und keine Verpflichtung nach dem dritten Abend. Am Ende eine ehrliche Einschätzung, ob der Bogen bleibt.</p>
+    <a href="#" class="cta">Kurstermin sichern →</a>
+  </div>
+  <div class="facts">
+    <div class="r"><span class="l">Jugend bis 18</span><span class="v accent">50 €</span></div>
+    <div class="r"><span class="l">Erwachsene</span><span class="v accent">80 €</span></div>
+    <div class="r"><span class="l">Termine gesamt</span><span class="v">3×</span></div>
+    <div class="r"><span class="l">Tage</span><span class="v">Di · Mi</span></div>
+    <div class="r"><span class="l">Uhrzeit</span><span class="v">18–20 Uhr</span></div>
+    <div class="r"><span class="l">Ort</span><span class="v">Hengstäcker</span></div>
+    <div class="r"><span class="l">Ausrüstung</span><span class="v">Leihbogen</span></div>
+  </div>
+</section>
+
+<section class="bows">
+  <div class="head">
+    <div class="kicker">§ 01.3 · Vier Bogenklassen</div>
+    <h2>Vier Bögen. <span class="ac">Vier Charaktere.</span></h2>
+  </div>
+  <div class="grid">
+    <article class="b">
+      <div class="idx">01 / IV</div>
+      <svg class="icn" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M30 4 Q48 30 30 56 Q12 30 30 4 Z"/>
+        <line x1="30" y1="10" x2="30" y2="50" stroke-dasharray="2 2"/>
+        <circle cx="30" cy="30" r="2.5" fill="currentColor"/>
+      </svg>
+      <h3>Recurve</h3>
+      <p>Der olympische Bogen. Präzision durch Visier und Stabilisator. Zugänglich und anspruchsvoll zugleich.</p>
+      <span class="lvl">Anfänger +</span>
+    </article>
+    <article class="b">
+      <div class="idx">02 / IV</div>
+      <svg class="icn" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M30 4 Q44 30 30 56"/>
+        <path d="M30 4 Q16 30 30 56"/>
+        <line x1="30" y1="10" x2="30" y2="50" stroke-dasharray="1 3"/>
+      </svg>
+      <h3>Langbogen</h3>
+      <p>Der traditionelle Bogen. Gebogenes Holz, eine Sehne — intuitiv, historisch, ohne Visier.</p>
+      <span class="lvl">Alle Level</span>
+    </article>
+    <article class="b">
+      <div class="idx">03 / IV</div>
+      <svg class="icn" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M30 4 Q48 30 30 56 Q12 30 30 4 Z"/>
+        <line x1="30" y1="12" x2="30" y2="48"/>
+      </svg>
+      <h3>Blankbogen</h3>
+      <p>Recurve ohne Visier. Alles liegt im Gefühl des Schützen — pure Intuition über Distanz und Haltung.</p>
+      <span class="lvl">Fortgeschritten</span>
+    </article>
+    <article class="b">
+      <div class="idx">04 / IV</div>
+      <svg class="icn" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M30 4 L42 14 L42 46 L30 56 L18 46 L18 14 Z"/>
+        <circle cx="42" cy="14" r="2.8"/>
+        <circle cx="42" cy="46" r="2.8"/>
+        <circle cx="18" cy="14" r="2.8"/>
+        <circle cx="18" cy="46" r="2.8"/>
+        <line x1="30" y1="10" x2="30" y2="50"/>
+      </svg>
+      <h3>Compound</h3>
+      <p>Hightech mit Rollen und Cams. Maximale Präzision bei minimaler Haltekraft.</p>
+      <span class="lvl">Leistung</span>
+    </article>
+  </div>
+</section>
+
+<section class="results">
+  <div class="head">
+    <div>
+      <div class="kicker">§ 01.4 · Meisterschaften 2024–2025</div>
+      <h2>Jüngste <span class="ac">Ergebnisse.</span></h2>
+    </div>
+    <a href="#">Archiv 2016–heute →</a>
+  </div>
+  <div class="rows">
+    <div class="r">
+      <span class="yr">2025</span>
+      <div class="ev">LOL 4 Frühjahrsrunde<small>Landesoberliga · BSG Fasanenhof, Heimat</small></div>
+      <span class="loc">Stuttgart-Fasanenhof</span>
+      <span class="pl">Live · Aktuell</span>
+    </div>
+    <div class="r">
+      <span class="yr">2024</span>
+      <div class="ev">Württ. Meisterschaft U18<small>Ausrichter: Welzheim · Jugendklasse</small></div>
+      <span class="loc">Welzheim</span>
+      <span class="pl">Abgeschlossen</span>
+    </div>
+    <div class="r">
+      <span class="yr">2024</span>
+      <div class="ev">LOL 1 · Sommermeisterschaft<small>Landesoberliga · Einzelklasse</small></div>
+      <span class="loc">Stuttgart</span>
+      <span class="pl">Platziert</span>
+    </div>
+    <div class="r">
+      <span class="yr">2024</span>
+      <div class="ev">Vereinspokal<small>Jahresinterne Meisterschaft · alle Klassen</small></div>
+      <span class="loc">Logauweg</span>
+      <span class="pl">Durchgeführt</span>
+    </div>
+    <div class="r">
+      <span class="yr">2024</span>
+      <div class="ev">Schömberg Liga · Relegation<small>LOL-Relegation · Mannschaftsklasse</small></div>
+      <span class="loc">Schömberg</span>
+      <span class="pl">Platziert</span>
+    </div>
+    <div class="r">
+      <span class="yr">2023</span>
+      <div class="ev">LM Sommer / Winter<small>Landesmeisterschaft · Saisonwertung</small></div>
+      <span class="loc">Stuttgart</span>
+      <span class="pl">Archiv</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="top">
+    <div>
+      <div class="brand-big">BOGEN<span class="ac">.</span></div>
+      <p>Abteilung 01 des 1. SV Fasanenhof 1965 e.V. Aktive Schützen aller vier Klassen und Altersstufen von 8 bis 80.</p>
+    </div>
+    <div>
+      <h5>Abteilung</h5>
+      <ul>
+        <li><a href="#">Training</a></li>
+        <li><a href="#">Schnupperkurs</a></li>
+        <li><a href="#">Bogenklassen</a></li>
+        <li><a href="#">Schießordnung</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Archiv</h5>
+      <ul>
+        <li><a href="#">Meisterschaften</a></li>
+        <li><a href="#">Galerie</a></li>
+        <li><a href="#">Wissen</a></li>
+        <li><a href="#">Presse</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Verein</h5>
+      <ul>
+        <li><a href="index.html">Hauptverein</a></li>
+        <li><a href="#">Kontakt</a></li>
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom">
+    <span>© 1. SV Fasanenhof 1965 e.V. · Abt. 01 · Stuttgart · MMXXV</span>
+    <span>Big Shoulders Display & Geist</span>
+  </div>
+</footer>
+
+</body>
+</html>

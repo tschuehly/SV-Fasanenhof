@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Directions · 1. SV Fasanenhof 1965 e.V.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@300;400;500&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f6f2;
+    --fg: #0e0e0e;
+    --fg-60: #50504e;
+    --fg-40: #8a8a87;
+    --rule: #d9d8d2;
+
+    --h1: #8f2a21;   /* heritage red */
+    --h2: #c8482a;   /* precision copper */
+    --h3: #e09a3c;   /* contemporary amber */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter Tight', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .serif { font-family: 'Fraunces', serif; }
+
+  /* ---------- MASTHEAD ---------- */
+  .head {
+    padding: 64px 56px 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: end;
+    border-bottom: 1px solid var(--rule);
+  }
+  .head .mono { color: var(--fg-40); margin-bottom: 24px; }
+  .head .mono b { color: var(--fg); font-weight: 500; }
+  .head h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(48px, 6vw, 96px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    max-width: 18ch;
+  }
+  .head h1 em { font-style: italic; color: var(--h1); font-weight: 300; }
+  .head .sub { max-width: 48ch; color: var(--fg-60); font-size: 17px; line-height: 1.5; }
+
+  /* ---------- DIRECTIONS ---------- */
+  .directions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 32px 56px 80px;
+  }
+
+  .dir {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 100px 1.2fr 2fr;
+    gap: 56px;
+    align-items: start;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s, padding 0.2s;
+  }
+  .dir:hover { padding-left: 16px; background: rgba(0,0,0,0.015); }
+  .dir:last-child { border-bottom: none; }
+  .dir .num {
+    font-family: 'Fraunces', serif;
+    font-size: 72px;
+    line-height: 0.9;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--fg-40);
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+  }
+  .dir.d1 .num { color: var(--h1); }
+  .dir.d2 .num { color: var(--h2); }
+  .dir.d3 .num { color: var(--h3); }
+
+  .dir .title-block .mono {
+    color: var(--fg-40);
+    margin-bottom: 12px;
+  }
+  .dir .title-block h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    margin-bottom: 20px;
+  }
+  .dir .title-block h2 em { font-style: italic; font-weight: 300; }
+  .dir.d1 .title-block h2 em { color: var(--h1); }
+  .dir.d2 .title-block h2 em { color: var(--h2); }
+  .dir.d3 .title-block h2 em { color: var(--h3); }
+
+  .dir .title-block .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid currentColor;
+    color: var(--fg-60);
+    margin-bottom: 16px;
+  }
+
+  .dir .content p {
+    color: var(--fg-60);
+    font-size: 17px;
+    line-height: 1.55;
+    margin-bottom: 24px;
+    max-width: 58ch;
+  }
+  .dir .content .specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+    padding: 20px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .dir .content .specs .s .l {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-40);
+    margin-bottom: 6px;
+  }
+  .dir .content .specs .s .v {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .dir .content .specs .s .v em { font-style: italic; font-weight: 400; }
+  .dir.d1 .content .specs .s .v em { color: var(--h1); }
+  .dir.d2 .content .specs .s .v em { color: var(--h2); }
+  .dir.d3 .content .specs .s .v em { color: var(--h3); }
+
+  .dir .links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .dir .links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px 18px;
+    background: var(--fg);
+    color: var(--bg);
+    border-radius: 2px;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+  }
+  .dir .links a:hover { gap: 16px; }
+  .dir.d1 .links a:first-child { background: var(--h1); }
+  .dir.d2 .links a:first-child { background: var(--h2); }
+  .dir.d3 .links a:first-child { background: var(--h3); color: var(--fg); }
+  .dir .links a.secondary {
+    background: transparent;
+    color: var(--fg);
+    border: 1px solid var(--fg);
+  }
+  .dir .links a.secondary:hover { background: var(--fg); color: var(--bg); }
+
+  /* preview swatch strip */
+  .dir .swatch {
+    display: flex;
+    margin: 16px 0 20px;
+    height: 8px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .dir .swatch span { flex: 1; }
+  .dir.d1 .swatch span:nth-child(1) { background: #efe8d6; }
+  .dir.d1 .swatch span:nth-child(2) { background: #8f2a21; }
+  .dir.d1 .swatch span:nth-child(3) { background: #2c4932; }
+  .dir.d1 .swatch span:nth-child(4) { background: #782421; }
+  .dir.d1 .swatch span:nth-child(5) { background: #a56417; }
+  .dir.d1 .swatch span:nth-child(6) { background: #1a1612; }
+
+  .dir.d2 .swatch span:nth-child(1) { background: #ffffff; border: 1px solid #e8e8e8; }
+  .dir.d2 .swatch span:nth-child(2) { background: #0a0a0a; }
+  .dir.d2 .swatch span:nth-child(3) { background: #c8482a; }
+  .dir.d2 .swatch span:nth-child(4) { background: #1d6e3a; }
+  .dir.d2 .swatch span:nth-child(5) { background: #c29b1d; }
+  .dir.d2 .swatch span:nth-child(6) { background: #e8e8e8; }
+
+  .dir.d3 .swatch span:nth-child(1) { background: #0d0e10; }
+  .dir.d3 .swatch span:nth-child(2) { background: #e09a3c; }
+  .dir.d3 .swatch span:nth-child(3) { background: #e63946; }
+  .dir.d3 .swatch span:nth-child(4) { background: #ffd60a; }
+  .dir.d3 .swatch span:nth-child(5) { background: #2a4d2f; }
+  .dir.d3 .swatch span:nth-child(6) { background: #f5f3ef; }
+
+  /* ---------- FOOT ---------- */
+  footer {
+    padding: 40px 56px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-40);
+    border-top: 1px solid var(--rule);
+  }
+
+  @media (max-width: 900px) {
+    .head, .dir, .dir .content .specs { grid-template-columns: 1fr; gap: 24px; }
+    .dir .content .specs { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="head">
+  <div>
+    <div class="mono"><b>Design Review</b> · SV Fasanenhof · Entwurfsphase · <b>MMXXV</b></div>
+    <h1>Drei Richtungen für <em>einen Verein</em> mit drei Abteilungen.</h1>
+  </div>
+  <p class="sub">Jede Richtung teilt dieselbe Informationsarchitektur (Home + Bogenschießen als erstes Department-Landing), aber unterscheidet sich grundlegend in Typografie, Farbsystem, Fotografie-Behandlung und Gesamthaltung. Die pro-Abteilung-Differenzierung ist auf der Bogenschießen-Seite jeweils am deutlichsten sichtbar.</p>
+</header>
+
+<section class="directions">
+
+  <a class="dir d1" href="heritage/index.html">
+    <div class="num">01</div>
+    <div class="title-block">
+      <div class="mono">Richtung · Erste</div>
+      <span class="tag">Editorial · Heritage</span>
+      <h2>Vereinsalmanach.<br><em>Sechzig Jahre auf Papier.</em></h2>
+      <div class="swatch"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="content">
+      <p>Eine Hommage an den 60-jährigen Verein als gebundener Jahresalmanach. Wärme durch cremefarbenes Papier und körnige Fotografie, Tiefe durch Serifensatz und Editorialspalten. Abteilungen unterscheiden sich durch gedämpfte Farbakzente: Wald (Bogen), Wein (Fußball), Ocker (Tischtennis).</p>
+      <div class="specs">
+        <div class="s"><div class="l">Display-Schrift</div><div class="v"><em>Fraunces</em></div></div>
+        <div class="s"><div class="l">Fließtext</div><div class="v"><em>Newsreader</em></div></div>
+        <div class="s"><div class="l">Grundton</div><div class="v"><em>Cremepapier + Tinte</em></div></div>
+        <div class="s"><div class="l">Bild-Behandlung</div><div class="v"><em>Duoton · Sepia-Print</em></div></div>
+      </div>
+      <div class="links">
+        <a href="heritage/index.html">Home ansehen →</a>
+        <a href="heritage/bogenschiessen.html" class="secondary">Bogenschießen →</a>
+      </div>
+    </div>
+  </a>
+
+  <a class="dir d2" href="precision/index.html">
+    <div class="num">02</div>
+    <div class="title-block">
+      <div class="mono">Richtung · Zweite</div>
+      <span class="tag">Architectural · Precision</span>
+      <h2>Weißer Raum.<br><em>Stuttgarter Modernismus.</em></h2>
+      <div class="swatch"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="content">
+      <p>Ein Bekenntnis zur Stuttgarter Architekturtradition (Weissenhofsiedlung, HfG Ulm): reines Weiß, Haarlinien, asymmetrische Kompositionen, großformatige Fotografie mit scharfen Einzelakzenten pro Abteilung. Kopper (Bogen), Platzgrün (Fußball), Signalgelb (Tischtennis).</p>
+      <div class="specs">
+        <div class="s"><div class="l">Display-Schrift</div><div class="v"><em>Bricolage Grotesque</em></div></div>
+        <div class="s"><div class="l">Fließtext</div><div class="v"><em>Host Grotesk</em></div></div>
+        <div class="s"><div class="l">Grundton</div><div class="v"><em>Reines Weiß · Linien</em></div></div>
+        <div class="s"><div class="l">Bild-Behandlung</div><div class="v"><em>Vollbild · kinematisch</em></div></div>
+      </div>
+      <div class="links">
+        <a href="precision/index.html">Home ansehen →</a>
+        <a href="precision/bogenschiessen.html" class="secondary">Bogenschießen →</a>
+      </div>
+    </div>
+  </a>
+
+  <a class="dir d3" href="contemporary/index.html">
+    <div class="num">03</div>
+    <div class="title-block">
+      <div class="mono">Richtung · Dritte</div>
+      <span class="tag">Contemporary · Sport</span>
+      <h2>Nachtdunkel.<br><em>Sport als Energie.</em></h2>
+      <div class="swatch"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="content">
+      <p>Ein moderner Sportmarken-Look: nahezu schwarzer Grund, kondensierte Display-Schrift in Plakatgröße, dynamischer Ticker und pro Abteilung ein leuchtendes Farbpaar. Bogen: Bernstein + Moos. Fußball: Signalrot + Rasengrün. Tischtennis: Solargelb + Keramikblau.</p>
+      <div class="specs">
+        <div class="s"><div class="l">Display-Schrift</div><div class="v"><em>Big Shoulders Display</em></div></div>
+        <div class="s"><div class="l">Fließtext</div><div class="v"><em>Geist</em></div></div>
+        <div class="s"><div class="l">Grundton</div><div class="v"><em>Dunkel · leuchtende Akzente</em></div></div>
+        <div class="s"><div class="l">Bild-Behandlung</div><div class="v"><em>Duoton · Glow / Atmosphäre</em></div></div>
+      </div>
+      <div class="links">
+        <a href="contemporary/index.html">Home ansehen →</a>
+        <a href="contemporary/bogenschiessen.html" class="secondary">Bogenschießen →</a>
+      </div>
+    </div>
+  </a>
+
+</section>
+
+<footer>
+  <span>© 1. SV Fasanenhof 1965 e.V. · Design-Review · Entwurfsphase</span>
+  <span>Stuttgart · MMXXV</span>
+</footer>
+
+</body>
+</html>

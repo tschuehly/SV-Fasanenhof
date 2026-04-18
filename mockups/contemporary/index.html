@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1. SV Fasanenhof 1965 e.V. — Contemporary Direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;500;700;800;900&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0e10;
+    --panel: #16181c;
+    --panel-2: #1e2026;
+    --rule: #2a2d34;
+    --white: #f5f3ef;
+    --dim: #8c8f96;
+    --muted: #626571;
+
+    --bogen-1: #e09a3c;
+    --bogen-2: #2a4d2f;
+    --bogen-glow: rgba(224, 154, 60, 0.4);
+
+    --fussball-1: #e63946;
+    --fussball-2: #1d7f44;
+    --fussball-glow: rgba(230, 57, 70, 0.4);
+
+    --tt-1: #ffd60a;
+    --tt-2: #0077b6;
+    --tt-glow: rgba(255, 214, 10, 0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Geist', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(224, 154, 60, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 85%, rgba(230, 57, 70, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(255, 214, 10, 0.03) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: overlay;
+  }
+
+  .cond { font-family: 'Big Shoulders Display', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; }
+  .mono { font-family: 'Geist Mono', monospace; }
+
+  main, header, section, footer, nav { position: relative; z-index: 3; }
+
+  /* ---------- TICKER ---------- */
+  .ticker {
+    background: var(--panel);
+    border-bottom: 1px solid var(--rule);
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 10px 0;
+    overflow: hidden;
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+    color: var(--dim);
+  }
+  .ticker .track {
+    display: flex;
+    gap: 48px;
+    animation: ticker 60s linear infinite;
+    padding-left: 48px;
+    flex-shrink: 0;
+  }
+  .ticker .track span { display: inline-flex; gap: 12px; align-items: center; }
+  .ticker .track .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--bogen-1);
+    box-shadow: 0 0 10px var(--bogen-glow);
+  }
+  .ticker .track .dot.red { background: var(--fussball-1); box-shadow: 0 0 10px var(--fussball-glow); }
+  .ticker .track .dot.yel { background: var(--tt-1); box-shadow: 0 0 10px var(--tt-glow); }
+  .ticker .track b { color: var(--white); font-weight: 500; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ---------- NAV ---------- */
+  nav.main {
+    padding: 24px 40px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 48px;
+    align-items: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  nav.main .brand {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  nav.main .brand .slash { color: var(--bogen-1); }
+  nav.main .brand small {
+    display: block;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+  nav.main ul {
+    list-style: none;
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+  }
+  nav.main li {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  nav.main a {
+    color: var(--dim);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 2px;
+    transition: all 0.2s;
+    display: block;
+  }
+  nav.main a:hover { color: var(--white); background: var(--panel); }
+  nav.main .cta {
+    padding: 12px 22px;
+    background: var(--bogen-1);
+    color: var(--bg);
+    text-decoration: none;
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    border-radius: 2px;
+    transition: all 0.2s;
+    box-shadow: 0 0 24px var(--bogen-glow);
+  }
+  nav.main .cta:hover { background: var(--white); box-shadow: 0 0 40px rgba(245,243,239,0.25); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 80px 40px 60px;
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url('https://images.unsplash.com/photo-1565701855249-8ad3b37bcd57?w=2400&auto=format&fit=crop&q=85');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.22;
+    filter: grayscale(0.4) contrast(1.15);
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+  }
+  .hero .meta-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+  .hero .meta-top b { color: var(--bogen-1); font-weight: 500; }
+  .hero .meta-top .date b { color: var(--white); }
+  .hero .title-wrap {
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: end;
+  }
+  .hero h1 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: clamp(100px, 18vw, 320px);
+    font-weight: 900;
+    line-height: 0.82;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--white);
+  }
+  .hero h1 .sv {
+    display: block;
+    font-size: 0.48em;
+    font-weight: 300;
+    color: var(--dim);
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+  }
+  .hero h1 .fas { color: var(--white); }
+  .hero h1 .hof {
+    color: var(--bogen-1);
+    text-shadow: 0 0 60px var(--bogen-glow);
+  }
+  .hero h1 .year {
+    display: inline-block;
+    font-size: 0.28em;
+    font-weight: 700;
+    color: var(--muted);
+    vertical-align: top;
+    margin-left: 0.1em;
+    letter-spacing: 0.02em;
+  }
+  .hero h1 .year .sl { color: var(--bogen-1); }
+  .hero .big-quote {
+    font-family: 'Geist', sans-serif;
+    font-size: 18px;
+    line-height: 1.35;
+    color: var(--dim);
+    font-weight: 400;
+    max-width: 28ch;
+    padding-bottom: 24px;
+    border-left: 2px solid var(--bogen-1);
+    padding-left: 20px;
+  }
+  .hero .big-quote b { color: var(--white); font-weight: 500; }
+  .hero .stat-bar {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero .stat-bar .st {
+    background: var(--bg);
+    padding: 24px 20px;
+    position: relative;
+  }
+  .hero .stat-bar .st .v {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--white);
+  }
+  .hero .stat-bar .st .v.accent { color: var(--bogen-1); text-shadow: 0 0 24px var(--bogen-glow); }
+  .hero .stat-bar .st .l {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* ---------- DEPARTMENTS SECTION ---------- */
+  .departments-head {
+    padding: 120px 40px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .departments-head .kicker {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .departments-head .kicker b { color: var(--bogen-1); font-weight: 500; }
+  .departments-head h2 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: clamp(64px, 10vw, 180px);
+    font-weight: 900;
+    line-height: 0.88;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+  }
+  .departments-head h2 .ac { color: var(--bogen-1); }
+  .departments-head .count {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: 140px;
+    line-height: 1;
+    font-weight: 300;
+    color: var(--muted);
+    letter-spacing: -0.03em;
+  }
+
+  .departments {
+    padding: 48px 40px 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .dept-card {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: var(--white);
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 3 / 4.5;
+    transition: all 0.4s cubic-bezier(.19, 1, .22, 1);
+    isolation: isolate;
+  }
+  .dept-card:hover { transform: translateY(-6px); border-color: var(--glow-color, var(--bogen-1)); }
+  .dept-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(0.2) contrast(1.1) brightness(0.55);
+    z-index: -2;
+    transition: transform 0.6s, filter 0.4s;
+  }
+  .dept-card:hover::before { transform: scale(1.05); filter: grayscale(0) contrast(1.2) brightness(0.65); }
+  .dept-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 30%, var(--card-grad, rgba(13,14,16,0.85)) 100%);
+    z-index: -1;
+  }
+
+  .dept-card.bogen { --glow-color: var(--bogen-1); --card-grad: linear-gradient(180deg, rgba(42,77,47,0) 30%, rgba(13,14,16,0.92) 80%, var(--bg) 100%); }
+  .dept-card.bogen::before { background-image: url('https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=1200&auto=format&fit=crop&q=85'); }
+
+  .dept-card.fussball { --glow-color: var(--fussball-1); --card-grad: linear-gradient(180deg, rgba(29,111,58,0) 30%, rgba(13,14,16,0.92) 80%, var(--bg) 100%); }
+  .dept-card.fussball::before { background-image: url('https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1200&auto=format&fit=crop&q=85'); }
+
+  .dept-card.tt { --glow-color: var(--tt-1); --card-grad: linear-gradient(180deg, rgba(0,119,182,0) 30%, rgba(13,14,16,0.92) 80%, var(--bg) 100%); }
+  .dept-card.tt::before { background-image: url('https://images.unsplash.com/photo-1611251135345-18c56206b863?w=1200&auto=format&fit=crop&q=85'); }
+
+  .dept-card .top {
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+  }
+  .dept-card .top .idx {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--glow-color);
+    font-weight: 500;
+  }
+  .dept-card .top .tag {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    border: 1px solid var(--rule);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+  .dept-card .bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 28px;
+  }
+  .dept-card .bottom h3 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.86;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    font-size: clamp(52px, 6vw, 88px);
+    margin-bottom: 20px;
+  }
+  .dept-card .bottom h3 .accent { color: var(--glow-color); text-shadow: 0 0 40px var(--glow-color); }
+  .dept-card .bottom .stats {
+    display: flex;
+    gap: 24px;
+    padding: 16px 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    margin-bottom: 20px;
+  }
+  .dept-card .bottom .stats .s {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--white);
+  }
+  .dept-card .bottom .stats .s small {
+    display: block;
+    font-family: 'Geist Mono', monospace;
+    font-weight: 400;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-top: 6px;
+  }
+  .dept-card .bottom p {
+    font-size: 14px;
+    color: var(--dim);
+    line-height: 1.55;
+    margin-bottom: 18px;
+    max-width: 32ch;
+  }
+  .dept-card .bottom .arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: var(--glow-color);
+    letter-spacing: 0.04em;
+  }
+
+  .dept-card .pulse {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 2px solid var(--glow-color);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .dept-card:hover .pulse { opacity: 0.35; animation: pulse 1.8s ease-out infinite; }
+  @keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.4; }
+    100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+  }
+
+  /* ---------- FEATURE EVENT ---------- */
+  .feature {
+    margin: 40px;
+    padding: 64px;
+    background: linear-gradient(135deg, #18120c 0%, #1e1810 50%, #0d0e10 100%);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 64px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .feature::before {
+    content: '';
+    position: absolute;
+    right: -120px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--bogen-glow) 0%, transparent 60%);
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(40px);
+  }
+  .feature > * { position: relative; z-index: 1; }
+  .feature .lbl {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bogen-1);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .feature .lbl::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--bogen-1);
+    box-shadow: 0 0 12px var(--bogen-glow);
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .feature h3 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(48px, 6vw, 88px);
+    text-transform: uppercase;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .feature h3 .ac { color: var(--bogen-1); }
+  .feature p {
+    font-size: 17px;
+    color: var(--dim);
+    line-height: 1.55;
+    margin-bottom: 40px;
+    max-width: 48ch;
+  }
+  .feature .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 32px;
+    background: var(--bogen-1);
+    color: var(--bg);
+    text-decoration: none;
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    border-radius: 2px;
+    box-shadow: 0 0 40px var(--bogen-glow);
+    transition: all 0.3s;
+  }
+  .feature .cta:hover { background: var(--white); gap: 20px; }
+  .feature .panel {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 32px;
+    backdrop-filter: blur(8px);
+  }
+  .feature .panel .r {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+    gap: 16px;
+  }
+  .feature .panel .r:last-child { border-bottom: none; }
+  .feature .panel .r .l {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .feature .panel .r .v {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--white);
+  }
+  .feature .panel .r .v.accent { color: var(--bogen-1); }
+
+  /* ---------- CLUB METRICS ---------- */
+  .metrics {
+    padding: 80px 40px;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .metrics .head h2 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 72px;
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+  }
+  .metrics .head h2 .ac { color: var(--bogen-1); }
+  .metrics .head p { color: var(--dim); margin-top: 16px; max-width: 28ch; }
+  .metrics .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .metrics .grid .c {
+    background: var(--panel);
+    padding: 36px 28px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .metrics .grid .c:hover { background: var(--panel-2); }
+  .metrics .grid .c .n {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: 68px;
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.025em;
+    color: var(--white);
+  }
+  .metrics .grid .c:nth-child(1) .n { color: var(--bogen-1); text-shadow: 0 0 24px var(--bogen-glow); }
+  .metrics .grid .c:nth-child(2) .n { color: var(--fussball-1); text-shadow: 0 0 24px var(--fussball-glow); }
+  .metrics .grid .c:nth-child(3) .n { color: var(--tt-1); text-shadow: 0 0 24px var(--tt-glow); }
+  .metrics .grid .c .l {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-top: 12px;
+  }
+  .metrics .grid .c .sub {
+    font-size: 13px;
+    color: var(--dim);
+    margin-top: 10px;
+    line-height: 1.4;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    margin-top: 80px;
+    padding: 80px 40px 32px;
+    border-top: 1px solid var(--rule);
+    background: var(--panel);
+  }
+  footer .top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 80px;
+  }
+  footer .brand-big {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 96px;
+    line-height: 0.86;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+  }
+  footer .brand-big .ac { color: var(--bogen-1); text-shadow: 0 0 40px var(--bogen-glow); }
+  footer .brand-big .yr { display: block; font-size: 0.25em; color: var(--muted); font-weight: 400; margin-top: 12px; letter-spacing: 0.05em; }
+  footer p { color: var(--dim); line-height: 1.6; margin-top: 24px; max-width: 40ch; font-size: 14px; }
+  footer h5 {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 10px; font-size: 14px; }
+  footer a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--bogen-1); }
+  footer .bottom {
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (max-width: 900px) {
+    nav.main { grid-template-columns: auto 1fr; }
+    nav.main ul { display: none; }
+    .hero .title-wrap, .departments, .feature, .metrics, footer .top, .departments-head { grid-template-columns: 1fr; }
+    .hero .stat-bar { grid-template-columns: repeat(2, 1fr); }
+    .metrics .grid { grid-template-columns: repeat(2, 1fr); }
+    .feature { margin: 24px; padding: 32px; }
+    .dept-card { aspect-ratio: 4/5; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker">
+  <div class="track">
+    <span><span class="dot"></span>Bogen · <b>LOL 4 Frühjahrsrunde 2025 läuft</b></span>
+    <span><span class="dot red"></span>Fußball · <b>Neue Saison startet im April</b></span>
+    <span><span class="dot yel"></span>Tischtennis · <b>Mittwoch & Freitag · Zwei neue Tische</b></span>
+    <span><span class="dot"></span>Schnupperkurs · <b>Nächster Termin in 14 Tagen</b></span>
+    <span><span class="dot red"></span>60 Jahre · <b>Jubiläum 2025 · Festwoche im Juli</b></span>
+    <span><span class="dot"></span>Bogen · <b>LOL 4 Frühjahrsrunde 2025 läuft</b></span>
+    <span><span class="dot red"></span>Fußball · <b>Neue Saison startet im April</b></span>
+    <span><span class="dot yel"></span>Tischtennis · <b>Zwei neue Tische verfügbar</b></span>
+    <span><span class="dot"></span>Schnupperkurs · <b>Nächster Termin in 14 Tagen</b></span>
+    <span><span class="dot red"></span>60 Jahre · <b>Festwoche im Juli</b></span>
+  </div>
+</div>
+
+<nav class="main">
+  <div class="brand">SV<span class="slash">/</span>FASANENHOF<small>1965 · Stuttgart · e.V.</small></div>
+  <ul>
+    <li><a href="#">Verein</a></li>
+    <li><a href="bogenschiessen.html">Bogen</a></li>
+    <li><a href="#">Fußball</a></li>
+    <li><a href="#">Tischtennis</a></li>
+    <li><a href="#">Standort</a></li>
+    <li><a href="#">Kontakt</a></li>
+  </ul>
+  <a href="#" class="cta">Schnupperkurs →</a>
+</nav>
+
+<header class="hero">
+  <div class="meta-top">
+    <span><b>60 JAHRE</b> · EIN VEREIN · DREI ABTEILUNGEN</span>
+    <span class="date"><b>MMXXV</b> · STUTTGART FASANENHOF</span>
+  </div>
+  <div class="title-wrap">
+    <h1>
+      <span class="sv">1. SV</span>
+      <span class="fas">FASANEN</span><span class="hof">HOF</span><span class="year"><span class="sl">/</span>65</span>
+    </h1>
+    <p class="big-quote">Seit 1965 spielt, schießt und schmettert der Süden von Stuttgart im Fasanenhof.<br><b>Bogen. Ball. Tisch.</b></p>
+  </div>
+  <div class="stat-bar">
+    <div class="st"><div class="v accent">60</div><div class="l">Jahre Vereinsgeschichte</div></div>
+    <div class="st"><div class="v">3</div><div class="l">Abteilungen</div></div>
+    <div class="st"><div class="v">65+</div><div class="l">Aktive Schützen</div></div>
+    <div class="st"><div class="v">7</div><div class="l">Trainingsabende pro Woche</div></div>
+    <div class="st"><div class="v">1</div><div class="l">Verein — Logauweg 21</div></div>
+  </div>
+</header>
+
+<div class="departments-head">
+  <div>
+    <div class="kicker"><b>02</b> · Die drei Abteilungen</div>
+    <h2>Bogen. Ball. <span class="ac">Tisch.</span></h2>
+  </div>
+  <div class="count">03</div>
+</div>
+
+<section class="departments">
+
+  <a href="bogenschiessen.html" class="dept-card bogen">
+    <div class="top">
+      <span class="idx">ABT. 01</span>
+      <span class="tag">Seit 1965</span>
+    </div>
+    <div class="pulse"></div>
+    <div class="bottom">
+      <h3>Bogen<span class="accent">.</span></h3>
+      <div class="stats">
+        <div class="s">65<small>Schützen</small></div>
+        <div class="s">3<small>Orte</small></div>
+        <div class="s">8—80<small>Jahre</small></div>
+      </div>
+      <p>Drei Trainingsorte, vier Bogenklassen, sechzigfünf aktive Schützen über drei Generationen.</p>
+      <span class="arrow">Zur Abteilung →</span>
+    </div>
+  </a>
+
+  <a href="#" class="dept-card fussball">
+    <div class="top">
+      <span class="idx">ABT. 02</span>
+      <span class="tag">Logauweg</span>
+    </div>
+    <div class="pulse"></div>
+    <div class="bottom">
+      <h3>Fuß<span class="accent">ball.</span></h3>
+      <div class="stats">
+        <div class="s">1965<small>Gründung</small></div>
+        <div class="s">1<small>Platz</small></div>
+        <div class="s">All<small>Altersstufen</small></div>
+      </div>
+      <p>Seit den Anfangsjahren wird am Logauweg gekickt. Eine Abteilung im Aufbau, offen für Jugend und Freizeit.</p>
+      <span class="arrow">Zur Abteilung →</span>
+    </div>
+  </a>
+
+  <a href="#" class="dept-card tt">
+    <div class="top">
+      <span class="idx">ABT. 03</span>
+      <span class="tag">Mi · Fr</span>
+    </div>
+    <div class="pulse"></div>
+    <div class="bottom">
+      <h3>Tisch<span class="accent">.</span></h3>
+      <div class="stats">
+        <div class="s">2<small>Tische</small></div>
+        <div class="s">2<small>Abende</small></div>
+        <div class="s">Offen<small>Für alle</small></div>
+      </div>
+      <p>Zwei Tische, zwei feste Abende, eine treue Runde. Wer eine Kelle halten kann, ist willkommen.</p>
+      <span class="arrow">Zur Abteilung →</span>
+    </div>
+  </a>
+
+</section>
+
+<section class="feature">
+  <div>
+    <div class="lbl">Nächster Einstieg · Live in 14 Tagen</div>
+    <h3>Drei Abende. Ein Bogen. <span class="ac">Dein Start.</span></h3>
+    <p>Der Schnupperkurs ist der einfachste Weg in den Verein. Leihausrüstung, unsere erfahrenen Trainer an deiner Seite — und am Ende eine ehrliche Einschätzung, ob der Bogensport für dich passt.</p>
+    <a href="#" class="cta">Jetzt buchen ↗</a>
+  </div>
+  <div class="panel">
+    <div class="r"><span class="l">Jugend bis 18</span><span class="v accent">50 €</span></div>
+    <div class="r"><span class="l">Erwachsene</span><span class="v accent">80 €</span></div>
+    <div class="r"><span class="l">Termine</span><span class="v">3× Abende</span></div>
+    <div class="r"><span class="l">Tage</span><span class="v">Di · Mi</span></div>
+    <div class="r"><span class="l">Uhrzeit</span><span class="v">18:00–20:00</span></div>
+    <div class="r"><span class="l">Ort</span><span class="v">Hengstäcker</span></div>
+    <div class="r"><span class="l">Ausrüstung</span><span class="v">Inklusive</span></div>
+  </div>
+</section>
+
+<section class="metrics">
+  <div class="head">
+    <h2>Sechzig <span class="ac">Jahre</span> in Zahlen.</h2>
+    <p>Ein Überblick über das, was unseren Verein heute ausmacht — und was in den Jahrzehnten davor gewachsen ist.</p>
+  </div>
+  <div class="grid">
+    <div class="c">
+      <div class="n">60</div>
+      <div class="l">Jahre</div>
+      <div class="sub">Seit 1965 im Fasanenhof.</div>
+    </div>
+    <div class="c">
+      <div class="n">3</div>
+      <div class="l">Abteilungen</div>
+      <div class="sub">Bogen · Fußball · TT</div>
+    </div>
+    <div class="c">
+      <div class="n">65+</div>
+      <div class="l">Aktive Bogen­schützen</div>
+      <div class="sub">Acht bis achtzig Jahre.</div>
+    </div>
+    <div class="c">
+      <div class="n">9+</div>
+      <div class="l">Jahre Meisterschaften</div>
+      <div class="sub">Archivierte Saisons 2016–heute.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="top">
+    <div>
+      <div class="brand-big">SV FAS<span class="ac">/</span>HOF<span class="yr">1965 — 2025 · 60 JAHRE</span></div>
+      <p>Der 1. SV Fasanenhof 1965 e.V. ist ein eingetragener Sportverein in Stuttgart-Fasanenhof mit drei Abteilungen: Bogenschießen, Fußball und Tischtennis.</p>
+    </div>
+    <div>
+      <h5>Verein</h5>
+      <ul>
+        <li><a href="#">Historie</a></li>
+        <li><a href="#">Vorstand</a></li>
+        <li><a href="#">Satzung</a></li>
+        <li><a href="#">Beiträge</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Sport</h5>
+      <ul>
+        <li><a href="bogenschiessen.html">Bogenschießen</a></li>
+        <li><a href="#">Fußball</a></li>
+        <li><a href="#">Tischtennis</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Besuchen</h5>
+      <ul>
+        <li><a href="#">Logauweg 21</a></li>
+        <li><a href="#">Gaststätte Da Angelo</a></li>
+        <li><a href="#">Anfahrt · U6</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom">
+    <span>© 1. SV Fasanenhof 1965 e.V. · Stuttgart · MMXXV</span>
+    <span>Big Shoulders Display & Geist</span>
+  </div>
+</footer>
+
+</body>
+</html>
