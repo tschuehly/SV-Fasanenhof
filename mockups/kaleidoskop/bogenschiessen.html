@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bogenschießen — Der Hain · SV Fasanenhof Kaleidoskop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #ede0bf;
+    --parchment-dark: #d8c69b;
+    --parchment-deep: #c5b38a;
+    --aged: #f3e8c9;
+    --forest: #2d4530;
+    --forest-deep: #1a2a1c;
+    --moss: #567059;
+    --gold: #a67d2e;
+    --gold-bright: #c9a050;
+    --leather: #5c3a1c;
+    --leather-deep: #3a2510;
+    --wax-red: #8b2a1c;
+    --ink: #1f1611;
+    --ink-soft: #483a28;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--parchment);
+    color: var(--ink);
+    font-family: 'IM Fell English', 'Cormorant Garamond', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(92, 58, 28, 0.06) 0%, transparent 40%),
+      radial-gradient(ellipse at 80% 60%, rgba(45, 69, 48, 0.05) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 90%, rgba(92, 58, 28, 0.04) 0%, transparent 40%);
+  }
+
+  /* parchment grain */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 200;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.12 0 0 0 0 0.05 0 0 0 0.15 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+    opacity: 0.7;
+  }
+
+  .cinzel { font-family: 'Cinzel', serif; }
+  .cinzel-d { font-family: 'Cinzel Decorative', serif; }
+  .fell { font-family: 'IM Fell English', serif; }
+
+  /* ========== HEADER ========== */
+  nav.main {
+    background: var(--forest-deep);
+    color: var(--aged);
+    padding: 18px 40px;
+    border-bottom: 4px double var(--gold);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav.main .brand {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+  }
+  nav.main .brand a { color: inherit; text-decoration: none; }
+  nav.main .brand small {
+    display: block;
+    font-family: 'IM Fell English', serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--aged);
+    font-style: italic;
+    opacity: 0.8;
+    margin-top: 2px;
+    text-transform: none;
+  }
+  nav.main ul {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+  }
+  nav.main a {
+    color: var(--aged);
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 0;
+    border-bottom: 1px solid transparent;
+    transition: all 0.25s;
+  }
+  nav.main a:hover { color: var(--gold-bright); border-bottom-color: var(--gold-bright); }
+  nav.main a.active { color: var(--gold-bright); border-bottom-color: var(--gold-bright); }
+
+  /* ========== MEDIEVAL HERO ========== */
+  .medieval-hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 40px;
+    overflow: hidden;
+    text-align: center;
+    border-bottom: 12px solid var(--leather);
+  }
+  .medieval-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?w=2000&auto=format&fit=crop&q=85');
+    background-size: cover;
+    background-position: center;
+    filter: sepia(0.4) contrast(1.1) brightness(0.55) saturate(0.7);
+  }
+  .medieval-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(26, 42, 28, 0.65) 0%, rgba(26, 42, 28, 0.45) 50%, rgba(58, 37, 16, 0.75) 100%);
+  }
+  .medieval-hero .frame {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    padding: 60px 72px;
+    background: rgba(237, 224, 191, 0.08);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(201, 160, 80, 0.4);
+    position: relative;
+  }
+  .medieval-hero .frame::before,
+  .medieval-hero .frame::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--gold-bright);
+  }
+  .medieval-hero .frame::before { top: -8px; left: -8px; border-right: none; border-bottom: none; }
+  .medieval-hero .frame::after { bottom: -8px; right: -8px; border-left: none; border-top: none; }
+
+  .medieval-hero .emblem {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 30px;
+  }
+  .medieval-hero .label {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+  }
+  .medieval-hero .label::before,
+  .medieval-hero .label::after {
+    content: '';
+    width: 40px;
+    border-top: 1px solid var(--gold);
+  }
+
+  .medieval-hero h1 {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(64px, 10vw, 140px);
+    line-height: 0.92;
+    color: var(--aged);
+    letter-spacing: -0.015em;
+    text-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    margin-bottom: 18px;
+  }
+  .medieval-hero .subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 17px;
+    letter-spacing: 0.18em;
+    color: var(--gold-bright);
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  .medieval-hero .subtitle em { font-style: italic; color: var(--aged); font-weight: 400; letter-spacing: 0.04em; }
+  .medieval-hero .motto {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 21px;
+    max-width: 40ch;
+    margin: 0 auto;
+    color: var(--parchment);
+    opacity: 0.95;
+    line-height: 1.5;
+  }
+
+  /* ========== CHRONICLE ========== */
+  .chronicle {
+    padding: 100px 40px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .chronicle .ornament-top {
+    text-align: center;
+    color: var(--gold);
+    margin-bottom: 40px;
+  }
+  .chronicle .ornament-top svg { width: 200px; }
+
+  .chronicle h2 {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(40px, 4.8vw, 68px);
+    line-height: 1.1;
+    color: var(--forest-deep);
+    margin-bottom: 8px;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+  .chronicle .heading-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--leather);
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .chronicle .prose {
+    columns: 2;
+    column-gap: 56px;
+    column-rule: 1px solid var(--parchment-deep);
+    font-size: 19px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+  .chronicle .prose p {
+    margin-bottom: 18px;
+    break-inside: avoid;
+  }
+  .chronicle .prose p:first-child::first-letter {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 96px;
+    line-height: 0.82;
+    float: left;
+    margin: 12px 12px 0 0;
+    color: var(--wax-red);
+    font-weight: 700;
+    text-shadow: 2px 3px 0 rgba(166, 125, 46, 0.2);
+  }
+
+  /* ========== SHIELDS / BADGES ========== */
+  .shields-row {
+    padding: 70px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    position: relative;
+  }
+  .shields-row::before,
+  .shields-row::after {
+    content: '';
+    position: absolute;
+    left: 40px;
+    right: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 20%, var(--gold) 80%, transparent 100%);
+  }
+  .shields-row::before { top: 0; }
+  .shields-row::after { bottom: 0; }
+
+  .shield {
+    text-align: center;
+    padding: 16px;
+    position: relative;
+  }
+  .shield .shape {
+    width: 80px;
+    height: 92px;
+    margin: 0 auto 18px;
+    position: relative;
+  }
+  .shield .shape svg { width: 100%; height: 100%; }
+  .shield .n {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 52px;
+    line-height: 1;
+    color: var(--forest);
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  .shield .l {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--leather);
+  }
+
+  /* ========== TRAINING OUTPOSTS ========== */
+  .outposts {
+    padding: 80px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .outposts-head {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .outposts-head .label {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--leather);
+    margin-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .outposts-head .label::before,
+  .outposts-head .label::after {
+    content: '';
+    width: 60px;
+    border-top: 1px solid var(--gold);
+  }
+  .outposts-head h2 {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1.05;
+    color: var(--forest-deep);
+    letter-spacing: -0.01em;
+  }
+  .outposts-head .motto {
+    margin-top: 18px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: 40ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .outposts .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .outpost {
+    background:
+      linear-gradient(180deg, var(--aged) 0%, var(--parchment) 100%);
+    border: 2px solid var(--leather);
+    padding: 32px 28px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(58, 37, 16, 0.18);
+  }
+  .outpost::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid var(--gold);
+    pointer-events: none;
+  }
+  .outpost .num {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 48px;
+    background: var(--wax-red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--aged);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 18px;
+    border: 3px solid var(--parchment);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    z-index: 2;
+  }
+  .outpost .woodcut {
+    width: 80px;
+    height: 80px;
+    margin: 12px auto 20px;
+    display: block;
+    color: var(--forest);
+  }
+  .outpost h3 {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 38px;
+    line-height: 1;
+    color: var(--forest-deep);
+    text-align: center;
+    margin-bottom: 8px;
+    letter-spacing: -0.015em;
+  }
+  .outpost .role {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--leather);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .outpost .season {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--forest);
+    color: var(--aged);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 0 auto 24px;
+    display: block;
+    text-align: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .outpost .sch {
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    padding: 14px 0;
+    margin-bottom: 20px;
+  }
+  .outpost .sch .r {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .outpost .sch .r .d { font-weight: 600; color: var(--forest); }
+  .outpost .sch .r .t { color: var(--wax-red); font-weight: 600; }
+  .outpost .addr {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ========== INVITATION (SCHNUPPERKURS) ========== */
+  .invitation {
+    margin: 60px 40px;
+    padding: 80px 64px;
+    background:
+      radial-gradient(ellipse at 30% 40%, rgba(166, 125, 46, 0.12) 0%, transparent 60%),
+      linear-gradient(180deg, var(--aged) 0%, var(--parchment-dark) 100%);
+    border: 3px double var(--leather);
+    position: relative;
+    text-align: center;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .invitation::before {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px solid var(--gold);
+    pointer-events: none;
+  }
+  /* Wax seal */
+  .invitation .seal {
+    position: absolute;
+    top: -22px;
+    right: 40px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 35% 30%, #c54434 0%, #8b2a1c 60%, #5a1a0e 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transform: rotate(-8deg);
+    z-index: 3;
+  }
+  .invitation .seal::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px dashed rgba(237, 224, 191, 0.5);
+    border-radius: 50%;
+  }
+  .invitation .seal svg { width: 32px; height: 32px; color: rgba(237, 224, 191, 0.85); z-index: 2; }
+
+  .invitation .ornament-top svg { color: var(--gold); margin-bottom: 24px; }
+  .invitation .greet {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--wax-red);
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .invitation h2 {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(42px, 5vw, 72px);
+    line-height: 1.1;
+    color: var(--forest-deep);
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+  .invitation .script {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 54ch;
+    margin: 0 auto 36px;
+  }
+  .invitation .script em { color: var(--wax-red); font-style: italic; font-weight: 500; }
+
+  .invitation .scroll-table {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--leather);
+    max-width: 720px;
+    margin: 0 auto 36px;
+    border: 1px solid var(--leather);
+  }
+  .invitation .scroll-table .c {
+    background: var(--aged);
+    padding: 20px 14px;
+  }
+  .invitation .scroll-table .c .v {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 36px;
+    color: var(--wax-red);
+    line-height: 1;
+  }
+  .invitation .scroll-table .c .v small { font-size: 0.5em; font-style: normal; color: var(--leather); margin-right: 4px; }
+  .invitation .scroll-table .c .l {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--leather);
+    margin-top: 6px;
+  }
+  .invitation .cta {
+    display: inline-block;
+    padding: 16px 36px;
+    background: var(--forest);
+    color: var(--aged);
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 2px solid var(--gold);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+  }
+  .invitation .cta:hover { background: var(--wax-red); letter-spacing: 0.34em; }
+  .invitation .signed {
+    margin-top: 40px;
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--leather);
+    letter-spacing: 0.02em;
+  }
+
+  /* ========== BOW COLLECTION (SHIELDS) ========== */
+  .bow-collection {
+    padding: 80px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .bow-collection .head {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .bow-collection .head .label {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--leather);
+    margin-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .bow-collection .head .label::before,
+  .bow-collection .head .label::after { content: ''; width: 60px; border-top: 1px solid var(--gold); }
+  .bow-collection .head h2 {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(40px, 5vw, 68px);
+    line-height: 1.05;
+    color: var(--forest-deep);
+    letter-spacing: -0.01em;
+  }
+
+  .bow-collection .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 36px;
+  }
+  .bow-heraldic {
+    text-align: center;
+    position: relative;
+  }
+  .bow-heraldic .shield-bg {
+    width: 180px;
+    height: 220px;
+    margin: 0 auto 20px;
+    position: relative;
+  }
+  .bow-heraldic .shield-bg svg { width: 100%; height: 100%; }
+  .bow-heraldic .name {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 32px;
+    line-height: 1;
+    color: var(--forest-deep);
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .bow-heraldic .latin {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--wax-red);
+    margin-bottom: 14px;
+  }
+  .bow-heraldic p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 28ch;
+    margin: 0 auto;
+  }
+  .bow-heraldic p em { font-style: italic; color: var(--forest); }
+
+  /* ========== CHRONICLE ENTRIES (MEISTERSCHAFTEN) ========== */
+  .chronicle-entries {
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(45, 69, 48, 0.06) 0%, transparent 50%),
+      var(--parchment);
+    padding: 80px 40px;
+    border-top: 1px solid var(--parchment-deep);
+    border-bottom: 1px solid var(--parchment-deep);
+  }
+  .chronicle-entries .inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .chronicle-entries .head {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .chronicle-entries .head .label {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--leather);
+    margin-bottom: 18px;
+  }
+  .chronicle-entries .head h2 {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(40px, 5vw, 68px);
+    line-height: 1.05;
+    color: var(--forest-deep);
+  }
+  .chronicle-entries .entries {
+    border-top: 2px solid var(--leather);
+    border-bottom: 2px solid var(--leather);
+  }
+  .chronicle-entries .e {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    gap: 40px;
+    padding: 24px 16px;
+    border-bottom: 1px solid var(--parchment-deep);
+    align-items: baseline;
+  }
+  .chronicle-entries .e:last-child { border-bottom: none; }
+  .chronicle-entries .e .anno {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--wax-red);
+    letter-spacing: 0.05em;
+  }
+  .chronicle-entries .e .anno b { font-size: 30px; font-style: normal; font-weight: 400; display: block; margin-top: 2px; color: var(--forest-deep); }
+  .chronicle-entries .e .ev {
+    font-family: 'IM Fell English', serif;
+    font-size: 20px;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+  .chronicle-entries .e .ev em {
+    display: block;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .chronicle-entries .e .loc {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--leather);
+    text-align: right;
+    font-weight: 500;
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    background: var(--leather-deep);
+    color: var(--aged);
+    padding: 72px 40px 32px;
+    margin-top: 40px;
+    border-top: 8px solid var(--leather);
+  }
+  footer .top {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 56px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid rgba(201, 160, 80, 0.25);
+  }
+  footer .brand-foot {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--gold-bright);
+    margin-bottom: 14px;
+  }
+  footer .brand-foot em { font-style: italic; font-weight: 400; color: var(--aged); }
+  footer p { font-family: 'IM Fell English', serif; font-style: italic; color: var(--aged); opacity: 0.85; line-height: 1.65; font-size: 15px; max-width: 34ch; }
+  footer h5 {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 8px; }
+  footer a { color: var(--aged); text-decoration: none; font-family: 'IM Fell English', serif; font-size: 16px; opacity: 0.88; transition: all 0.2s; font-style: italic; }
+  footer a:hover { color: var(--gold-bright); opacity: 1; }
+  footer .bottom {
+    max-width: 1280px;
+    margin: 28px auto 0;
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+  }
+
+  @media (max-width: 900px) {
+    .chronicle .prose { columns: 1; }
+    .shields-row, .outposts .grid, .bow-collection .grid, .invitation .scroll-table, .chronicle-entries .e, footer .top { grid-template-columns: 1fr; gap: 20px; }
+    .shields-row { grid-template-columns: 1fr 1fr; }
+    .bow-collection .grid { grid-template-columns: 1fr 1fr; }
+    nav.main ul { display: none; }
+    .invitation { margin: 40px 20px; padding: 48px 24px; }
+    .invitation .scroll-table { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="main">
+  <div class="brand"><a href="index.html">SV Fasanenhof</a><small>Abt. I · Bogenschießen · Anno 1965</small></div>
+  <ul>
+    <li><a href="index.html">Verein</a></li>
+    <li><a href="bogenschiessen.html" class="active">Bogen</a></li>
+    <li><a href="#">Fußball</a></li>
+    <li><a href="#">Tisch</a></li>
+    <li><a href="#">Kontakt</a></li>
+  </ul>
+</nav>
+
+<header class="medieval-hero">
+  <div class="frame">
+    <div class="emblem">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- Shield with target and crossed arrows -->
+        <path d="M60 10 L105 22 L105 65 Q105 95 60 115 Q15 95 15 65 L15 22 Z" fill="#2d4530" stroke="#c9a050" stroke-width="2"/>
+        <path d="M60 15 L100 25 L100 65 Q100 92 60 108 Q20 92 20 65 L20 25 Z" fill="none" stroke="#c9a050" stroke-width="0.5" opacity="0.6"/>
+        <!-- Target -->
+        <circle cx="60" cy="58" r="30" fill="none" stroke="#c9a050" stroke-width="1"/>
+        <circle cx="60" cy="58" r="22" fill="none" stroke="#c9a050" stroke-width="1"/>
+        <circle cx="60" cy="58" r="14" fill="none" stroke="#c9a050" stroke-width="1"/>
+        <circle cx="60" cy="58" r="6" fill="#c9a050"/>
+        <!-- Crossed arrows -->
+        <g stroke="#c9a050" stroke-width="1.8" fill="#c9a050" transform="rotate(30 60 58)">
+          <line x1="12" y1="58" x2="108" y2="58"/>
+          <polygon points="108,58 100,54 100,62"/>
+          <line x1="18" y1="54" x2="18" y2="62"/>
+          <line x1="22" y1="56" x2="22" y2="60"/>
+        </g>
+        <g stroke="#c9a050" stroke-width="1.8" fill="#c9a050" transform="rotate(-30 60 58)">
+          <line x1="12" y1="58" x2="108" y2="58"/>
+          <polygon points="108,58 100,54 100,62"/>
+          <line x1="18" y1="54" x2="18" y2="62"/>
+          <line x1="22" y1="56" x2="22" y2="60"/>
+        </g>
+      </svg>
+    </div>
+    <div class="label">Abteilung <span>I</span></div>
+    <h1>Der Hain.</h1>
+    <div class="subtitle">Bogenschießen <em>seit</em> MCMLXV</div>
+    <p class="motto">„Wer den Bogen spannt, spannt sich selbst. Und wer los­lässt, der trifft — oder wird getroffen vom Augenblick."</p>
+  </div>
+</header>
+
+<section class="chronicle">
+  <div class="ornament-top">
+    <svg width="200" height="30" viewBox="0 0 200 30" fill="none" stroke="currentColor">
+      <line x1="0" y1="15" x2="75" y2="15" stroke-width="0.8"/>
+      <path d="M 85 5 Q 100 15 85 25 Z" fill="currentColor"/>
+      <circle cx="100" cy="15" r="4" fill="currentColor"/>
+      <path d="M 115 5 Q 100 15 115 25 Z" fill="currentColor"/>
+      <line x1="125" y1="15" x2="200" y2="15" stroke-width="0.8"/>
+    </svg>
+  </div>
+  <div class="heading-sub">Prologus · Vorrede</div>
+  <h2>Vom Hain,<br>in dem fünfundsechzig Bogen schwingen.</h2>
+  <div class="prose">
+    <p>Zu Stuttgart, im Süden, auf einem Platze namens Fasanenhof, liegt ein Hain zwischen Wald und Stadt, in dem seit dem Jahre MCMLXV Pfeile fliegen und Bögen spannen. Ein ehrenwerter Verein, dem Bogensport gewidmet, erhält hier seine Tradition — und gibt sie gleichermaßen weiter an jedwede Generation, die ihm beitreten mag.</p>
+    <p>Es schießen bei uns alle vier Klassen: der Recurve, Waffe der Olympia; der Langbogen, schlichtes und ehrliches Holz; der Blankbogen, dessen Präzision allein im Gefühl des Schützen liegt; und der Compound, das Werk moderner Mechanik. Wer welche Klasse wählen mag, steht jedem frei — wir lehren jede mit gleicher Geduld.</p>
+    <p>Unsere fünfundsechzig Aktiven umspannen achtzig Jahre: der junge Schütze, der kaum den Bogen halten kann, übt neben dem alten Meister, der noch den Wind zu lesen versteht wie kein anderer. Das ist nicht Romantik — das ist unser täglich Tun.</p>
+    <p>Dreierlei Plätze stehen uns zur Verfügung: der Freiluftplatz am Logauweg, im Frühling und Sommer; die Hengstäcker-Schule das ganze Jahr über; und die Halle der Anne Frank, so der Winter uns treibt. Trete ein, wer wolle — die Tore stehen offen.</p>
+  </div>
+</section>
+
+<div class="shields-row">
+  <div class="shield">
+    <div class="shape">
+      <svg viewBox="0 0 80 92" fill="none" stroke="currentColor">
+        <path d="M40 6 L74 16 L74 52 Q74 72 40 86 Q6 72 6 52 L6 16 Z" fill="#ede0bf" stroke="#5c3a1c" stroke-width="2"/>
+        <path d="M40 10 L70 18 L70 52 Q70 68 40 82 Q10 68 10 52 L10 18 Z" fill="none" stroke="#a67d2e" stroke-width="0.7"/>
+      </svg>
+    </div>
+    <div class="n">65</div>
+    <div class="l">Schützen</div>
+  </div>
+  <div class="shield">
+    <div class="shape">
+      <svg viewBox="0 0 80 92" fill="none" stroke="currentColor">
+        <path d="M40 6 L74 16 L74 52 Q74 72 40 86 Q6 72 6 52 L6 16 Z" fill="#ede0bf" stroke="#5c3a1c" stroke-width="2"/>
+        <path d="M40 10 L70 18 L70 52 Q70 68 40 82 Q10 68 10 52 L10 18 Z" fill="none" stroke="#a67d2e" stroke-width="0.7"/>
+      </svg>
+    </div>
+    <div class="n">8–80</div>
+    <div class="l">Lebensjahre</div>
+  </div>
+  <div class="shield">
+    <div class="shape">
+      <svg viewBox="0 0 80 92" fill="none" stroke="currentColor">
+        <path d="M40 6 L74 16 L74 52 Q74 72 40 86 Q6 72 6 52 L6 16 Z" fill="#ede0bf" stroke="#5c3a1c" stroke-width="2"/>
+        <path d="M40 10 L70 18 L70 52 Q70 68 40 82 Q10 68 10 52 L10 18 Z" fill="none" stroke="#a67d2e" stroke-width="0.7"/>
+      </svg>
+    </div>
+    <div class="n">III</div>
+    <div class="l">Schießplätze</div>
+  </div>
+  <div class="shield">
+    <div class="shape">
+      <svg viewBox="0 0 80 92" fill="none" stroke="currentColor">
+        <path d="M40 6 L74 16 L74 52 Q74 72 40 86 Q6 72 6 52 L6 16 Z" fill="#ede0bf" stroke="#5c3a1c" stroke-width="2"/>
+        <path d="M40 10 L70 18 L70 52 Q70 68 40 82 Q10 68 10 52 L10 18 Z" fill="none" stroke="#a67d2e" stroke-width="0.7"/>
+      </svg>
+    </div>
+    <div class="n">IV</div>
+    <div class="l">Bogenklassen</div>
+  </div>
+</div>
+
+<section class="outposts">
+  <div class="outposts-head">
+    <div class="label">Capitulum I · Die Schießplätze</div>
+    <h2>Drei Plätze,<br>an denen wir schießen.</h2>
+    <p class="motto">Ein jeder hat seine Zeit, seinen Wind, seine Stille. Vom Logauweg unter freiem Himmel, bis zur Halle im tiefsten Winter.</p>
+  </div>
+  <div class="grid">
+    <article class="outpost">
+      <span class="num">I</span>
+      <svg class="woodcut" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.3">
+        <!-- Open field with target -->
+        <line x1="5" y1="70" x2="75" y2="70"/>
+        <line x1="5" y1="72" x2="75" y2="72" opacity="0.6"/>
+        <circle cx="52" cy="40" r="18"/>
+        <circle cx="52" cy="40" r="12"/>
+        <circle cx="52" cy="40" r="6"/>
+        <circle cx="52" cy="40" r="2" fill="currentColor"/>
+        <line x1="52" y1="22" x2="52" y2="70"/>
+        <path d="M 10 50 L 20 45 L 20 55 Z" fill="currentColor"/>
+        <line x1="20" y1="50" x2="30" y2="50" stroke-dasharray="2 2"/>
+      </svg>
+      <h3>Logauweg</h3>
+      <div class="role">Hauptgelände · Freiluftplatz</div>
+      <span class="season">Aprilis — Novembris</span>
+      <div class="sch">
+        <div class="r"><span class="d">Mo · Mi · Fr</span><span class="t">17–19</span></div>
+        <div class="r"><span class="d">Samstag</span><span class="t">09–13</span></div>
+        <div class="r"><span class="d">Sonntag</span><span class="t">9:30–12</span></div>
+      </div>
+      <div class="addr">Logauweg 21<br>70565 Stuttgart<br><em>Distanzen bis LXX Meter</em></div>
+    </article>
+    <article class="outpost">
+      <span class="num">II</span>
+      <svg class="woodcut" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.3">
+        <!-- Building / hall -->
+        <path d="M12 72 L12 32 L40 16 L68 32 L68 72 Z"/>
+        <path d="M12 32 L68 32" opacity="0.6"/>
+        <rect x="28" y="50" width="10" height="22"/>
+        <rect x="42" y="50" width="10" height="22"/>
+        <rect x="24" y="40" width="8" height="6"/>
+        <rect x="48" y="40" width="8" height="6"/>
+        <circle cx="40" cy="28" r="3"/>
+      </svg>
+      <h3>Hengstäcker</h3>
+      <div class="role">Steiff-Schule · Halle</div>
+      <span class="season">Ganzjährig</span>
+      <div class="sch">
+        <div class="r"><span class="d">Dienstag</span><span class="t">18–20</span></div>
+        <div class="r"><span class="d">Mittwoch</span><span class="t">18–20</span></div>
+      </div>
+      <div class="addr">Gewann 12<br>70567 Stuttgart<br><em>Hallendistanz bis XVIII Meter</em></div>
+    </article>
+    <article class="outpost">
+      <span class="num">III</span>
+      <svg class="woodcut" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.3">
+        <!-- Winter hall with snow -->
+        <path d="M8 72 L8 36 L40 18 L72 36 L72 72 Z"/>
+        <path d="M8 36 L72 36" opacity="0.6"/>
+        <rect x="32" y="52" width="16" height="20"/>
+        <rect x="18" y="44" width="10" height="8"/>
+        <rect x="52" y="44" width="10" height="8"/>
+        <!-- Snowflakes -->
+        <g stroke="currentColor" stroke-width="0.8">
+          <line x1="14" y1="12" x2="14" y2="18"/><line x1="11" y1="15" x2="17" y2="15"/>
+          <line x1="28" y1="10" x2="28" y2="14"/><line x1="26" y1="12" x2="30" y2="12"/>
+          <line x1="50" y1="12" x2="50" y2="16"/><line x1="48" y1="14" x2="52" y2="14"/>
+          <line x1="66" y1="10" x2="66" y2="14"/><line x1="64" y1="12" x2="68" y2="12"/>
+        </g>
+      </svg>
+      <h3>Anne Frank</h3>
+      <div class="role">Gemeinschaftsschule · Halle</div>
+      <span class="season">Octobris — Martii</span>
+      <div class="sch">
+        <div class="r"><span class="d">Donnerstag</span><span class="t">18:45–20:15</span></div>
+      </div>
+      <div class="addr">Hechinger Straße 73<br>70567 Stuttgart<br><em>Winterquartier</em></div>
+    </article>
+  </div>
+</section>
+
+<section class="invitation">
+  <div class="seal">
+    <svg viewBox="0 0 40 40" fill="currentColor">
+      <path d="M20 5 L22 16 L34 16 L24 23 L28 34 L20 27 L12 34 L16 23 L6 16 L18 16 Z"/>
+    </svg>
+  </div>
+  <div class="ornament-top">
+    <svg width="180" height="24" viewBox="0 0 180 24" fill="none" stroke="currentColor">
+      <line x1="0" y1="12" x2="60" y2="12"/>
+      <path d="M 70 4 Q 85 12 70 20 Z" fill="currentColor"/>
+      <circle cx="90" cy="12" r="3" fill="currentColor"/>
+      <path d="M 110 4 Q 95 12 110 20 Z" fill="currentColor"/>
+      <line x1="120" y1="12" x2="180" y2="12"/>
+    </svg>
+  </div>
+  <div class="greet">Ehrwürdige Einladung</div>
+  <h2>Zum Schnupperkurs<br>im Hain.</h2>
+  <p class="script">Es wird hiermit ein jeder, der Interesse am ehrwürdigen Bogensport hegt, eingeladen, an drei Abenden den Bogen zu spannen. Leihgerät wird gestellt; erfahrene <em>Meister des Schießens</em> stehen Euch zur Seite. Am letzten Abend erfolgt eine ehrliche Einschätzung — ob der Bogen bleiben soll, oder nicht.</p>
+  <div class="scroll-table">
+    <div class="c"><div class="v"><small>€</small>50</div><div class="l">Jugend bis 18</div></div>
+    <div class="c"><div class="v"><small>€</small>80</div><div class="l">Erwachsene</div></div>
+    <div class="c"><div class="v">III</div><div class="l">Termine</div></div>
+    <div class="c"><div class="v">Di · Mi</div><div class="l">18–20 Uhr</div></div>
+  </div>
+  <a href="#" class="cta">Zu melden geheißen →</a>
+  <div class="signed">— Gegeben zu Stuttgart, Anno MMXXV · Die Schützenbruderschaft Fasanenhof</div>
+</section>
+
+<section class="bow-collection">
+  <div class="head">
+    <div class="label">Capitulum II · Die vier Bögen</div>
+    <h2>Vier Bögen,<br>jeder mit eigenem Wappen.</h2>
+  </div>
+  <div class="grid">
+    <div class="bow-heraldic">
+      <div class="shield-bg">
+        <svg viewBox="0 0 180 220" xmlns="http://www.w3.org/2000/svg">
+          <!-- Shield -->
+          <path d="M90 10 L165 30 L165 110 Q165 160 90 210 Q15 160 15 110 L15 30 Z" fill="#ede0bf" stroke="#5c3a1c" stroke-width="2.5"/>
+          <path d="M90 16 L159 34 L159 110 Q159 155 90 200 Q21 155 21 110 L21 34 Z" fill="none" stroke="#a67d2e" stroke-width="0.8"/>
+          <!-- Recurve bow -->
+          <g stroke="#2d4530" stroke-width="2.5" fill="none">
+            <path d="M90 60 Q128 108 90 155 Q52 108 90 60"/>
+            <line x1="90" y1="65" x2="90" y2="150" stroke-dasharray="3 3" stroke-width="1"/>
+            <circle cx="90" cy="108" r="3" fill="#2d4530"/>
+          </g>
+          <!-- Ribbon -->
+          <rect x="35" y="175" width="110" height="20" fill="#8b2a1c"/>
+          <text x="90" y="189" text-anchor="middle" fill="#ede0bf" font-family="Cinzel" font-size="11" letter-spacing="3" font-weight="600">RECVRVE</text>
+        </svg>
+      </div>
+      <div class="name">Recurve</div>
+      <div class="latin">Arcus Olympicus</div>
+      <p>Der olympische Bogen. <em>Präzision</em> durch Visier und Stabilisator. Die zugänglichste Klasse mit unendlichem Anspruch.</p>
+    </div>
+    <div class="bow-heraldic">
+      <div class="shield-bg">
+        <svg viewBox="0 0 180 220" xmlns="http://www.w3.org/2000/svg">
+          <path d="M90 10 L165 30 L165 110 Q165 160 90 210 Q15 160 15 110 L15 30 Z" fill="#ede0bf" stroke="#5c3a1c" stroke-width="2.5"/>
+          <path d="M90 16 L159 34 L159 110 Q159 155 90 200 Q21 155 21 110 L21 34 Z" fill="none" stroke="#a67d2e" stroke-width="0.8"/>
+          <!-- Longbow -->
+          <g stroke="#2d4530" stroke-width="2.5" fill="none">
+            <path d="M90 55 Q115 108 90 160"/>
+            <path d="M90 55 Q65 108 90 160"/>
+            <line x1="90" y1="60" x2="90" y2="155" stroke-dasharray="2 4" stroke-width="1"/>
+          </g>
+          <rect x="35" y="175" width="110" height="20" fill="#8b2a1c"/>
+          <text x="90" y="189" text-anchor="middle" fill="#ede0bf" font-family="Cinzel" font-size="11" letter-spacing="2" font-weight="600">LANGBOGEN</text>
+        </svg>
+      </div>
+      <div class="name">Langbogen</div>
+      <div class="latin">Arcus Longus</div>
+      <p>Der <em>traditionelle Bogen.</em> Gebogenes Holz, eine Sehne, purer Schuss ohne Visier. So schossen die Yeomen.</p>
+    </div>
+    <div class="bow-heraldic">
+      <div class="shield-bg">
+        <svg viewBox="0 0 180 220" xmlns="http://www.w3.org/2000/svg">
+          <path d="M90 10 L165 30 L165 110 Q165 160 90 210 Q15 160 15 110 L15 30 Z" fill="#ede0bf" stroke="#5c3a1c" stroke-width="2.5"/>
+          <path d="M90 16 L159 34 L159 110 Q159 155 90 200 Q21 155 21 110 L21 34 Z" fill="none" stroke="#a67d2e" stroke-width="0.8"/>
+          <!-- Blank bow -->
+          <g stroke="#2d4530" stroke-width="2.5" fill="none">
+            <path d="M90 60 Q128 108 90 155 Q52 108 90 60"/>
+            <line x1="90" y1="68" x2="90" y2="148" stroke-width="1.2"/>
+          </g>
+          <rect x="35" y="175" width="110" height="20" fill="#8b2a1c"/>
+          <text x="90" y="189" text-anchor="middle" fill="#ede0bf" font-family="Cinzel" font-size="11" letter-spacing="2" font-weight="600">BLANKBOGEN</text>
+        </svg>
+      </div>
+      <div class="name">Blankbogen</div>
+      <div class="latin">Arcus Nudus</div>
+      <p>Recurve <em>ohne Visier.</em> Alles liegt im Gefühl des Schützen — pure Intuition von Distanz und Haltung.</p>
+    </div>
+    <div class="bow-heraldic">
+      <div class="shield-bg">
+        <svg viewBox="0 0 180 220" xmlns="http://www.w3.org/2000/svg">
+          <path d="M90 10 L165 30 L165 110 Q165 160 90 210 Q15 160 15 110 L15 30 Z" fill="#ede0bf" stroke="#5c3a1c" stroke-width="2.5"/>
+          <path d="M90 16 L159 34 L159 110 Q159 155 90 200 Q21 155 21 110 L21 34 Z" fill="none" stroke="#a67d2e" stroke-width="0.8"/>
+          <!-- Compound -->
+          <g stroke="#2d4530" stroke-width="2.5" fill="none">
+            <path d="M90 55 L118 75 L118 140 L90 160 L62 140 L62 75 Z"/>
+            <circle cx="118" cy="75" r="4"/>
+            <circle cx="118" cy="140" r="4"/>
+            <circle cx="62" cy="75" r="4"/>
+            <circle cx="62" cy="140" r="4"/>
+            <line x1="90" y1="62" x2="90" y2="153"/>
+          </g>
+          <rect x="35" y="175" width="110" height="20" fill="#8b2a1c"/>
+          <text x="90" y="189" text-anchor="middle" fill="#ede0bf" font-family="Cinzel" font-size="11" letter-spacing="3" font-weight="600">COMPOUND</text>
+        </svg>
+      </div>
+      <div class="name">Compound</div>
+      <div class="latin">Arcus Mechanicus</div>
+      <p>Hightech mit <em>Rollen und Cams.</em> Maximale Präzision bei minimaler Haltekraft — das moderne Handwerk.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chronicle-entries">
+  <div class="inner">
+    <div class="head">
+      <div class="label">Capitulum III · Die Chronik</div>
+      <h2>Vom Wettkampf<br>und anderen Begebenheiten.</h2>
+    </div>
+    <div class="entries">
+      <div class="e">
+        <span class="anno">Anno Domini<b>2025</b></span>
+        <div class="ev">LOL IV · Frühjahrsrunde<em>Die Landesoberliga zu Gaste im eigenen Hain</em></div>
+        <span class="loc">zu Fasanenhof</span>
+      </div>
+      <div class="e">
+        <span class="anno">Anno Domini<b>2024</b></span>
+        <div class="ev">Württembergische Meisterschaft U18<em>Jugendklasse · ausgerichtet zu Welzheim</em></div>
+        <span class="loc">zu Welzheim</span>
+      </div>
+      <div class="e">
+        <span class="anno">Anno Domini<b>2024</b></span>
+        <div class="ev">LOL I · Sommerrunde<em>Einzelklasse · über die Saison</em></div>
+        <span class="loc">zu Stuttgart</span>
+      </div>
+      <div class="e">
+        <span class="anno">Anno Domini<b>2024</b></span>
+        <div class="ev">Vereinspokal<em>Jahresinterne Meisterschaft · aller Klassen</em></div>
+        <span class="loc">zu Logauweg</span>
+      </div>
+      <div class="e">
+        <span class="anno">Anno Domini<b>2024</b></span>
+        <div class="ev">Schömberg-Liga · Relegation<em>LOL-Relegation · Mannschaftsklasse</em></div>
+        <span class="loc">zu Schömberg</span>
+      </div>
+      <div class="e">
+        <span class="anno">Anno Domini<b>2023</b></span>
+        <div class="ev">Landesmeisterschaft Sommer/Winter<em>Saisonwertung über das Jahr</em></div>
+        <span class="loc">zu Stuttgart</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="top">
+    <div>
+      <div class="brand-foot">SV Fasanenhof <em>e.V.</em></div>
+      <p>Abteilung I · Der Hain des Bogens. Fünfundsechzig Aktive, vier Bögen, drei Schießplätze. Anno MCMLXV gegründet.</p>
+      <p style="margin-top: 18px; color: var(--gold-bright); opacity: 1; font-style: italic;">Logauweg 21 · 70565 Stuttgart<br>bogen@sv-fasanenhof.de</p>
+    </div>
+    <div>
+      <h5>Der Hain</h5>
+      <ul>
+        <li><a href="#">Schießplätze</a></li>
+        <li><a href="#">Bogenklassen</a></li>
+        <li><a href="#">Schnupperkurs</a></li>
+        <li><a href="#">Schießordnung</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Chronik</h5>
+      <ul>
+        <li><a href="#">Meisterschaften</a></li>
+        <li><a href="#">Galerie</a></li>
+        <li><a href="#">Wissen</a></li>
+        <li><a href="#">Presse</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Verein</h5>
+      <ul>
+        <li><a href="index.html">Zurück zum Verein</a></li>
+        <li><a href="#">Kontakt</a></li>
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom">
+    <span>© Schützenbruderschaft Fasanenhof · MCMLXV — MMXXV</span>
+    <span>Der Hain · Abteilung I</span>
+  </div>
+</footer>
+
+</body>
+</html>

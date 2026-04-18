@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1. SV Fasanenhof 1965 e.V. — Chronik</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5efe0;
+    --cream-warm: #ebe3cf;
+    --navy: #1e3a5f;
+    --navy-deep: #102642;
+    --gold: #c9a227;
+    --gold-soft: #e8cd68;
+    --burgundy: #7a1f2b;
+    --hunter: #2d4a36;
+    --ink: #1a1610;
+    --ink-soft: #463e30;
+    --rule: #c5b88a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Libre Franklin', -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .serif { font-family: 'Cormorant Garamond', serif; }
+  .italic { font-style: italic; }
+
+  /* ---------- TOP STRIP ---------- */
+  .top-strip {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 10px 0;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 400;
+  }
+  .top-strip .inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .top-strip span { display: inline-flex; align-items: center; gap: 10px; }
+  .top-strip .gold { color: var(--gold-soft); }
+  .top-strip .sep { opacity: 0.3; }
+
+  /* ---------- NAV ---------- */
+  nav.main {
+    background: var(--cream);
+    padding: 24px 40px 20px;
+    text-align: center;
+    position: relative;
+    border-bottom: 2px solid var(--navy);
+  }
+  nav.main::after {
+    content: '';
+    position: absolute;
+    left: 40px;
+    right: 40px;
+    bottom: -6px;
+    border-bottom: 1px solid var(--gold);
+  }
+  nav.main .word {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  nav.main .word .num {
+    font-style: italic;
+    color: var(--burgundy);
+    font-weight: 500;
+  }
+  nav.main .word .dot {
+    color: var(--gold);
+    margin: 0 6px;
+  }
+  nav.main .sub {
+    font-size: 12px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+  nav.main ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+  }
+  nav.main a {
+    color: var(--navy);
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  nav.main a:hover { border-bottom-color: var(--gold); color: var(--burgundy); }
+
+  /* ---------- HERO / MASTHEAD ---------- */
+  .hero {
+    padding: 80px 40px 60px;
+    text-align: center;
+    position: relative;
+    background:
+      radial-gradient(ellipse at center top, rgba(201, 162, 39, 0.08) 0%, transparent 60%),
+      var(--cream);
+  }
+  .hero .emblem {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 36px;
+    position: relative;
+  }
+  .hero .emblem svg { width: 100%; height: 100%; }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(54px, 6.5vw, 96px);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--navy);
+    letter-spacing: -0.015em;
+    margin-bottom: 18px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--burgundy);
+    font-weight: 500;
+  }
+  .hero .est {
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .hero .est::before, .hero .est::after {
+    content: '';
+    width: 70px;
+    border-bottom: 1px solid var(--gold);
+  }
+  .hero .lead {
+    max-width: 52ch;
+    margin: 0 auto;
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+  }
+  .hero .lead em { font-style: italic; color: var(--navy); font-weight: 500; }
+
+  /* ---------- ORNAMENT ---------- */
+  .ornament {
+    padding: 40px 0 20px;
+    text-align: center;
+  }
+  .ornament svg { color: var(--gold); }
+
+  /* ---------- ANNIVERSARY PANEL ---------- */
+  .anniversary {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 72px 40px;
+    text-align: center;
+    position: relative;
+    margin: 40px 0;
+  }
+  .anniversary::before,
+  .anniversary::after {
+    content: '';
+    position: absolute;
+    left: 40px;
+    right: 40px;
+    border-top: 1px solid var(--gold);
+  }
+  .anniversary::before { top: 16px; }
+  .anniversary::after { bottom: 16px; }
+
+  .anniversary .year-frame {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 36px;
+    margin-bottom: 20px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .anniversary .year-frame .a, .anniversary .year-frame .b {
+    font-size: 32px;
+    color: var(--gold-soft);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .anniversary .year-frame .big {
+    font-size: 180px;
+    line-height: 0.88;
+    font-weight: 500;
+    color: var(--cream);
+    font-style: italic;
+    letter-spacing: -0.03em;
+  }
+  .anniversary .label {
+    font-size: 14px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    font-weight: 600;
+  }
+  .anniversary .sub-label {
+    margin-top: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--cream);
+    opacity: 0.9;
+  }
+
+  /* ---------- SECTION HEADINGS ---------- */
+  .section-head {
+    text-align: center;
+    padding: 72px 40px 32px;
+  }
+  .section-head .kicker {
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .section-head h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 4.2vw, 64px);
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1;
+    letter-spacing: -0.015em;
+    margin-bottom: 18px;
+  }
+  .section-head h2 em { font-style: italic; color: var(--burgundy); }
+  .section-head .deck {
+    max-width: 48ch;
+    margin: 0 auto;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .section-head .divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin: 28px auto 0;
+    color: var(--gold);
+  }
+  .section-head .divider .line {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .section-head .divider .diamond { width: 8px; height: 8px; transform: rotate(45deg); background: var(--gold); }
+
+  /* ---------- DEPARTMENTS ---------- */
+  .departments {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 40px 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .dept {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-top: 4px solid var(--accent);
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.3s;
+  }
+  .dept:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(30, 58, 95, 0.12);
+  }
+  .dept.bogen { --accent: var(--hunter); }
+  .dept.fussball { --accent: var(--burgundy); }
+  .dept.tt { --accent: var(--gold); }
+
+  .dept .emblem-badge {
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 52px;
+    height: 52px;
+    background: var(--accent);
+    border: 2px solid var(--cream);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    font-style: italic;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .dept .photo {
+    aspect-ratio: 16/10;
+    background-size: cover;
+    background-position: center;
+    margin-top: 28px;
+    border-bottom: 2px solid var(--accent);
+    position: relative;
+  }
+  .dept.bogen .photo { background-image: url('https://images.unsplash.com/photo-1543699936-c901ddbf0c05?w=900&auto=format&fit=crop&q=80'); }
+  .dept.fussball .photo { background-image: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=900&auto=format&fit=crop&q=80'); }
+  .dept.tt .photo { background-image: url('https://images.unsplash.com/photo-1611251135345-18c56206b863?w=900&auto=format&fit=crop&q=80'); }
+  .dept .body {
+    padding: 32px 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .dept h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 500;
+    color: var(--navy);
+    text-align: center;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .dept .sub {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .dept p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 22px;
+    text-align: center;
+  }
+  .dept .stats {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    padding: 18px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 22px;
+    text-align: center;
+  }
+  .dept .stats .s .n {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+  .dept .stats .s .l {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+  .dept .cta {
+    margin-top: auto;
+    display: inline-block;
+    text-align: center;
+    padding: 12px 22px;
+    background: var(--accent);
+    color: var(--cream);
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    transition: all 0.2s;
+    align-self: center;
+  }
+  .dept .cta:hover { background: var(--navy); }
+
+  /* ---------- TRAINING TABLE ---------- */
+  .training-panel {
+    background: var(--cream-warm);
+    padding: 80px 40px;
+    margin-top: 40px;
+  }
+  .training-panel .inner {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .training-panel table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    background: var(--cream);
+    border: 2px solid var(--navy);
+  }
+  .training-panel th {
+    background: var(--navy);
+    color: var(--gold-soft);
+    padding: 16px 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  .training-panel th:last-child { text-align: right; }
+  .training-panel td {
+    padding: 22px 20px;
+    border-bottom: 1px solid var(--rule);
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 15px;
+    color: var(--ink-soft);
+    vertical-align: baseline;
+  }
+  .training-panel td:first-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    font-style: italic;
+    width: 220px;
+  }
+  .training-panel td:first-child small {
+    display: block;
+    font-size: 11px;
+    font-style: normal;
+    color: var(--ink-soft);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .training-panel td:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--burgundy); font-weight: 500; }
+  .training-panel tr:last-child td { border-bottom: none; }
+  .training-panel tr:hover td { background: rgba(201,162,39,0.05); }
+
+  /* ---------- GASTSTÄTTE ---------- */
+  .gastro {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .gastro .photo-frame {
+    position: relative;
+    padding: 16px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+  }
+  .gastro .photo-frame .inner-frame {
+    aspect-ratio: 4/5;
+    background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    filter: sepia(0.12) contrast(1.05);
+  }
+  .gastro .photo-frame::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid var(--gold);
+    pointer-events: none;
+  }
+  .gastro .photo-frame .caption {
+    position: absolute;
+    left: 24px;
+    bottom: -34px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .gastro h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .gastro h3 em { font-style: italic; color: var(--burgundy); }
+  .gastro .kicker {
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .gastro p {
+    color: var(--ink-soft);
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .gastro .hours {
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--cream-warm);
+    border-left: 4px solid var(--gold);
+  }
+  .gastro .hours .r {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 15px;
+  }
+  .gastro .hours .r + .r { border-top: 1px dashed var(--rule); }
+  .gastro .hours .r b { color: var(--navy); font-weight: 500; }
+  .gastro .hours .r span { font-variant-numeric: tabular-nums; color: var(--burgundy); font-weight: 500; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 80px 40px 30px;
+    margin-top: 80px;
+  }
+  footer .top {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 56px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.25);
+  }
+  footer .brand-foot {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  footer .brand-foot em { font-style: italic; color: var(--gold-soft); font-weight: 500; }
+  footer p { color: var(--cream); opacity: 0.75; line-height: 1.65; font-size: 14px; max-width: 34ch; }
+  footer h5 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 22px;
+    font-weight: 600;
+  }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 9px; }
+  footer a { color: var(--cream); text-decoration: none; font-size: 15px; opacity: 0.85; transition: all 0.2s; }
+  footer a:hover { opacity: 1; color: var(--gold-soft); }
+  footer .bottom {
+    max-width: 1280px;
+    margin: 28px auto 0;
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    opacity: 0.7;
+  }
+
+  @media (max-width: 900px) {
+    .departments, .gastro, footer .top { grid-template-columns: 1fr; gap: 40px; }
+    nav.main ul { gap: 18px; }
+    .anniversary .year-frame .big { font-size: 120px; }
+    .training-panel td { padding: 14px; font-size: 14px; }
+    .training-panel td:first-child { width: auto; font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-strip">
+  <div class="inner">
+    <span>Logauweg 21 <span class="sep">·</span> 70565 Stuttgart-Fasanenhof</span>
+    <span>Telefon <span class="sep">·</span> <span class="gold">0711 / 715 86 85</span> <span class="sep">·</span> Gegr. MCMLXV</span>
+  </div>
+</div>
+
+<nav class="main">
+  <div class="word">1. <span class="num">SV</span> Fasanenhof <span class="dot">·</span> <span class="num">1965</span> <span class="dot">·</span> e.V.</div>
+  <div class="sub">Sportverein · Stuttgart-Fasanenhof</div>
+  <ul>
+    <li><a href="#">Verein</a></li>
+    <li><a href="bogenschiessen.html">Bogenschießen</a></li>
+    <li><a href="#">Fußball</a></li>
+    <li><a href="#">Tischtennis</a></li>
+    <li><a href="#">Standort</a></li>
+    <li><a href="#">Mitgliedschaft</a></li>
+    <li><a href="#">Kontakt</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="emblem">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer shield -->
+      <defs>
+        <radialGradient id="goldGrad" cx="50%" cy="30%" r="60%">
+          <stop offset="0%" stop-color="#e8cd68"/>
+          <stop offset="100%" stop-color="#c9a227"/>
+        </radialGradient>
+      </defs>
+      <circle cx="100" cy="100" r="92" fill="#1e3a5f" stroke="url(#goldGrad)" stroke-width="4"/>
+      <circle cx="100" cy="100" r="82" fill="none" stroke="#c9a227" stroke-width="1" stroke-dasharray="2 3"/>
+      <!-- Center laurel -->
+      <path d="M 60 110 Q 45 100 50 80" stroke="#c9a227" stroke-width="1.5" fill="none"/>
+      <path d="M 50 80 L 45 75 M 50 80 L 55 73 M 52 90 L 46 87 M 52 90 L 58 86 M 55 98 L 48 96 M 55 98 L 61 95" stroke="#c9a227" stroke-width="1.2" fill="none"/>
+      <path d="M 140 110 Q 155 100 150 80" stroke="#c9a227" stroke-width="1.5" fill="none"/>
+      <path d="M 150 80 L 155 75 M 150 80 L 145 73 M 148 90 L 154 87 M 148 90 L 142 86 M 145 98 L 152 96 M 145 98 L 139 95" stroke="#c9a227" stroke-width="1.2" fill="none"/>
+      <!-- Year -->
+      <text x="100" y="88" text-anchor="middle" fill="#e8cd68" font-family="Cormorant Garamond, serif" font-size="14" font-weight="600" letter-spacing="4">ANNO</text>
+      <text x="100" y="130" text-anchor="middle" fill="#f5efe0" font-family="Cormorant Garamond, serif" font-size="38" font-weight="600" font-style="italic">1965</text>
+      <!-- Bottom ribbon -->
+      <path d="M 40 150 Q 100 165 160 150 Q 155 165 100 170 Q 45 165 40 150 Z" fill="#7a1f2b" stroke="#c9a227" stroke-width="1"/>
+      <text x="100" y="163" text-anchor="middle" fill="#f5efe0" font-family="Cormorant Garamond, serif" font-size="10" font-weight="600" letter-spacing="2">SV FASANENHOF</text>
+      <!-- Top crown -->
+      <path d="M 82 26 L 86 18 L 94 24 L 100 14 L 106 24 L 114 18 L 118 26 Z" fill="#c9a227" stroke="#102642" stroke-width="1"/>
+      <circle cx="100" cy="14" r="2" fill="#7a1f2b"/>
+    </svg>
+  </div>
+  <div class="est"><span>Anno</span> MCMLXV <span>Stuttgart</span></div>
+  <h1>1. Sportverein<br><em>Fasanenhof</em></h1>
+  <p class="lead">Ein traditionsreicher Verein im Süden von Stuttgart mit drei Abteilungen — <em>Bogenschießen, Fußball und Tischtennis</em> — und einem gemeinsamen Zuhause am Logauweg seit sechzig Jahren.</p>
+</header>
+
+<div class="ornament">
+  <svg width="260" height="20" viewBox="0 0 260 20" fill="none">
+    <line x1="0" y1="10" x2="100" y2="10" stroke="currentColor" stroke-width="0.8"/>
+    <path d="M 108 4 L 118 10 L 108 16 Z" fill="currentColor"/>
+    <circle cx="130" cy="10" r="4" fill="currentColor"/>
+    <path d="M 152 4 L 142 10 L 152 16 Z" fill="currentColor"/>
+    <line x1="160" y1="10" x2="260" y2="10" stroke="currentColor" stroke-width="0.8"/>
+  </svg>
+</div>
+
+<div class="anniversary">
+  <div class="year-frame">
+    <span class="a">Anno<br>1965</span>
+    <span class="big">60</span>
+    <span class="b">Anno<br>2025</span>
+  </div>
+  <div class="label">Jahre · Gemeinschaft · Verein</div>
+  <div class="sub-label">Wir feiern ein Jubiläum.</div>
+</div>
+
+<div class="section-head">
+  <div class="kicker">Die drei Abteilungen</div>
+  <h2>Drei Sportarten,<br><em>ein Verein.</em></h2>
+  <p class="deck">Unter einem gemeinsamen Dach pflegen wir seit Jahrzehnten drei Disziplinen. Jede mit eigener Tradition, jede mit offenen Armen für neue Mitglieder aller Altersstufen.</p>
+  <div class="divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+</div>
+
+<section class="departments">
+  <a class="dept bogen" href="bogenschiessen.html">
+    <span class="emblem-badge">I</span>
+    <div class="photo"></div>
+    <div class="body">
+      <h3>Bogenschießen</h3>
+      <div class="sub">Abteilung I · seit 1965</div>
+      <p>65 Schützinnen und Schützen von 8 bis 80 Jahren. Recurve, Compound, Langbogen und Blankbogen — alle Klassen, ein familiäres Miteinander.</p>
+      <div class="stats">
+        <div class="s"><div class="n">65</div><div class="l">Schützen</div></div>
+        <div class="s"><div class="n">3</div><div class="l">Orte</div></div>
+        <div class="s"><div class="n">4</div><div class="l">Klassen</div></div>
+      </div>
+      <span class="cta">Zur Abteilung →</span>
+    </div>
+  </a>
+
+  <a class="dept fussball" href="#">
+    <span class="emblem-badge">II</span>
+    <div class="photo"></div>
+    <div class="body">
+      <h3>Fußball</h3>
+      <div class="sub">Abteilung II · seit 1965</div>
+      <p>Auf dem Platz am Logauweg wird seit der Vereinsgründung gekickt. Eine Abteilung im Wandel — für Jugend, Freizeit und alle Altersstufen.</p>
+      <div class="stats">
+        <div class="s"><div class="n">1965</div><div class="l">Seit</div></div>
+        <div class="s"><div class="n">1</div><div class="l">Platz</div></div>
+        <div class="s"><div class="n">∞</div><div class="l">Alters&shy;stufen</div></div>
+      </div>
+      <span class="cta">Zur Abteilung →</span>
+    </div>
+  </a>
+
+  <a class="dept tt" href="#">
+    <span class="emblem-badge">III</span>
+    <div class="photo"></div>
+    <div class="body">
+      <h3>Tischtennis</h3>
+      <div class="sub">Abteilung III · seit 1965</div>
+      <p>Zwei Tische, zwei feste Trainingsabende, eine treue Runde. Wer eine Kelle halten kann, ist willkommen — gleich welchen Niveaus.</p>
+      <div class="stats">
+        <div class="s"><div class="n">2</div><div class="l">Tische</div></div>
+        <div class="s"><div class="n">2</div><div class="l">Abende</div></div>
+        <div class="s"><div class="n">Alle</div><div class="l">Level</div></div>
+      </div>
+      <span class="cta">Zur Abteilung →</span>
+    </div>
+  </a>
+</section>
+
+<section class="training-panel">
+  <div class="inner">
+    <div class="section-head" style="padding: 0 0 16px">
+      <div class="kicker">Trainingszeiten</div>
+      <h2>Unsere <em>Wochenrunde</em></h2>
+      <p class="deck">Drei Trainingsstätten, ganzjähriger Betrieb — ein gepflegter Takt, auf den sich unsere Mitglieder seit Jahrzehnten verlassen.</p>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Trainingsstätte</th>
+          <th>Saison</th>
+          <th>Wochentage</th>
+          <th>Uhrzeit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Logauweg<small>Freiluftplatz</small></td>
+          <td>April — November</td>
+          <td>Mo / Mi / Fr</td>
+          <td>17:00 – 19:00</td>
+        </tr>
+        <tr>
+          <td>Logauweg<small>Freiluftplatz</small></td>
+          <td>April — November</td>
+          <td>Samstag</td>
+          <td>09:00 – 13:00</td>
+        </tr>
+        <tr>
+          <td>Logauweg<small>Freiluftplatz</small></td>
+          <td>April — November</td>
+          <td>Sonntag</td>
+          <td>09:30 – 12:00</td>
+        </tr>
+        <tr>
+          <td>Hengstäcker<small>Steiff-Schule</small></td>
+          <td>Ganzjährig</td>
+          <td>Di / Mi</td>
+          <td>18:00 – 20:00</td>
+        </tr>
+        <tr>
+          <td>Anne Frank<small>Gemeinschaftsschule</small></td>
+          <td>Oktober — März</td>
+          <td>Donnerstag</td>
+          <td>18:45 – 20:15</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="gastro">
+  <div class="photo-frame">
+    <div class="inner-frame"></div>
+    <span class="caption">Abb. · Vereinsgaststätte Da Angelo</span>
+  </div>
+  <div>
+    <div class="kicker">Am Vereinsheim</div>
+    <h3>Bei <em>Da Angelo</em> in der Vereinsgaststätte</h3>
+    <p>Unser Vereinsheim ist mehr als ein Treffpunkt nach dem Training — es ist Stammtisch, Geburtstagssaal und das Wohnzimmer vieler unserer Mitglieder. Die italienische Küche von Familie Angelo hält uns seit Jahren zusammen.</p>
+    <p>Der öffentliche Zutritt auf die Vereinsanlage ist wochentags von 10:00 bis 17:00 Uhr gestattet. Hundeleine bitte mitbringen, Fahrräder und Roller bleiben draußen.</p>
+    <div class="hours">
+      <div class="r"><b>Täglich geöffnet</b><span>17:00 – 22:30 Uhr</span></div>
+      <div class="r"><b>Öffentlicher Zutritt</b><span>Di – Fr · 10:00 – 17:00</span></div>
+      <div class="r"><b>Ruhetage</b><span>Keine</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="top">
+    <div>
+      <div class="brand-foot">1. SV Fasanenhof <em>e.V.</em></div>
+      <p>Ein eingetragener Sportverein mit drei Abteilungen und einer gemeinsamen Heimat am Logauweg in Stuttgart-Fasanenhof.</p>
+      <p style="margin-top: 20px; font-style: italic; font-size: 15px; color: var(--gold-soft); opacity: 1;">Logauweg 21 · 70565 Stuttgart<br>0711 / 715 86 85</p>
+    </div>
+    <div>
+      <h5>Der Verein</h5>
+      <ul>
+        <li><a href="#">Historie</a></li>
+        <li><a href="#">Vorstand</a></li>
+        <li><a href="#">Satzung</a></li>
+        <li><a href="#">Beiträge</a></li>
+        <li><a href="#">Ehrenmitglieder</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Besuchen</h5>
+      <ul>
+        <li><a href="#">Standort · U6</a></li>
+        <li><a href="#">Gaststätte</a></li>
+        <li><a href="#">Öffnungszeiten</a></li>
+        <li><a href="#">Hausordnung</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Rechtliches</h5>
+      <ul>
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+        <li><a href="#">Presse</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom">
+    <span>© 1. SV Fasanenhof 1965 e.V. · Alle Rechte vorbehalten</span>
+    <span>Stuttgart · Anno MMXXV</span>
+  </div>
+</footer>
+
+</body>
+</html>
