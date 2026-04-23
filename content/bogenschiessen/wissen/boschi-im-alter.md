@@ -2,7 +2,7 @@
 title: BoSchi im Alter
 description: Bogensport für ältere Menschen und späte Einstiege.
 kicker: Bogensport im Alter
-lead: Der Altersrahmen der Abteilung reicht bis 80 Jahre. Diese Perspektive gehört sichtbar in den Auftritt.
-summary: Platzhalter für Inhalte zu Bogensport im Alter und späten Einstiegen.
+lead: Der Altersrahmen der Abteilung reicht bis 80 Jahre. Diese Perspektive gehört selbstverständlich zum Vereinsalltag.
+summary: Bogensport für ältere Mitglieder und Menschen mit spätem Einstieg.
 ---
-Bogenschießen ist in der Abteilung kein Jugendsport mit Restpublikum, sondern ein Bereich mit breitem Altersband. Diese Seite ist der vorgesehene Ort, um genau das später fachlich und menschlich auszuarbeiten.
+Bogenschießen ist in der Abteilung kein reiner Jugendsport, sondern ein Angebot für Menschen in vielen Lebensphasen. Themen wie spätes Einsteigen, Belastungssteuerung, Konzentration und passende Trainingsformen gehören deshalb selbstverständlich dazu.

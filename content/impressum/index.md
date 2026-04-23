@@ -22,4 +22,4 @@ Die Vereinsvertretung erfolgt gemäß Satzung durch den Vorstand des 1. SV Fasan
 
 ## Hinweis
 
-Dieses Impressum bildet den technischen Startpunkt der neuen Website. Vor Live-Schaltung sollten Registerdaten, vertretungsberechtigte Personen und eventuelle Pflichtangaben aus dem finalen Impressum abgeglichen werden.
+Die Angaben auf dieser Seite sollten regelmäßig mit den aktuellen Vereinsdaten, Zuständigkeiten und rechtlichen Pflichtangaben abgeglichen werden.

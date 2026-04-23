@@ -76,7 +76,7 @@ class LiveReloadServer(ThreadingHTTPServer):
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--directory", required=True)
-    parser.add_argument("--port", type=int, default=8080)
+    parser.add_argument("--port", type=int, default=8091)
     args = parser.parse_args()
 
     directory = os.path.abspath(args.directory)

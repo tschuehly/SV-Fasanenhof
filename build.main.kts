@@ -83,6 +83,16 @@ data class Crumb(
     val url: String,
 )
 
+data class SectionNavEntry(
+    val label: String,
+    val url: String,
+)
+
+data class SectionNavGroup(
+    val label: String,
+    val entries: List<SectionNavEntry>,
+)
+
 val navItems = listOf(
     NavItem("Start", "/", "home"),
     NavItem("Verein", "/verein/", "verein"),
@@ -91,6 +101,77 @@ val navItems = listOf(
     NavItem("Fußball", "/fussball/", "fussball"),
     NavItem("Tischtennis", "/tischtennis/", "tischtennis"),
     NavItem("Kontakt", "/kontakt/", "kontakt"),
+)
+
+val sectionNavGroups = mapOf(
+    "verein" to listOf(
+        SectionNavGroup(
+            "Überblick",
+            listOf(
+                SectionNavEntry("Überblick", "/verein/"),
+                SectionNavEntry("Historie", "/verein/historie.html"),
+            ),
+        ),
+        SectionNavGroup(
+            "Organisation",
+            listOf(
+                SectionNavEntry("Vorstand", "/verein/vorstand.html"),
+                SectionNavEntry("Satzung", "/verein/satzung.html"),
+                SectionNavEntry("Beiträge und Beitritt", "/verein/beitraege.html"),
+            ),
+        ),
+    ),
+    "bogenschiessen" to listOf(
+        SectionNavGroup(
+            "Überblick",
+            listOf(
+                SectionNavEntry("Überblick", "/bogenschiessen/"),
+                SectionNavEntry("Aktuelles", "/bogenschiessen/aktuelles/"),
+            ),
+        ),
+        SectionNavGroup(
+            "Mitmachen",
+            listOf(
+                SectionNavEntry("Training", "/bogenschiessen/training.html"),
+                SectionNavEntry("Schnupperkurse", "/bogenschiessen/schnupperkurse.html"),
+                SectionNavEntry("Ausrüstung", "/bogenschiessen/ausruestung.html"),
+                SectionNavEntry("Schießordnung", "/bogenschiessen/schiessordnung.html"),
+            ),
+        ),
+        SectionNavGroup(
+            "Wettkampf",
+            listOf(
+                SectionNavEntry("Meisterschaften", "/bogenschiessen/meisterschaften/"),
+                SectionNavEntry("Galerie", "/bogenschiessen/galerie/"),
+            ),
+        ),
+        SectionNavGroup(
+            "Abteilung",
+            listOf(
+                SectionNavEntry("Wissen", "/bogenschiessen/wissen/"),
+                SectionNavEntry("Presse", "/bogenschiessen/presse.html"),
+                SectionNavEntry("Sponsoren", "/bogenschiessen/sponsoren.html"),
+            ),
+        ),
+    ),
+    "fussball" to listOf(
+        SectionNavGroup(
+            "Fußball",
+            listOf(
+                SectionNavEntry("Überblick", "/fussball/"),
+                SectionNavEntry("Aktuelles", "/fussball/aktuelles/"),
+            ),
+        ),
+    ),
+    "tischtennis" to listOf(
+        SectionNavGroup(
+            "Tischtennis",
+            listOf(
+                SectionNavEntry("Überblick", "/tischtennis/"),
+                SectionNavEntry("Aktuelles", "/tischtennis/aktuelles/"),
+            ),
+        ),
+    ),
 )
 
 generateSite()
@@ -219,12 +300,12 @@ fun renderPage(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
           <link rel="stylesheet" href="${linkTo(page, "/assets/site.css")}">
         </head>
         <body>
-          ${renderTicker(page)}
-          ${renderHeader(page)}
+          ${renderHeader(page, pagesByUrl)}
           <main class="site-main">
             $content
           </main>
           ${renderFooter(page)}
+          ${navigationScript()}
           ${liveReloadScript()}
         </body>
         </html>
@@ -245,7 +326,7 @@ fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
     val departmentCards = listOf(
         Triple("/fussball/", "Fußball", "Kunstrasen, Jugendbereiche und Spielgemeinschaften am Logauweg."),
         Triple("/tischtennis/", "Tischtennis", "Training in Möhringen und der Aufstieg in die A-Klasse als aktueller Anker."),
-        Triple("/bogenschiessen/", "Bogenschießen", "Die stärkste Inhaltstiefe mit Training, Kursen, Ergebnissen und Wissensbereich."),
+        Triple("/bogenschiessen/", "Bogenschießen", "Training, Schnupperkurse, Meisterschaften, Galerie und Wissensbereich."),
     ).joinToString("") { (url, title, text) ->
         """
             <article class="feature-card">
@@ -262,23 +343,19 @@ fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
         <section class="hero shell">
           <div class="hero-copy">
             <span class="kicker">${escapeHtml(page.kicker)}</span>
-            <h1>${escapeHtml(page.title)}<em> gemeinsam statt verstreut.</em></h1>
+            <h1>${escapeHtml(page.title)}</h1>
             <p class="lead">${escapeHtml(page.lead)}</p>
             <div class="hero-actions">
               <a class="button button-primary" href="${linkTo(page, "/bogenschiessen/schnupperkurse.html")}">Schnupperkurs ansehen</a>
               <a class="button button-secondary" href="${linkTo(page, "/standort/")}">Zum Standort</a>
             </div>
           </div>
-          <aside class="hero-panel">
-            <h2>Neuer Aufbau mit echter Informationsarchitektur</h2>
-            <p>Die Seite folgt jetzt dem in der Spezifikation beschriebenen department-first-Modell. Das ist fachlich sauberer als eine künstlich club-weite Top-Level-Struktur für Inhalte, die heute fast vollständig aus dem Bogensport kommen.</p>
-          </aside>
         </section>
 
         <section class="shell section">
           <div class="section-head">
             <span class="kicker">Abteilungen</span>
-            <h2>Ein Vereinsdach, drei Einstiege</h2>
+            <h2>Drei Abteilungen unter einem Dach</h2>
           </div>
           <div class="card-grid">$departmentCards</div>
         </section>
@@ -295,7 +372,7 @@ fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
           <article class="feature-card">
             <span class="pill">Training</span>
             <h3><a href="${linkTo(page, "/bogenschiessen/training.html")}">Zeiten und Orte im Blick</a></h3>
-            <p>Logauweg, Hengstäcker Schule und Anne-Frank-Gemeinschaftsschule sind im Bogensport klar getrennt dargestellt. Fußball und Tischtennis folgen derselben Denke, sobald die Inhalte weiter ausgebaut sind.</p>
+            <p>Für den Bogensport sind Außenplatz, Schulhalle und Wintertraining klar gegliedert. So sieht man auf einen Blick, wann am Logauweg oder in den Hallen trainiert wird.</p>
           </article>
           <article class="feature-card">
             <span class="pill">Standort</span>
@@ -358,44 +435,16 @@ fun renderHero(page: Page): String {
             <h1>${escapeHtml(page.title)}</h1>
             <p class="lead">${escapeHtml(page.lead)}</p>
           </div>
-          <aside class="hero-panel">
-            <h2>${escapeHtml(page.description.ifBlank { page.title })}</h2>
-            <p>${escapeHtml(page.summary)}</p>
-          </aside>
         </section>
     """.trimIndent()
 }
 
-fun renderTicker(page: Page): String {
-    val items = when (page.sectionKey) {
-        "home" -> listOf(
-            "60 Jahre Vereinsgeschichte",
-            "Vereinsgelände am Logauweg 21",
-            "Bogenschießen, Fußball und Tischtennis unter einem Dach",
-            "Da Angelo täglich von 17.00 bis 22.30 Uhr",
-        )
-        "bogenschiessen" -> listOf(
-            "65 Schützinnen und Schützen zwischen 8 und 80 Jahren",
-            "Drei Trainingsorte in Stuttgart",
-            "Schnupperkurse mit Leihmaterial",
-            "Liga, Galerie und Wissensbereich aus einer Hand",
-        )
-        else -> listOf(
-            page.title,
-            "1. SV Fasanenhof 1965 e.V.",
-            "Statische Website aus Kotlin-Skript",
-            "Inhalte aus den Vereinsquellen migriert",
-        )
-    }
-    val repeated = (items + items).joinToString("") { """<span><i class="dot"></i>${escapeHtml(it)}</span>""" }
-    return """<div class="ticker"><div class="track">$repeated</div></div>"""
-}
-
-fun renderHeader(page: Page): String {
+fun renderHeader(page: Page, pagesByUrl: Map<String, Page>): String {
     val navHtml = navItems.joinToString("") { item ->
         val active = if (item.sectionKey == page.sectionKey) "active" else ""
         """<li><a class="$active" href="${linkTo(page, item.url)}">${escapeHtml(item.label)}</a></li>"""
     }
+    val sectionNav = renderSectionNav(page, pagesByUrl)
     return """
         <header class="site-header">
           <div class="shell header-shell">
@@ -410,8 +459,57 @@ fun renderHeader(page: Page): String {
               <ul>$navHtml</ul>
             </nav>
           </div>
+          $sectionNav
         </header>
     """.trimIndent()
+}
+
+fun renderSectionNav(page: Page, pagesByUrl: Map<String, Page>): String {
+    val groups = sectionNavEntriesFor(page, pagesByUrl)
+    if (groups.isEmpty()) return ""
+
+    val navHtml = groups.joinToString("") { group ->
+        val groupActive = group.entries.any { isSectionNavActive(page.urlPath, it.url) }
+        val linksHtml = group.entries.joinToString("") { entry ->
+            val active = if (isSectionNavActive(page.urlPath, entry.url)) "active" else ""
+            """<li><a class="$active" href="${linkTo(page, entry.url)}">${escapeHtml(entry.label)}</a></li>"""
+        }
+        """
+            <details class="section-nav-group"${if (groupActive) " open" else ""}>
+              <summary>${escapeHtml(group.label)}</summary>
+              <ul class="section-nav-menu">$linksHtml</ul>
+            </details>
+        """.trimIndent()
+    }
+
+    return """
+        <nav class="section-nav" aria-label="Bereichsnavigation">
+          <div class="shell section-nav-shell">
+            $navHtml
+          </div>
+        </nav>
+    """.trimIndent()
+}
+
+fun sectionNavEntriesFor(page: Page, pagesByUrl: Map<String, Page>): List<SectionNavGroup> {
+    val groups = sectionNavGroups[page.sectionKey] ?: return emptyList()
+    return groups.mapNotNull { group ->
+        val entries = group.entries.mapNotNull { entry ->
+            val linkedPage = pagesByUrl[entry.url] ?: return@mapNotNull null
+            SectionNavEntry(
+                label = if (entry.label == linkedPage.title || entry.label == "Überblick") entry.label else entry.label,
+                url = entry.url,
+            )
+        }
+        if (entries.isEmpty()) null else SectionNavGroup(group.label, entries)
+    }
+}
+
+fun isSectionNavActive(currentUrl: String, targetUrl: String): Boolean {
+    if (currentUrl == targetUrl) return true
+    if (!targetUrl.endsWith("/")) return false
+    val depth = targetUrl.trim('/').split('/').filter { it.isNotBlank() }.size
+    return depth > 1 && currentUrl.startsWith(targetUrl)
 }
 
 fun renderFooter(page: Page): String {
@@ -594,6 +692,56 @@ fun liveReloadScript(): String {
               source.close();
               setTimeout(function () { window.location.reload(); }, 1000);
             };
+          })();
+        </script>
+    """.trimIndent()
+}
+
+fun navigationScript(): String {
+    return """
+        <script>
+          (function () {
+            var groups = Array.prototype.slice.call(document.querySelectorAll('.section-nav-group'));
+            if (!groups.length) return;
+
+            function closeAll() {
+              groups.forEach(function (group) {
+                group.removeAttribute('open');
+              });
+            }
+
+            groups.forEach(function (group) {
+              var summary = group.querySelector('summary');
+              if (!summary) return;
+
+              summary.addEventListener('click', function (event) {
+                event.preventDefault();
+                var willOpen = !group.hasAttribute('open');
+                closeAll();
+                if (willOpen) {
+                  group.setAttribute('open', '');
+                }
+              });
+            });
+
+            document.addEventListener('click', function (event) {
+              if (event.target.closest('.section-nav')) return;
+              closeAll();
+            });
+
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') {
+                closeAll();
+              }
+            });
+
+            document.addEventListener('click', function (event) {
+              var link = event.target.closest('a');
+              if (!link) return;
+              closeAll();
+            }, true);
+
+            window.addEventListener('pagehide', closeAll);
           })();
         </script>
     """.trimIndent()

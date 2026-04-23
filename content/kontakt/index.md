@@ -28,4 +28,4 @@ Für Fragen zu Beiträgen, Beitritt und Verwaltung:
 
 ## Hinweis zum Kontaktformular
 
-Ein technisches Formular ist in diesem ersten SSG-Stand noch nicht hinterlegt. Die Seite ist jedoch so aufgebaut, dass ein späterer Formular-Dienst ohne Strukturbruch ergänzt werden kann.
+Anfragen laufen derzeit direkt über die genannten E-Mail-Adressen und die Geschäftsstelle. So landet das Anliegen ohne Umweg bei der richtigen Ansprechperson.

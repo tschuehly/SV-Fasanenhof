@@ -42,4 +42,4 @@ Für die Wintersaison gilt: Teilnahme nur mit Schießausweis, Hallenkapazitäten
 
 ## Ausbilder und Betreuung
 
-Die Trainingsarbeit wird innerhalb der Abteilung organisiert. Die Website kann diesen Bereich später noch um einzelne Trainer- und Ausbilderprofile ergänzen.
+Die Trainingsarbeit wird innerhalb der Abteilung organisiert. Fragen zu Gruppen, Einweisung und Teilnahme laufen über die verantwortlichen Ansprechpartnerinnen und Ansprechpartner der Bogensportabteilung.

@@ -2,7 +2,7 @@
 title: Wissen
 description: Pädagogische und praktische Inhalte rund um den Bogensport.
 kicker: Wissen und Service
-lead: Der Wissensbereich bündelt die Inhalte, die heute fast vollständig aus der Bogensportabteilung stammen.
+lead: Der Wissensbereich sammelt Hilfen, Hintergründe und praktische Informationen rund um den Bogensport.
 summary: Übersicht über Regelkunde, Sachkunde, Spezialthemen, Anleitungen und weiterführende Links.
 ---
 ## Themen im Wissensbereich
@@ -17,4 +17,4 @@ summary: Übersicht über Regelkunde, Sachkunde, Spezialthemen, Anleitungen und 
 
 ## Externe Links
 
-Die frühere Linkseite wird künftig hier inhaltlich eingebettet, statt isoliert zu stehen. Dazu gehören unter anderem Hinweise auf Verbände, Magazine und Fachportale aus dem Bogensport.
+Hier finden sich Hinweise auf Verbände, Magazine, Fachportale und weitere Quellen, die für Training, Wettkampf und Materialkunde hilfreich sind.

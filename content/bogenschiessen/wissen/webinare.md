@@ -2,7 +2,7 @@
 title: Webinare
 description: Hinweise auf Webinare und digitale Lernangebote rund um den Bogensport.
 kicker: Webinare und Lernen
-lead: Digitale Lernangebote aus dem DOSB- und Verbandsumfeld gehören in die dauerhafte Wissensstruktur.
-summary: Platzhalter für Webinar-Hinweise und digitale Ressourcen.
+lead: Digitale Lernangebote aus dem DOSB- und Verbandsumfeld ergänzen das Training vor Ort.
+summary: Hinweise auf Webinar-Termine, Aufzeichnungen und digitale Ressourcen.
 ---
-Die frühere Website führte bereits Webinare als Thema. Diese Seite bündelt künftig Termine, Aufzeichnungen oder thematische Einordnungen, statt einzelne Links lose zu verteilen.
+Webinare, Online-Fortbildungen und Aufzeichnungen ergänzen das Training vor Ort. Hier werden digitale Angebote gesammelt, die für Technik, Material, Regelkunde oder Vereinsarbeit nützlich sind.

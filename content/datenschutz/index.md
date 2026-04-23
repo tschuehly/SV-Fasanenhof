@@ -2,14 +2,14 @@
 title: Datenschutz
 description: Datenschutzhinweise für die Website des 1. SV Fasanenhof.
 kicker: Datenschutz
-lead: Die Datenschutzerklärung wird inhaltlich und rechtlich separat gepflegt und darf nicht blind aus Fremdquellen übernommen werden.
-summary: Datenschutzseite mit Hinweis auf rechtliche Prüfung und geplanter Struktur nach DSGVO.
+lead: Auf dieser Seite stehen die Datenschutzhinweise für die Website des 1. SV Fasanenhof.
+summary: Datenschutzhinweise zu Verantwortlichkeit, Verarbeitung und Rechten nach DSGVO.
 ---
-> Wichtiger Hinweis: Der vorhandene Crawl der alten Website enthält fremde Unternehmensdaten und ist daher **keine verlässliche Grundlage** für eine Veröffentlichung. Diese Seite ist bewusst als sauberer Platzhalter aufgebaut, bis die endgültige Datenschutzerklärung rechtlich geprüft vorliegt.
+> Hinweis: Die veröffentlichte Datenschutzerklärung muss fachlich geprüft und vollständig auf die tatsächlichen Datenverarbeitungen der Website abgestimmt sein.
 
-## Geplante Struktur
+## Inhalt einer Datenschutzerklärung
 
-Die finale Datenschutzerklärung sollte mindestens folgende Punkte enthalten:
+Eine vollständige Datenschutzerklärung umfasst in der Regel mindestens folgende Punkte:
 
 - verantwortliche Stelle des Vereins
 - Kontakt für Datenschutzanfragen
@@ -21,4 +21,4 @@ Die finale Datenschutzerklärung sollte mindestens folgende Punkte enthalten:
 
 ## Veröffentlichung
 
-Vor einer Live-Schaltung sollte diese Seite mit einer fachlich geprüften Fassung ersetzt oder ergänzt werden. Alles andere wäre rechtlich unnötig riskant.
+Vor einer Live-Schaltung sollte diese Seite durch eine fachlich geprüfte Fassung ergänzt oder ersetzt werden.

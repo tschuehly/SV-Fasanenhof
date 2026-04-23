@@ -22,9 +22,9 @@ Nach den vorhandenen Vereinsangaben trainieren aktuell insbesondere:
 - **Bambini**: Mittwoch 18.00 bis 19.00 Uhr
 - **E- und F-Jugend** in Spielgemeinschaft mit HNK Slaven Stuttgart: Mittwoch und Freitag ab 18.00 Uhr
 
-## Was die Seite später noch braucht
+## Im Fokus
 
-- Mannschaftsprofile
-- Spieltage und Heimtermine
-- Gastmannschaften und Nutzung des Geländes
-- redaktionell gepflegte Saisonmeldungen
+- Trainingsbetrieb auf dem Kunstrasenplatz
+- Jugendangebote und Spielgemeinschaften
+- Heimspiele und Nutzung des Geländes
+- aktuelle Meldungen aus der Abteilung

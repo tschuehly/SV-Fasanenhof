@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PORT="${1:-8080}"
+PORT="${1:-8091}"
 DIST_DIR="$ROOT_DIR/build/site"
 
 if command -v fswatch &>/dev/null; then

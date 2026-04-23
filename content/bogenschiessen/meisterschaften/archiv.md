@@ -30,4 +30,4 @@ summary: Archivierte Ergebnisübersicht 2016 bis 2023.
 
 ## 2016 bis 2020
 
-Die Altseite enthält eine umfangreiche Link-Sammlung mit einzelnen Stationen zu KMS, BMS, Liga- und Pokalformaten. Diese Einträge sollten im nächsten Redaktionsschritt noch in saubere Jahresblöcke mit Kurzkommentar überführt werden.
+Für die Jahre 2016 bis 2020 liegen weitere Stationen aus KMS, BMS, Liga- und Pokalformaten vor. Sie ergänzen das Bild einer Abteilung, die über viele Jahre regelmäßig am Wettkampfbetrieb teilgenommen hat.

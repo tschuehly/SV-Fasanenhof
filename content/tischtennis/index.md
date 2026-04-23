@@ -5,7 +5,7 @@ kicker: Tischtennis in Möhringen
 lead: Die Tischtennisabteilung verbindet Training für Jung und Alt mit einem aktuellen sportlichen Erfolg.
 summary: Tischtennisseite mit Aufstieg in die A-Klasse, Trainingsort Anne-Frank-Schule und Ansprechpartner.
 ---
-Tischtennis wird beim 1. SV Fasanenhof mit einer direkten, offenen Haltung vermittelt: für Jung und Alt, Groß und Klein. Diese Tonalität bleibt bewusst erhalten, weil sie mehr über die Abteilung sagt als jede künstlich geglättete Vereinsprosa.
+Tischtennis wird beim 1. SV Fasanenhof offen und generationsübergreifend gespielt. Die Abteilung bietet regelmäßiges Training in Möhringen und verbindet sportlichen Ehrgeiz mit einer zugänglichen Vereinsatmosphäre.
 
 ## Aktueller Aufhänger
 

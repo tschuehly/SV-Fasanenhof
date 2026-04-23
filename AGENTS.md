@@ -15,7 +15,7 @@ The project consolidates two existing websites (sv-fasanenhof.de and bsg-fasanen
 
 - Static site generator: Kotlin script in `build.main.kts`
 - Output directory: `build/site/`
-- Local development: `./watch.sh` with live reload at `http://localhost:8080`
+- Local development: `./watch.sh` with live reload at `http://localhost:8091`
 - Dev server: `devserver.py`
 - Shared assets: `src/main/resources/assets/`
 - Hosting: GitHub Pages via `.github/workflows/pages.yml`

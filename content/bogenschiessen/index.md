@@ -2,7 +2,7 @@
 title: Bogenschießen
 description: Bogensportabteilung des 1. SV Fasanenhof mit Training, Kursen und Wettkämpfen.
 kicker: Bogensportabteilung
-lead: Die BSG ist die inhaltlich stärkste Abteilung des Vereins und bildet deshalb einen eigenen, tiefen Bereich innerhalb der Website.
+lead: Die Bogensportabteilung bietet Training, Schnupperkurse und Wettkämpfe für Kinder, Jugendliche und Erwachsene.
 summary: Bogensportseite mit 65 Aktiven, Altersrahmen 8 bis 80, Bogentypen, Kursen und Trainingsorten.
 ---
 Die Bogensportabteilung des 1. SV Fasanenhof begrüßt alle Interessierten, die Bogenschießen kennenlernen oder vertiefen möchten. Rund **65 Schützinnen und Schützen zwischen 8 und 80 Jahren** trainieren im Verein in familiärer Atmosphäre.
