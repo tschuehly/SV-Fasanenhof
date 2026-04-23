@@ -11,6 +11,8 @@ Thumbs.db
 build/
 dist/
 target/
+.gradle/
+.kotlin/
 
 # Node
 node_modules/
@@ -35,6 +37,7 @@ venv/
 .env
 .env.local
 .env.*.local
+.codex/
 
 # Cache
 .cache/

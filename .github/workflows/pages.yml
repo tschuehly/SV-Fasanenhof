@@ -1,10 +1,12 @@
-name: Deploy mockups to GitHub Pages
+name: Deploy site to GitHub Pages
 
 on:
   push:
     branches: [main]
     paths:
-      - 'mockups/**'
+      - 'build.main.kts'
+      - 'content/**'
+      - 'src/**'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -30,10 +32,25 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload mockups artifact
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Install Kotlin
+        run: |
+          curl -fsSL https://github.com/JetBrains/kotlin/releases/download/v2.3.20/kotlin-compiler-2.3.20.zip -o kotlin.zip
+          unzip -q kotlin.zip -d "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/kotlinc/bin" >> "$GITHUB_PATH"
+
+      - name: Generate site
+        run: kotlin build.main.kts
+
+      - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./mockups
+          path: ./build/site
 
       - name: Deploy to GitHub Pages
         id: deployment
