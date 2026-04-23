@@ -9,6 +9,7 @@ Dieses Verzeichnis sammelt Rohmaterial aus den alten Websites und aus der Migrat
 - `crawl-output/`: Crawl-Snapshots der alten Seiten
 - `content-archive/`: archivierte Altseiten und Hilfstexte
 - `content-maps/`: frühere Planungs- und Mapping-Dateien
+- `downloads/legacy-assets/`: lokal gesicherte Bilder und Dateien aus den Altseiten samt Manifest
 
 ## Wichtige Regel
 

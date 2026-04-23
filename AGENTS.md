@@ -70,6 +70,7 @@ These directories are not render inputs anymore. Treat them as migration/referen
 ### Content Conventions
 - Primary language: German
 - Use real umlauts (`ä`, `ö`, `ü`) in German text
+- Never put meta commentary into website copy. Production pages should not mention migration status, placeholders, curation notes, or internal editorial process.
 - Markdown with frontmatter (`title`, `description`, `kicker`, `lead`, optional `template`, `summary`)
 - Department-first IA:
   - club shell at root sections like `verein/`, `standort/`, `kontakt/`

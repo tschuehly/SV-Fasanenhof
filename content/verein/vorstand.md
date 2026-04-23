@@ -2,10 +2,18 @@
 title: Vorstand
 description: Vorstand, Abteilungsleitungen und Ansprechpartner des 1. SV Fasanenhof.
 kicker: Menschen mit Verantwortung
-lead: Vereinsvorstand und Abteilungsleitungen mit direktem Zuständigkeitsbezug.
-summary: Kontaktübersicht des Vereinsvorstands und der drei Abteilungen.
+lead: Für allgemeine Vereinsfragen ist die Geschäftsstelle der erste Anlaufpunkt, für den laufenden Sportbetrieb die jeweiligen Abteilungsleitungen.
+summary: Kontaktübersicht mit Geschäftsstelle, Vereinsvorstand, Jugendverantwortlichen und Leitungen der drei Abteilungen.
 ---
-## Hauptverein
+## Geschäftsstelle
+
+**1. SV Fasanenhof 1965 e.V.**  
+Logauweg 21  
+70565 Stuttgart  
+Telefon: 0711 715 86 85  
+Fax: 0711 715 86 85
+
+## Vereinsvorstand
 
 - **Winfried Krenz** · Vorsitzender  
   Telefon: 0711 99 74 12 30  
@@ -52,3 +60,9 @@ summary: Kontaktübersicht des Vereinsvorstands und der drei Abteilungen.
 - **Herbert Lang** · Abteilungsleitung  
   Mobil: 0170 385 23 83  
   E-Mail: lang-he@web.de
+
+## Zuständigkeiten kurz erklärt
+
+- Die **Geschäftsstelle** hilft bei allgemeinen Vereinsfragen, Postanschrift und Grundkontakten weiter.
+- Die **Abteilungsleitungen** sind die richtigen Ansprechpartner für Training, Einstieg, organisatorische Fragen und den laufenden Sportbetrieb.
+- Themen rund um Jugendarbeit laufen in den Abteilungen zusätzlich über die jeweils genannten **Jugendverantwortlichen**.

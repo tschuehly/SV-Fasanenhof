@@ -41,6 +41,14 @@ img {
   max-width: 100%;
 }
 
+svg,
+video,
+canvas,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
 .shell {
   width: min(1180px, calc(100vw - 32px));
   margin: 0 auto;
@@ -71,6 +79,13 @@ img {
   text-decoration: none;
 }
 
+.brand span,
+.site-nav,
+.site-nav li,
+.section-nav-group {
+  min-width: 0;
+}
+
 .brand img {
   width: 56px;
   height: 56px;
@@ -89,6 +104,7 @@ img {
 .brand strong {
   display: block;
   font-size: 1.15rem;
+  text-wrap: balance;
 }
 
 .brand em {
@@ -104,6 +120,7 @@ img {
   text-transform: uppercase;
   color: var(--ink-muted);
   margin-top: 0.15rem;
+  text-wrap: pretty;
 }
 
 .site-nav ul {
@@ -131,6 +148,7 @@ img {
 }
 
 .section-nav {
+  position: relative;
   background: linear-gradient(180deg, rgba(255, 253, 248, 0.9), rgba(255, 253, 248, 0.82));
   box-shadow: inset 0 1px 0 rgba(221, 213, 198, 0.75);
 }
@@ -197,6 +215,7 @@ img {
   left: 0;
   z-index: 30;
   min-width: min(22rem, calc(100vw - 40px));
+  max-width: calc(100vw - 20px);
   display: grid;
   gap: 0.3rem;
   list-style: none;
@@ -302,8 +321,7 @@ img {
 .kicker,
 .pill,
 .news-meta,
-.news-date,
-.breadcrumbs {
+.news-date {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -324,6 +342,7 @@ img {
   font-size: clamp(2.6rem, 5vw, 4.8rem);
   line-height: 1.02;
   margin: 0.75rem 0 1rem;
+  text-wrap: balance;
 }
 
 .hero h1 em {
@@ -337,6 +356,7 @@ img {
   font-size: 1.2rem;
   color: var(--ink-soft);
   max-width: 40rem;
+  text-wrap: pretty;
 }
 
 .hero-actions {
@@ -454,7 +474,15 @@ img {
 }
 
 .breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.2rem 0.45rem;
   margin-bottom: 1.25rem;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--ink-muted);
 }
 
@@ -462,13 +490,18 @@ img {
   text-decoration: none;
 }
 
+.breadcrumbs a,
+.breadcrumbs span {
+  overflow-wrap: anywhere;
+}
+
 .crumb-sep {
   opacity: 0.5;
-  margin: 0 0.45rem;
 }
 
 .prose {
   font-size: 1.05rem;
+  overflow-wrap: break-word;
 }
 
 .prose h1,
@@ -493,7 +526,8 @@ img {
 .prose ul,
 .prose ol,
 .prose table,
-.prose blockquote {
+.prose blockquote,
+.prose pre {
   margin: 1rem 0;
 }
 
@@ -508,8 +542,17 @@ img {
 
 .prose table {
   width: 100%;
+  max-width: 100%;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-collapse: collapse;
   font-size: 0.98rem;
+}
+
+.prose thead,
+.prose tbody {
+  width: 100%;
 }
 
 .prose th,
@@ -517,6 +560,90 @@ img {
   border-bottom: 1px solid var(--line);
   text-align: left;
   padding: 0.8rem 0.5rem;
+}
+
+.prose pre {
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  background: rgba(21, 21, 21, 0.04);
+}
+
+.prose code {
+  overflow-wrap: anywhere;
+}
+
+.prose iframe {
+  width: 100%;
+}
+
+.prose .photo-showcase,
+.prose .photo-grid,
+.prose .year-card-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1.35rem 0 1.8rem;
+}
+
+.prose .photo-showcase {
+  grid-template-columns: 1.35fr 0.85fr;
+  align-items: stretch;
+}
+
+.prose .photo-grid,
+.prose .year-card-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.prose figure.photo-hero,
+.prose figure.photo-card,
+.prose .year-card {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--paper-strong);
+  box-shadow: 0 16px 38px rgba(21, 21, 21, 0.08);
+}
+
+.prose figure.photo-hero img,
+.prose figure.photo-card img,
+.prose .year-card img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.prose figure.photo-hero img {
+  aspect-ratio: 16 / 10;
+}
+
+.prose figure.photo-card img,
+.prose .year-card img {
+  aspect-ratio: 4 / 3;
+}
+
+.prose figure.photo-hero figcaption,
+.prose figure.photo-card figcaption {
+  padding: 0.85rem 1rem 1rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.prose .year-card a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.prose .year-card h3 {
+  margin: 0;
+  padding: 0.9rem 1rem 0.25rem;
+  font-size: 1.25rem;
+}
+
+.prose .year-card p {
+  margin: 0;
+  padding: 0 1rem 1rem;
 }
 
 .prose blockquote {
@@ -569,10 +696,40 @@ img {
   .header-shell {
     flex-direction: column;
     align-items: flex-start;
+    gap: 1rem;
+    padding: 0.85rem 0;
+  }
+
+  .brand {
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .brand img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand strong {
+    font-size: clamp(1.05rem, 5.4vw, 1.45rem);
+    line-height: 1.08;
+  }
+
+  .brand small {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
   }
 
   .site-nav ul {
-    gap: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1rem;
+  }
+
+  .site-nav a,
+  .section-nav a,
+  .section-nav-group summary {
+    font-size: 0.93rem;
   }
 
   .section-nav-shell {
@@ -590,6 +747,7 @@ img {
   .section-nav-menu {
     position: absolute;
     min-width: min(18rem, calc(100vw - 24px));
+    max-width: calc(100vw - 20px);
     margin-top: 0.45rem;
     padding: 0.7rem;
     border: 1px solid var(--line);
@@ -599,6 +757,23 @@ img {
     background: rgba(255, 253, 248, 0.98);
     border-radius: 16px;
     backdrop-filter: blur(18px);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.15rem, 11vw, 3.15rem);
+  }
+
+  .lead {
+    font-size: 1.05rem;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions .button {
+    width: 100%;
   }
 
   .hero,
@@ -626,5 +801,40 @@ img {
   .site-footer,
   .news-row {
     padding: 1.35rem;
+  }
+
+  .breadcrumbs {
+    gap: 0.2rem 0.35rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+  }
+
+  .prose {
+    font-size: 1rem;
+  }
+
+  .prose h2 {
+    font-size: 1.65rem;
+  }
+
+  .prose h3 {
+    font-size: 1.28rem;
+  }
+
+  .prose ul,
+  .prose ol {
+    padding-left: 1.05rem;
+  }
+
+  .prose .photo-showcase,
+  .prose .photo-grid,
+  .prose .year-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prose th,
+  .prose td {
+    min-width: 8.5rem;
+    padding: 0.72rem 0.45rem;
   }
 }

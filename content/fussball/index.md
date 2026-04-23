@@ -7,6 +7,20 @@ summary: Fußballseite mit Kunstrasen, Trainingsblöcken, Jugendgruppen und Spie
 ---
 Die Fußballabteilung gehört seit der Gründung des Vereins zum Kern des 1. SV Fasanenhof. Sie profitiert heute von einem schönen Vereinsgelände, einem Kunstrasenplatz mit LED-Flutlicht, Parkplätzen, Umkleiden und der Gaststätte am Platz.
 
+<div class="photo-showcase">
+  <figure class="photo-card photo-hero">
+    <img src="/assets/fussball/1-mannschaft.jpg" alt="Gruppenfoto der 1. Mannschaft des 1. SV Fasanenhof auf dem Kunstrasenplatz">
+  </figure>
+  <div class="photo-grid photo-grid-compact">
+    <figure class="photo-card">
+      <img src="/assets/fussball/jugend.jpg" alt="Jugendmannschaft des 1. SV Fasanenhof mit Trainer auf dem Kunstrasenplatz">
+    </figure>
+    <figure class="photo-card">
+      <img src="/assets/fussball/kunstrasen-spiel.jpg" alt="Fußballspiel auf dem Kunstrasenplatz am Vereinsgelände">
+    </figure>
+  </div>
+</div>
+
 ## Training und Mannschaften
 
 ### Aktive
