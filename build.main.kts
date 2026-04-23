@@ -469,13 +469,12 @@ fun renderSectionNav(page: Page, pagesByUrl: Map<String, Page>): String {
     if (groups.isEmpty()) return ""
 
     val navHtml = groups.joinToString("") { group ->
-        val groupActive = group.entries.any { isSectionNavActive(page.urlPath, it.url) }
         val linksHtml = group.entries.joinToString("") { entry ->
             val active = if (isSectionNavActive(page.urlPath, entry.url)) "active" else ""
             """<li><a class="$active" href="${linkTo(page, entry.url)}">${escapeHtml(entry.label)}</a></li>"""
         }
         """
-            <details class="section-nav-group"${if (groupActive) " open" else ""}>
+            <details class="section-nav-group">
               <summary>${escapeHtml(group.label)}</summary>
               <ul class="section-nav-menu">$linksHtml</ul>
             </details>

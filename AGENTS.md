@@ -20,6 +20,8 @@ The project consolidates two existing websites (sv-fasanenhof.de and bsg-fasanen
 - Shared assets: `src/main/resources/assets/`
 - Hosting: GitHub Pages via `.github/workflows/pages.yml`
 
+This repository is now the **V1 production codebase**, not a mockup or planning sandbox. Keep documentation and implementation aligned to the shipped site instead of describing speculative future structure as if it already exists.
+
 ## Build Commands
 
 - Production build:
@@ -58,10 +60,12 @@ These directories are not render inputs anymore. Treat them as migration/referen
 ## Development Notes
 
 ### Current State
+- V1 of the site is implemented and published from the Kotlin SSG
 - Kotlin SSG is implemented
 - GitHub Pages deploys the generated site from `build/site`
 - Mockup phase has been removed from the repo
 - Canonical content structure follows the department-first IA from `SITE-SPEC.md`
+- The header includes a main navigation plus section-specific dropdown navigation for areas like `verein/` and `bogenschiessen/`
 
 ### Content Conventions
 - Primary language: German
@@ -82,6 +86,7 @@ These directories are not render inputs anymore. Treat them as migration/referen
 - Do not commit local Codex environment files such as `.codex/`
 - Be careful with `content/datenschutz/index.md`: the old crawl contained unrelated third-party data, so that page is intentionally a reviewed placeholder rather than a blind migration
 - Keep `content/` clean. Raw source imports and archival material belong under `migrations/`, not beside canonical site pages.
+- When changing IA, navigation, or page structure, update `SITE-SPEC.md` in the same change if the intended architecture has changed.
 
 ### Content Strategy
 - Bogensport remains the deepest content area and the best test bed for the SSG

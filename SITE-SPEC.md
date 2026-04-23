@@ -3,9 +3,16 @@
 ## Technology Stack
 
 - Static HTML site
-- Build script: Kotlin
+- Build script: Kotlin script SSG (`build.main.kts`)
 - Hosting: GitHub Pages
+- Local development: `./watch.sh` with live reload on `http://localhost:8091`
 - No CMS required
+
+---
+
+## Status
+
+This document now describes the shipped **V1** site structure. It should track the real implementation closely and should not describe speculative features as if they already exist.
 
 ---
 
@@ -241,29 +248,28 @@ sv-fasanenhof/
 ### Fußball
 
 #### `/fussball/index.html`
-- Department overview (placeholder until content is written)
-- Future: teams, training, Spielplan
+- Department overview with current training blocks, Jugend-Spielgemeinschaft and Ansprechpartner
+- `aktuelles/` exists as a separate section for football news
 
 ### Tischtennis
 
 #### `/tischtennis/index.html`
-- Department overview (placeholder until content is written)
-- Future: training times, Tischverfügbarkeit
+- Department overview with training location, schedule, Ansprechpartner and the current sporting anchor
+- `aktuelles/` exists as a separate section for table-tennis news
 
 ### Service
 
 #### `/kontakt/index.html`
-- Contact form
 - Department contacts
-- Phone, email, address, map
+- Phone, email and address
+- No contact form in V1
 
 #### `/impressum/index.html`
 - Legal notice per § 5 TMG
 
 #### `/datenschutz/index.html`
-- GDPR privacy policy
-- Cookie policy
-- Your rights
+- DSGVO-oriented placeholder structure
+- Must be replaced or completed with a legally reviewed final text before a real public launch
 
 ---
 
@@ -323,4 +329,5 @@ content/
 - Markdown to HTML conversion with frontmatter
 - Asset bundling
 - Cross-department news aggregator for home page (pulls from `*/aktuelles/posts/*.md`)
-- Development server (optional)
+- Development server with live reload
+- Section-specific dropdown navigation beneath the main header for areas with deeper structure
