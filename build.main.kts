@@ -313,6 +313,7 @@ fun renderPage(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
 }
 
 fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<NewsPost>): String {
+    val bodyHtml = rewriteEmbeddedAssetPaths(page, page.bodyHtml)
     val latestNews = allNewsPosts.take(4).joinToString("") { post ->
         """
             <article class="news-card">
@@ -382,12 +383,13 @@ fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
         </section>
 
         <section class="shell prose-block">
-          ${page.bodyHtml}
+          $bodyHtml
         </section>
     """.trimIndent()
 }
 
 fun renderNewsIndex(page: Page, posts: List<NewsPost>): String {
+    val bodyHtml = rewriteEmbeddedAssetPaths(page, page.bodyHtml)
     val newsHtml = posts.joinToString("") { post ->
         """
             <article class="news-row">
@@ -403,7 +405,7 @@ fun renderNewsIndex(page: Page, posts: List<NewsPost>): String {
     return """
         ${renderHero(page)}
         <section class="shell prose-block">
-          ${page.bodyHtml}
+          $bodyHtml
         </section>
         <section class="shell section">
           <div class="section-head">
@@ -416,12 +418,13 @@ fun renderNewsIndex(page: Page, posts: List<NewsPost>): String {
 }
 
 fun renderStandardPage(page: Page): String {
+    val bodyHtml = rewriteEmbeddedAssetPaths(page, page.bodyHtml)
     return """
         ${renderHero(page)}
         <section class="shell prose-block">
           ${renderBreadcrumbs(page)}
           <article class="prose">
-            ${page.bodyHtml}
+            $bodyHtml
           </article>
         </section>
     """.trimIndent()
@@ -669,6 +672,25 @@ fun copyStaticAssets() {
                 target.parent.createDirectories()
                 Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING)
             }
+    }
+}
+
+fun rewriteEmbeddedAssetPaths(page: Page, html: String): String {
+    val srcOrHrefPattern = Regex("""\b(src|href)=["'](/assets/[^"']+)["']""")
+    val cssUrlPattern = Regex("""url\((['"]?)(/assets/[^)'"]+)\1\)""")
+
+    val withRelativeAttributes = srcOrHrefPattern.replace(html) { match ->
+        val attribute = match.groupValues[1]
+        val assetPath = match.groupValues[2]
+        val relativePath = linkTo(page, assetPath)
+        """$attribute="$relativePath""""
+    }
+
+    return cssUrlPattern.replace(withRelativeAttributes) { match ->
+        val quote = match.groupValues[1]
+        val assetPath = match.groupValues[2]
+        val relativePath = linkTo(page, assetPath)
+        "url($quote$relativePath$quote)"
     }
 }
 
