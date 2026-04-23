@@ -47,12 +47,13 @@ Do not reintroduce a full Gradle project unless the script approach becomes a re
 
 ### Legacy Source Material
 
-- **`content/sv-fasanenhof/`**: migrated raw main-club source material
-- **`content/bsg-fasanenhof/`**: migrated raw archery source material
-- **`crawl-output/`**: crawled source snapshots
-- **`content-archive/`**: archived legacy content
+- **`migrations/raw-content/sv-fasanenhof/`**: migrated raw main-club source material
+- **`migrations/raw-content/bsg-fasanenhof/`**: migrated raw archery source material
+- **`migrations/crawl-output/`**: crawled source snapshots
+- **`migrations/content-archive/`**: archived legacy content
+- **`migrations/content-maps/`**: old planning/content-map documents
 
-These directories are not the primary source for rendering anymore. Treat them as migration/reference inputs unless there is an explicit cleanup or archival task.
+These directories are not render inputs anymore. Treat them as migration/reference inputs unless there is an explicit cleanup or archival task.
 
 ## Development Notes
 
@@ -80,6 +81,7 @@ These directories are not the primary source for rendering anymore. Treat them a
 - Do not put production assets back under `mockups/`
 - Do not commit local Codex environment files such as `.codex/`
 - Be careful with `content/datenschutz/index.md`: the old crawl contained unrelated third-party data, so that page is intentionally a reviewed placeholder rather than a blind migration
+- Keep `content/` clean. Raw source imports and archival material belong under `migrations/`, not beside canonical site pages.
 
 ### Content Strategy
 - Bogensport remains the deepest content area and the best test bed for the SSG

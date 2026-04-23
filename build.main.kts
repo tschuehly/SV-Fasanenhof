@@ -43,9 +43,6 @@ val renderer = HtmlRenderer.builder()
     .escapeHtml(false)
     .build()
 
-val ignoredTopLevelEntries = setOf("sv-fasanenhof", "bsg-fasanenhof")
-val ignoredFiles = setOf("content-map-current.md", "content-map-new.md")
-
 data class MarkdownDocument(
     val frontmatter: Map<String, String>,
     val body: String,
@@ -136,11 +133,7 @@ fun generateSite() {
 fun loadPages(): List<Page> {
     return Files.walk(contentRoot)
         .filter { Files.isRegularFile(it) && it.extension == "md" }
-        .filter { path ->
-            val relative = path.relativeTo(contentRoot).invariantSeparatorsPathString
-            val firstSegment = path.relativeTo(contentRoot).iterator().asSequence().firstOrNull()?.toString()
-            firstSegment !in ignoredTopLevelEntries && path.fileName.toString() !in ignoredFiles && !relative.startsWith(".")
-        }
+        .filter { path -> !path.relativeTo(contentRoot).invariantSeparatorsPathString.startsWith(".") }
         .sorted(compareBy<Path> { it.invariantSeparatorsPathString })
         .map { source ->
             val relative = source.relativeTo(contentRoot)
