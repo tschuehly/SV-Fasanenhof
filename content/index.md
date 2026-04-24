@@ -8,20 +8,6 @@ summary: Startseite mit Jubiläum, Abteilungen, aktuellen Meldungen und den wich
 ---
 Der 1. SV Fasanenhof ist seit 1965 im Stadtteil verwurzelt. Auf dem Vereinsgelände am Logauweg treffen sich Fußball, Tischtennis, Bogensport und Vereinsgaststätte; dazu kommen Trainingsorte in den Hallen rund um Möhringen.
 
-<div class="photo-showcase">
-  <figure class="photo-card photo-hero">
-    <img src="/assets/home/vereinsheim.jpg" alt="Vereinsheim des 1. SV Fasanenhof mit Terrasse am Logauweg">
-  </figure>
-  <div class="photo-grid photo-grid-compact">
-    <figure class="photo-card">
-      <img src="/assets/home/fussball-1-mannschaft.jpg" alt="Gruppenfoto der 1. Fußballmannschaft des 1. SV Fasanenhof">
-    </figure>
-    <figure class="photo-card">
-      <img src="/assets/home/tischtennis-team.jpg" alt="Tischtennismannschaft des 1. SV Fasanenhof in der Halle">
-    </figure>
-  </div>
-</div>
-
 ## Auf einen Blick
 
 - Verein, Geschichte und Mitgliedschaft

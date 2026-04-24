@@ -72,6 +72,17 @@ data class NewsPost(
     val dateLabel: String,
 )
 
+data class HomeDepartment(
+    val title: String,
+    val kicker: String,
+    val text: String,
+    val url: String,
+    val image: String,
+    val imageAlt: String,
+    val primaryLabel: String,
+    val links: List<SectionNavEntry>,
+)
+
 data class SearchItem(
     val title: String,
     val url: String,
@@ -353,21 +364,76 @@ fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
         """.trimIndent()
     }
 
-    val departmentCards = listOf(
-        Triple("/fussball/", "Fußball", "Kunstrasen, Jugendbereiche und Spielgemeinschaften am Logauweg."),
-        Triple("/tischtennis/", "Tischtennis", "Training in Möhringen und der Aufstieg in die A-Klasse als aktueller Anker."),
-        Triple("/bogenschiessen/", "Bogenschießen", "Training, Schnupperkurse, Meisterschaften, Galerie und Wissensbereich."),
-    ).joinToString("") { (url, title, text) ->
+    val departmentSections = listOf(
+        HomeDepartment(
+            title = "Bogenschießen",
+            kicker = "Bogensportabteilung",
+            text = "Training, Schnupperkurse, Meisterschaften und Wissensbereich machen den Bogensport zur tiefsten Abteilung auf der Website.",
+            url = "/bogenschiessen/",
+            image = "/assets/bogenschiessen/landing/vereinspokal-2024.jpg",
+            imageAlt = "Gruppenfoto der Bogensportabteilung beim Vereinspokal auf dem Vereinsgelände",
+            primaryLabel = "Zum Bogenschießen",
+            links = listOf(
+                SectionNavEntry("Training", "/bogenschiessen/training.html"),
+                SectionNavEntry("Schnupperkurse", "/bogenschiessen/schnupperkurse.html"),
+                SectionNavEntry("Meisterschaften", "/bogenschiessen/meisterschaften/"),
+            ),
+        ),
+        HomeDepartment(
+            title = "Fußball",
+            kicker = "Fußball am Logauweg",
+            text = "Die Fußballabteilung nutzt den Kunstrasenplatz am Vereinsgelände und bündelt Aktive, Jugendgruppen und Spielgemeinschaften.",
+            url = "/fussball/",
+            image = "/assets/home/fussball-1-mannschaft.jpg",
+            imageAlt = "Gruppenfoto der 1. Fußballmannschaft des 1. SV Fasanenhof",
+            primaryLabel = "Zum Fußball",
+            links = listOf(
+                SectionNavEntry("Mannschaften", "/fussball/mannschaften.html"),
+                SectionNavEntry("Training", "/fussball/training.html"),
+                SectionNavEntry("Aktuelles", "/fussball/aktuelles/"),
+            ),
+        ),
+        HomeDepartment(
+            title = "Tischtennis",
+            kicker = "Tischtennis in Möhringen",
+            text = "Tischtennis verbindet regelmäßiges Training für Jung und Alt mit sportlichem Ehrgeiz und dem aktuellen Aufstieg in die A-Klasse.",
+            url = "/tischtennis/",
+            image = "/assets/home/tischtennis-team.jpg",
+            imageAlt = "Tischtennismannschaft des 1. SV Fasanenhof in der Halle",
+            primaryLabel = "Zum Tischtennis",
+            links = listOf(
+                SectionNavEntry("Training", "/tischtennis/training.html"),
+                SectionNavEntry("Aktuelles", "/tischtennis/aktuelles/"),
+                SectionNavEntry("FAQ", "/tischtennis/faq.html"),
+            ),
+        ),
+    ).mapIndexed { index, department ->
+        val reverse = if (index % 2 == 1) " department-layout-reverse" else ""
+        val linksHtml = department.links.joinToString("") { link ->
+            """<a href="${linkTo(page, link.url)}">${escapeHtml(link.label)}</a>"""
+        }
         """
-            <article class="feature-card">
-              <span class="pill">${escapeHtml(title)}</span>
-              <h3><a href="${linkTo(page, url)}">${escapeHtml(title)}</a></h3>
-              <p>${escapeHtml(text)}</p>
-            </article>
+            <section class="department-band">
+              <div class="shell department-layout$reverse">
+                <figure class="department-media">
+                  <img src="${linkTo(page, department.image)}" alt="${escapeHtml(department.imageAlt)}">
+                </figure>
+                <div class="department-copy">
+                  <span class="kicker">${escapeHtml(department.kicker)}</span>
+                  <h3>${escapeHtml(department.title)}</h3>
+                  <p>${escapeHtml(department.text)}</p>
+                  <div class="department-actions">
+                    <a class="button button-primary" href="${linkTo(page, department.url)}">${escapeHtml(department.primaryLabel)}</a>
+                    <div class="department-text-links">$linksHtml</div>
+                  </div>
+                </div>
+              </div>
+            </section>
         """.trimIndent()
-    }
+    }.joinToString("")
 
-    val venueSnippet = pagesByUrl["/standort/"]?.summary ?: "Vereinsgelände, Gaststätte, Parkplätze und Anfahrt mit der U6."
+    val venueSnippet = "Am Logauweg 21 liegen Kunstrasenplatz, Vereinsheim, Terrasse und Vereinsgaststätte direkt beieinander. Die Anlage ist mit der U6 über den Europaplatz erreichbar; vor Ort gibt es Parkplätze für Training, Spieltage und Gäste."
+    val mapsUrl = "https://maps.app.goo.gl/HWWacL3amrz386ir8"
 
     return """
         <section class="hero shell">
@@ -375,21 +441,16 @@ fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
             <span class="kicker">${escapeHtml(page.kicker)}</span>
             <h1>${escapeHtml(page.title)}</h1>
             <p class="lead">${escapeHtml(page.lead)}</p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="${linkTo(page, "/bogenschiessen/schnupperkurse.html")}">Schnupperkurs ansehen</a>
-              <a class="button button-secondary" href="${linkTo(page, "/mitglied-werden/")}">Mitglied werden</a>
-              <a class="button button-secondary" href="${linkTo(page, "/standort/")}">Zum Standort</a>
-            </div>
           </div>
         </section>
 
-        <section class="shell section">
+        <section class="shell section department-intro">
           <div class="section-head">
             <span class="kicker">Abteilungen</span>
-            <h2>Drei Abteilungen unter einem Dach</h2>
+            <h2>Drei Abteilungen, ein Verein</h2>
           </div>
-          <div class="card-grid">$departmentCards</div>
         </section>
+        $departmentSections
 
         <section class="shell section">
           <div class="section-head">
@@ -399,20 +460,32 @@ fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
           <div class="news-grid">$latestNews</div>
         </section>
 
-        <section class="shell section split-section">
+        <section class="shell section training-teaser">
           <article class="feature-card">
             <span class="pill">Training</span>
             <h3><a href="${linkTo(page, "/bogenschiessen/training.html")}">Zeiten und Orte im Blick</a></h3>
             <p>Für den Bogensport sind Außenplatz, Schulhalle und Wintertraining klar gegliedert. So sieht man auf einen Blick, wann am Logauweg oder in den Hallen trainiert wird.</p>
           </article>
-          <article class="feature-card">
-            <span class="pill">Standort</span>
-            <h3><a href="${linkTo(page, "/standort/")}">Logauweg 21 als gemeinsamer Treffpunkt</a></h3>
-            <p>${escapeHtml(venueSnippet)}</p>
-          </article>
         </section>
 
-        <section class="shell prose-block">
+        <section class="location-band">
+          <div class="shell location-layout">
+            <figure class="location-media">
+              <img src="${linkTo(page, "/assets/home/vereinsheim.jpg")}" alt="Vereinsheim des 1. SV Fasanenhof mit Terrasse am Logauweg">
+            </figure>
+            <div class="location-copy">
+              <span class="kicker">Standort</span>
+              <h2>Logauweg 21 als gemeinsamer Treffpunkt</h2>
+              <p>${escapeHtml(venueSnippet)}</p>
+              <div class="location-actions">
+                <a class="button button-primary" href="${linkTo(page, "/standort/")}">Standort ansehen</a>
+                <a class="button button-secondary" href="$mapsUrl" target="_blank" rel="noopener">Route in Google Maps</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="shell prose-block home-summary">
           $bodyHtml
         </section>
     """.trimIndent()
@@ -693,7 +766,7 @@ fun renderSectionNav(page: Page, pagesByUrl: Map<String, Page>): String {
     val groups = sectionNavEntriesFor(page, pagesByUrl)
     if (groups.isEmpty()) return ""
 
-    val navHtml = if (page.sectionKey == "fussball" || page.sectionKey == "tischtennis") {
+    val navHtml = if (page.sectionKey == "verein" || page.sectionKey == "fussball" || page.sectionKey == "tischtennis") {
         val linksHtml = groups.flatMap { it.entries }.joinToString("") { entry ->
             val active = if (isSectionNavActive(page.urlPath, entry.url)) "active" else ""
             """<li><a class="$active" href="${linkTo(page, entry.url)}">${escapeHtml(entry.label)}</a></li>"""
@@ -705,12 +778,16 @@ fun renderSectionNav(page: Page, pagesByUrl: Map<String, Page>): String {
                 val active = if (isSectionNavActive(page.urlPath, entry.url)) "active" else ""
                 """<li><a class="$active" href="${linkTo(page, entry.url)}">${escapeHtml(entry.label)}</a></li>"""
             }
-            """
-                <details class="section-nav-group">
-                  <summary>${escapeHtml(group.label)}</summary>
-                  <ul class="section-nav-menu">$linksHtml</ul>
-                </details>
-            """.trimIndent()
+            if (group.label == "Überblick") {
+                """<ul class="section-nav-flat">$linksHtml</ul>"""
+            } else {
+                """
+                    <details class="section-nav-group">
+                      <summary>${escapeHtml(group.label)}</summary>
+                      <ul class="section-nav-menu">$linksHtml</ul>
+                    </details>
+                """.trimIndent()
+            }
         }
     }
 

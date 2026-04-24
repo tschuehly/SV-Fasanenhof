@@ -28,7 +28,7 @@ Rationale: ~95% of substantive content is archery-specific. A topic-first IA (to
 
 ```
 sv-fasanenhof/
-├── index.html                          Home: hero, 3 dept cards, cross-dept news, venue teaser, CTAs
+├── index.html                          Home: hero, image-led department sections, cross-dept news, venue teaser, CTAs
 ├── aktuelles/index.html                Aggregated news from all departments
 ├── termine/index.html                  Recurring training anchors and event pointers
 ├── mitglied-werden/index.html          Membership entry, fees and contacts
@@ -173,11 +173,11 @@ sv-fasanenhof/
 
 #### `/index.html`
 - 60-year celebration hero
-- Three department cards (Bogenschießen, Fußball, Tischtennis)
+- Three image-led department sections (Bogenschießen, Fußball, Tischtennis)
 - Aggregated latest news across departments
 - Next Schnupperkurs CTA
 - Training-times teaser
-- Venue/Da-Angelo snippet
+- Location section with Vereinsheim image, Standort link and maps route link
 
 ### Club Shell
 
