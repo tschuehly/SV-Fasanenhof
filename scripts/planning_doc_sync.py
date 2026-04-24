@@ -194,6 +194,10 @@ def summarize_line_changes(md_lines: list[str], docx_lines: list[str]) -> tuple[
     return removed, added
 
 
+def as_markdown_list_item(line: str) -> str:
+    return f"- {line.removeprefix('• ').strip()}"
+
+
 def unified_diff_lines(key: tuple[str, ...], md_lines: list[str], docx_lines: list[str]) -> list[str]:
     title = " / ".join(key)
     return list(
@@ -239,11 +243,11 @@ def render_report(
         lines.append("")
         if removed:
             lines.append("Entfernt oder geändert gegenüber Markdown:")
-            lines.extend(f"- {line}" for line in removed)
+            lines.extend(as_markdown_list_item(line) for line in removed)
             lines.append("")
         if added:
             lines.append("Neu oder abweichend in Word:")
-            lines.extend(f"- {line}" for line in added)
+            lines.extend(as_markdown_list_item(line) for line in added)
             lines.append("")
         diff_lines = unified_diff_lines(key, md_lines, docx_lines)
         if diff_lines:
@@ -261,13 +265,12 @@ def write_workpackages(
     changed: list[tuple[tuple[str, ...], list[str], list[str]]], output_dir: Path
 ) -> list[Path]:
     output_dir.mkdir(parents=True, exist_ok=True)
+    for existing in output_dir.glob("*.md"):
+        existing.unlink()
     written: list[Path] = []
 
     for key, md_lines, docx_lines in changed:
         removed, added = summarize_line_changes(md_lines, docx_lines)
-        h1 = key[0] if len(key) > 0 else ""
-        h2 = key[1] if len(key) > 1 else ""
-        h3 = key[2] if len(key) > 2 else ""
         title = key[-1]
 
         slug_parts = [slugify(part) for part in key]
@@ -276,50 +279,36 @@ def write_workpackages(
         content = [
             f"# Workpackage: {title}",
             "",
-            "## Kontext",
-            "",
-            f"- Bereich: {h1}",
-            f"- Sektion: {h2 or '—'}",
-            f"- Page: {h3 or '—'}",
+            f"- Planungseinheit: {' / '.join(key)}",
             "- Quelle: Abgleich zwischen Markdown und geteilter Word-Datei",
             "",
-            "## Ziel",
-            "",
-            "- Word-Änderungen prüfen und in eine belastbare Umsetzungsaufgabe übersetzen.",
-            "- Entscheiden, ob Markdown, Website-Inhalt oder beide angepasst werden müssen.",
-            "",
-            "## Änderungen aus Word",
+            "## Delta",
             "",
         ]
 
         if added:
-            content.extend(f"- {line}" for line in added)
+            content.append("Neu oder abweichend in Word:")
+            content.extend(as_markdown_list_item(line) for line in added)
         else:
-            content.append("- Keine zusätzlichen Inhalte in Word erkannt.")
-        content.extend(["", "## Bestehender Markdown-Stand", ""])
+            content.append("Neu oder abweichend in Word: nichts")
+
         if removed:
-            content.extend(f"- {line}" for line in removed)
-        else:
-            content.append("- Kein abweichender Markdown-Inhalt erkannt.")
+            content.extend(["", "Entfernt oder geändert gegenüber Markdown:"])
+            content.extend(as_markdown_list_item(line) for line in removed)
 
         content.extend(
             [
                 "",
-                "## Akzeptanzkriterien",
+                "## Entscheidung",
                 "",
-                "- Die fachliche Änderung ist mit den zuständigen Personen abgestimmt.",
-                "- Markdown und Word sind nach der Einarbeitung wieder synchron.",
-                "- Offene Fragen sind dokumentiert oder geklärt.",
-                "",
-                "## Offene Fragen",
-                "",
-                "- Wer gibt die Änderung fachlich frei?",
-                "- Betrifft die Änderung nur die Planung oder auch bestehenden Website-Inhalt?",
-                "- Gibt es Abhängigkeiten zu anderen Pages oder Abteilungen?",
+                "- [ ] In Markdown übernehmen",
+                "- [ ] Website-Inhalt ändern",
+                "- [ ] SITE-SPEC.md oder Navigation anpassen",
+                "- [ ] Nicht übernehmen",
                 "",
                 "## Notizen",
                 "",
-                "- Hier konkrete Umsetzungsschritte, Quellen und Verantwortliche ergänzen.",
+                "- Fachliche Freigabe, Quelle und offene Fragen ergänzen.",
                 "",
             ]
         )
