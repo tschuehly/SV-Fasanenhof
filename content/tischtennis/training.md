@@ -19,5 +19,5 @@ Stuttgart-Möhringen
 ## Ansprechpartner
 
 **Herbert Lang**
-Telefon: 0711 70 67 73
-E-Mail: Lang-He@web.de
+Mobil: 0170 385 23 83
+E-Mail: lang-he@web.de

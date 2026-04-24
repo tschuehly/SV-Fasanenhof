@@ -49,7 +49,6 @@ Auf dem Gelände befindet sich die Vereinsgaststätte **Da Angelo**, ein Ristora
 - täglich geöffnet
 - Öffnungszeiten: **17.00 bis 22.30 Uhr**
 - durchgehend warme Küche
-- laut Altmaterial kein Ruhetag
 - Telefon: 0177 48 38 937
 
 Die Gaststätte gehört für viele Mitglieder und Gäste ganz selbstverständlich zum Vereinsalltag dazu, gerade nach Training, Spieltagen oder bei Veranstaltungen.

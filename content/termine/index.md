@@ -2,12 +2,12 @@
 title: Termine
 description: Wiederkehrende Trainingszeiten und zentrale Anlaufstellen für Termine im Verein.
 kicker: Kalender
-lead: Die Terminseite bündelt die verlässlichen Trainingsanker und verweist auf aktuelle Meldungen aus den Abteilungen.
+lead: Die Terminseite bündelt die regelmäßigen Trainingszeiten und verweist auf aktuelle Meldungen aus den Abteilungen.
 summary: Terminübersicht mit wiederkehrenden Trainingszeiten und Verweisen auf aktuelle Meldungen.
 ---
-Ein dynamischer Kalender ist für diese statische V1 noch nicht eingerichtet. Damit wichtige Termine trotzdem auffindbar sind, bündelt diese Seite die festen Trainingsanker und verweist auf die aktuellen Meldungen der Abteilungen.
+Diese Seite bündelt die regelmäßigen Trainingszeiten. Kurzfristige Änderungen, neue Kurse, Spielberichte und Abteilungsnachrichten stehen in den aktuellen Meldungen.
 
-## Wiederkehrende Trainingsanker
+## Wiederkehrende Trainingszeiten
 
 ### Fußball
 

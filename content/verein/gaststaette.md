@@ -12,7 +12,6 @@ Auf dem Vereinsgelände befindet sich die Vereinsgaststätte **Da Angelo**, ein 
 - täglich geöffnet
 - Öffnungszeiten: **17.00 bis 22.30 Uhr**
 - durchgehend warme Küche
-- laut Altmaterial kein Ruhetag
 - Telefon: 0177 48 38 937
 - Web: [ristorante-dangelo.de](https://www.ristorante-dangelo.de)
 

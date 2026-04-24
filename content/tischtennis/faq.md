@@ -10,8 +10,8 @@ summary: FAQ zum Tischtennistraining, Einstieg und Ansprechpartner.
 Interessierte können sich an den Ansprechpartner der Tischtennisabteilung wenden und das Training kennenlernen.
 
 **Herbert Lang**
-Telefon: 0711 70 67 73
-E-Mail: Lang-He@web.de
+Mobil: 0170 385 23 83
+E-Mail: lang-he@web.de
 
 ## Wann und wo wird trainiert?
 

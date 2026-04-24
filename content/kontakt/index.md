@@ -11,8 +11,8 @@ summary: Kontaktseite mit Geschäftsstelle, Vereinsadresse und Abteilungsleitung
 Logauweg 21  
 70565 Stuttgart
 
-- Telefon: 0711 / 715 86 85
-- Fax: 0711 / 715 86 85
+- Telefon: 0711 715 86 85
+- Fax: 0711 715 86 85
 
 ## Abteilungen
 

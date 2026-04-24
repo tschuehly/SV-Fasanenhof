@@ -34,7 +34,7 @@ Damit bleibt das Modell klar: Der Beitritt läuft über den Hauptverein, die Abt
 
 - Bei Eintritt nach dem 1. Januar wird der Jahresbeitrag anteilig berechnet.
 - Für Mitglieder ohne Einzugsermächtigung fällt eine Bearbeitungsgebühr von **20 €** an.
-- Familienstaffelungen beziehen sich auf Kinder bis 18 Jahre; im Altmaterial wird teils zusätzlich auf Ausbildung verwiesen.
+- Familienstaffelungen beziehen sich auf Kinder bis 18 Jahre.
 - Für ermäßigte Beiträge ist in den genannten Fällen ein Antrag erforderlich.
 
 ## Beitritt und Rückfragen

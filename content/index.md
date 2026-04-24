@@ -17,10 +17,6 @@ Der 1. SV Fasanenhof ist seit 1965 im Stadtteil verwurzelt. Auf dem Vereinsgelä
 - Standort, Trainingsorte und Anfahrt
 - direkte Wege zu Schnupperkurs, Training und Kontakt
 
-## Der Verein heute
-
-Das Vereinsgelände am Logauweg ist mehr als eine Sportadresse. Hier treffen sich Fußball, Tischtennis, Bogensport und Vereinsgaststätte an einem Ort. Zugleich reicht der Trainingsbetrieb in weitere Hallen nach Möhringen hinein.
-
 ## Gemeinschaft im Alltag
 
-Der Verein lebt von regelmäßigem Trainingsbetrieb, Ehrenamt und festen Ansprechpartnern in den Abteilungen. Wer neu dazukommt, findet über die Startseite die wichtigsten Einstiege in den Vereinsalltag.
+Der Verein lebt von regelmäßigem Trainingsbetrieb, Ehrenamt und festen Ansprechpartnern in den Abteilungen. Wer neu dazukommt, findet hier die wichtigsten Einstiege in den Vereinsalltag.

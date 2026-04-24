@@ -9,11 +9,11 @@ Die Fußballabteilung nutzt den Kunstrasenplatz am Vereinsgelände und verbindet
 
 ## Aktive
 
-Die bestehenden Vereinsangaben nennen die 1. Mannschaft als festen Trainings- und Spielbetriebsanker. Trainiert wird dienstags und donnerstags am Abend sowie zusätzlich samstags.
+Die 1. Mannschaft ist der feste Trainings- und Spielbetriebsanker der Fußballabteilung. Trainiert wird dienstags und donnerstags am Abend sowie zusätzlich samstags.
 
 ## Jugend
 
-Nach den vorhandenen Vereinsangaben trainieren aktuell insbesondere:
+Im Jugendbereich trainieren insbesondere:
 
 - **Bambini**: Mittwoch 18.00 bis 19.00 Uhr
 - **E- und F-Jugend** in Spielgemeinschaft mit HNK Slaven Stuttgart: Mittwoch und Freitag ab 18.00 Uhr

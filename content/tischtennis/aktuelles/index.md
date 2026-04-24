@@ -2,8 +2,8 @@
 title: Aktuelles
 description: Meldungen aus der Tischtennisabteilung.
 kicker: Tischtennis aktuell
-lead: Auch die Tischtennisabteilung bekommt eine eigene Nachrichtenfläche, damit sportliche Entwicklungen sichtbar bleiben.
+lead: Hier stehen Meldungen zu Spielbetrieb, Training und Erfolgen der Tischtennisabteilung.
 summary: Nachrichtenübersicht der Tischtennisabteilung.
 template: news-index
 ---
-Mit dem Aufstieg in die A-Klasse gibt es bereits einen guten ersten Anlass für einen eigenständigen News-Bereich. Weitere Spieltags- und Trainingsmeldungen können darauf aufbauen.
+Mit dem Aufstieg in die A-Klasse startet die Tischtennisabteilung mit einem starken sportlichen Erfolg. Weitere Spieltags- und Trainingsmeldungen kommen hier zusammen.

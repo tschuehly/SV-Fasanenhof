@@ -38,7 +38,7 @@ Inhalte des Kurses:
 - Aufwärmen vor dem ersten Schuss
 - Schießen auf Zielscheiben in **10 m oder 18 m**
 
-Die Gruppen bleiben bewusst klein. Im Altmaterial wurde eine **maximale Teilnehmerzahl von 6 Personen pro Kurs** genannt.
+Die Gruppen bleiben bewusst klein und sind auf **maximal 6 Personen pro Kurs** ausgelegt.
 
 ## Kosten
 
@@ -61,7 +61,7 @@ Anfragen und Terminabstimmung laufen über die Abteilungsleitung:
 
 ## Teilnahmebedingungen im Überblick
 
-Die alten Kursunterlagen enthielten ausführliche AGBs. Für die Website ist die kurze, brauchbare Fassung hilfreicher:
+Für die Teilnahme gelten die folgenden Grundregeln:
 
 - Die Anmeldung erfolgt schriftlich und ist verbindlich.
 - Die Platzvergabe wird nach Bestätigung und Zahlung der Kursgebühr verbindlich.

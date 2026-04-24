@@ -368,7 +368,7 @@ fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
         HomeDepartment(
             title = "Bogenschießen",
             kicker = "Bogensportabteilung",
-            text = "Training, Schnupperkurse, Meisterschaften und Wissensbereich machen den Bogensport zur tiefsten Abteilung auf der Website.",
+            text = "Training, Schnupperkurse, Meisterschaften und Wissensseiten zeigen die ganze Breite der Bogensportabteilung.",
             url = "/bogenschiessen/",
             image = "/assets/bogenschiessen/landing/vereinspokal-2024.jpg",
             imageAlt = "Gruppenfoto der Bogensportabteilung beim Vereinspokal auf dem Vereinsgelände",

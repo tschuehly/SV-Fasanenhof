@@ -3,7 +3,7 @@ title: Training
 description: Trainingsorte und Trainingszeiten der Bogensportabteilung.
 kicker: Drei Orte, klare Zeiten
 lead: Das Training der Bogensportabteilung verteilt sich über Außenplatz, Schulhalle und Winterhalle und deckt damit Einsteiger, Freizeit- und Wettkampfschützinnen und -schützen ab.
-summary: Trainingsseite mit Logauweg, Hengstäcker Schule und Anne-Frank-Gemeinschaftsschule, Distanzen, Saisonlogik und Hinweisen zum freien Training.
+summary: Trainingsseite mit Logauweg, Margarete-Steiff-Schule und Anne-Frank-Gemeinschaftsschule, Distanzen, Saisonlogik und Hinweisen zum freien Training.
 ---
 Die BSG trainiert nicht nur an einem Ort, sondern über das Jahr verteilt an drei Standorten. Dadurch bleiben Außen- und Hallentraining, Anfängergruppen und laufender Betrieb miteinander vereinbar.
 
@@ -21,7 +21,7 @@ Auf dem Vereinsgelände des 1. SV Fasanenhof wird **von April bis November** tra
 
 **Freies Training** auf dem Sportplatz ist nur für erfahrene Schützinnen und Schützen mit eigenem Material und Einweisung in die Schießordnung möglich. Zusätzlich gilt: Während Fußballspielen und etwa eine Stunde davor ist kein individuelles Training auf dem Gelände möglich.
 
-## Hengstäcker Schule
+## Margarete-Steiff-Schule
 
 **Margarete-Steiff-Schule**  
 Hengstäcker 1–12  
@@ -46,14 +46,8 @@ Das Hallentraining dort läuft **von Oktober bis März**.
 | --- | --- |
 | Donnerstag | 18.45 bis 20.15 Uhr |
 
-Die Teilnahme ist nach Altmaterial an einen **Schießausweis** gebunden. Da die Hallenkapazitäten begrenzt sind, arbeitet die Abteilung in der Wintersaison mit interner Anmeldung; aktive Wettkampfschützinnen und -schützen können dabei Vorrang haben.
+Die Teilnahme ist an einen **Schießausweis** gebunden. Da die Hallenkapazitäten begrenzt sind, arbeitet die Abteilung in der Wintersaison mit interner Anmeldung; aktive Wettkampfschützinnen und -schützen können dabei Vorrang haben.
 
 ## Ausbilder und Betreuung
 
-Das Training wird innerhalb der Abteilung durch mehrere verantwortliche Trainerinnen, Trainer und erfahrene Schützinnen und Schützen getragen. Weitere Hinweise stehen unter [Trainer und Übungsleiter](trainer.html).
-
-Fragen zu Einstieg, Trainingsgruppen und Einweisung laufen über die Abteilungsleitung:
-
-- **Birgit Dirksmöller**
-- Telefon: 0711 71 21 70
-- E-Mail: birgit.svfasanenhof@gmx.net
+Das Training wird innerhalb der Abteilung durch mehrere verantwortliche Trainerinnen, Trainer und erfahrene Schützinnen und Schützen getragen. Kontakt und Hinweise zum Einstieg stehen unter [Trainer und Übungsleiter](trainer.html).
