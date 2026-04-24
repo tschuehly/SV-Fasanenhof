@@ -85,6 +85,7 @@ These directories are not render inputs anymore. Treat them as migration/referen
 ### Important Constraints
 - Do not put production assets back under `mockups/`
 - Do not commit local Codex environment files such as `.codex/`
+- Do not commit temporary Microsoft Office lock files such as `~$*.docx`
 - Be careful with `content/datenschutz/index.md`: the old crawl contained unrelated third-party data, so that page is intentionally a reviewed placeholder rather than a blind migration
 - Keep `content/` clean. Raw source imports and archival material belong under `migrations/`, not beside canonical site pages.
 - When changing IA, navigation, or page structure, update `SITE-SPEC.md` in the same change if the intended architecture has changed.
@@ -94,3 +95,54 @@ These directories are not render inputs anymore. Treat them as migration/referen
 - Fußball and Tischtennis should grow incrementally from real source material, not invented filler copy
 - Main club governance information should stay in the `verein/` section
 - Meisterschaften and galleries should continue to be organized primarily under `bogenschiessen/`
+
+## Planning Docs Workflow
+
+Use this workflow when collaborating on planning documents that live both in the repo and in a shared Word file.
+
+### Source of Truth
+
+- The Markdown file in the repo is the canonical planning source.
+- The `.docx` file is a review and sharing artifact, for example for OneDrive sharing with stakeholders.
+- Do not treat the shared Word file as the primary source of truth. That makes diffs harder to trust and quickly turns workpackage creation into manual cleanup.
+
+### Expected Process
+
+1. Update the canonical Markdown file in `migrations/content-maps/`.
+2. Regenerate or refresh the matching `.docx` from that Markdown when needed for review.
+3. Share or move the `.docx` through OneDrive for comments and stakeholder edits.
+4. After review, bring the updated `.docx` back into the repo and compare it against the Markdown.
+5. Turn real content differences into explicit workpackages before changing website content or architecture.
+6. Re-sync the Markdown and `.docx` after changes are accepted.
+
+### Comparison Tooling
+
+- Use `scripts/planning_doc_sync.py` to compare the repo Markdown against the current `.docx`.
+- The script can emit a diff report and generate workpackage specs for changed planning units.
+- Preferred usage:
+
+```bash
+python3 scripts/planning_doc_sync.py
+```
+
+The script defaults are hardcoded to:
+
+- Markdown: `/Users/tschuehly/IdeaProjects/SV-Fasanenhof/site-structure.md`
+- Word: `/Users/tschuehly/Library/CloudStorage/OneDrive-Personal/Dokumente/Hobby/SV-Fasanenhof-Homepage.docx`
+- Report: `/Users/tschuehly/IdeaProjects/SV-Fasanenhof/build/planning-doc-sync/report.md`
+
+When workpackages should be generated as well, use:
+
+```bash
+python3 scripts/planning_doc_sync.py \
+  --workpackages-dir migrations/workpackages/generated
+```
+
+### Workpackage Expectations
+
+- Generate workpackages from reviewed content differences, not from formatting noise.
+- Each workpackage should stay tied to a concrete planning unit such as a page or section.
+- Before implementing against the website, verify whether the change is:
+  - only a planning update,
+  - a website content update,
+  - or an IA / navigation change that also requires `SITE-SPEC.md` updates.
