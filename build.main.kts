@@ -757,8 +757,8 @@ fun renderHeader(page: Page, pagesByUrl: Map<String, Page>): String {
               <ul>$navHtml</ul>
             </nav>
           </div>
-          $sectionNav
         </header>
+        $sectionNav
     """.trimIndent()
 }
 
