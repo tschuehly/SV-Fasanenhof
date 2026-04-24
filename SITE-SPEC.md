@@ -29,13 +29,21 @@ Rationale: ~95% of substantive content is archery-specific. A topic-first IA (to
 ```
 sv-fasanenhof/
 ├── index.html                          Home: hero, 3 dept cards, cross-dept news, venue teaser, CTAs
+├── aktuelles/index.html                Aggregated news from all departments
+├── termine/index.html                  Recurring training anchors and event pointers
+├── mitglied-werden/index.html          Membership entry, fees and contacts
+├── suche/index.html                    Static client-side site search
+├── barrierefreiheit/index.html         Accessibility notes
+├── jugendschutz/index.html             Youth protection contact routes
 │
 ├── verein/                             Club identity
 │   ├── index.html                      Overview + links to subpages
 │   ├── historie.html                   Club history since 1965 (incl. Ehrenmitglieder)
 │   ├── vorstand.html                   Main board + dept leads (anchors per dept)
-│   ├── satzung.html
-│   └── beitraege.html                  Fees & Beitritt
+│   ├── satzung.html                    Statutes and linked rules
+│   ├── beitraege.html                  Fees & Beitritt
+│   ├── gaststaette.html                Da Angelo
+│   └── faq.html                        Membership and contact FAQ
 │
 ├── standort/
 │   └── index.html                      Logauweg 21, Da Angelo, public-access rules, Anfahrt (U6), Parken
@@ -44,8 +52,10 @@ sv-fasanenhof/
 │   ├── index.html                      Landing: 65 Schützen, Alter 8–80, Bogentypen, CTAs
 │   ├── training.html                   3 Orte, Zeiten, Saisons (Outdoor/Indoor), Ausbilder
 │   ├── schnupperkurse.html             Ablauf, Preise, AGBs, Buchung
+│   ├── trainer.html                    Betreuung und Trainingskontakt
 │   ├── ausruestung.html                Recurve, Langbogen, Blankbogen, Compound, Leihmaterial
 │   ├── schiessordnung.html             Regeln & Sicherheit
+│   ├── faq.html                        Entry, material, training and safety FAQ
 │   ├── meisterschaften/
 │   │   ├── index.html                  Aktuelle Ergebnisse (2025, 2024)
 │   │   └── archiv.html                 2016–2023
@@ -65,14 +75,25 @@ sv-fasanenhof/
 │   │   └── webinare.html
 │   ├── aktuelles/
 │   │   └── index.html                  BSG-Newsfeed
+│   ├── links-und-verbaende.html        External links and association references
 │   ├── presse.html                     Press coverage (archery-only today)
 │   └── sponsoren.html                  Archery sponsors
 │
 ├── fussball/
-│   └── index.html                      Landing (training/teams/spielplan added as content arrives)
+│   ├── index.html                      Landing
+│   ├── mannschaften.html               Aktive, youth groups and Spielgemeinschaft
+│   ├── training.html                   Football training times and location
+│   ├── sponsoren.html                  Sponsoring contact
+│   ├── faq.html                        Football entry FAQ
+│   └── aktuelles/
+│       └── index.html                  Football newsfeed
 │
 ├── tischtennis/
-│   └── index.html                      Landing (training added as content arrives)
+│   ├── index.html                      Landing
+│   ├── training.html                   Table-tennis training time and location
+│   ├── faq.html                        Table-tennis entry FAQ
+│   └── aktuelles/
+│       └── index.html                  Table-tennis newsfeed
 │
 ├── kontakt/
 │   └── index.html                      Form, dept contacts, address, map
@@ -85,8 +106,10 @@ sv-fasanenhof/
 
 **Notes on placement decisions:**
 
-- **Presse & Sponsoren sit under `/bogenschiessen/`**, not at top level, because today's content is archery-only. Promote to root if the Hauptverein acquires its own.
+- **Presse remains under `/bogenschiessen/`** because today's press content is archery-only. Sponsoring is department-scoped where a department needs a page.
 - **News is per-department**, with the home page aggregating. Simpler than a club-wide feed with tags, and matches who writes what.
+- **A root news page exists as a read view**, aggregating department feeds without changing where posts are authored.
+- **Calendar and search are static V1 features.** `/termine/` is editorial, while `/suche/` uses generated `search-index.json`.
 - **Educational content lives at `/bogenschiessen/wissen/`**, not a top-level `/infos-service/`. All of it is archery pedagogy.
 - **Training locations are described on `/bogenschiessen/training.html`**, not as separate pages per venue. The public-facing venue page (`/standort/`) focuses on the Hauptgelände; the schools are training sites used only by BSG.
 
@@ -160,7 +183,7 @@ sv-fasanenhof/
 
 #### `/verein/index.html`
 - Overview of the club
-- Links to sub-pages (history, board, statutes, fees)
+- Links to sub-pages (history, board, statutes/rules, fees, Gaststätte, FAQ)
 - Contact teaser
 
 #### `/verein/historie.html`
@@ -173,17 +196,48 @@ sv-fasanenhof/
 - Contact per role
 
 #### `/verein/satzung.html`
-- Full statutes
+- Statutes plus links to public rules and related legal/service pages
 
 #### `/verein/beitraege.html`
 - Membership fees
 - How to join
+
+#### `/verein/gaststaette.html`
+- Da Angelo restaurant
+- Opening hours, phone and link
+- Link to venue page
+
+#### `/verein/faq.html`
+- Membership, fees and contact FAQ
 
 #### `/standort/index.html`
 - Logauweg 21, 70565 Stuttgart + map
 - Anfahrt: U6 Europaplatz, parking
 - Da Angelo restaurant (daily 17:00–22:30)
 - Public access rules (Tue–Fri 10–17; no bikes/scooters; footwear restrictions; Hausmeister authority)
+
+### Aktuelles, Termine und Service
+
+#### `/aktuelles/index.html`
+- Aggregated chronological news from all department posts
+
+#### `/termine/index.html`
+- Recurring training anchors
+- Links to department training pages and news
+
+#### `/mitglied-werden/index.html`
+- Membership entry steps
+- Links to fees and department contacts
+
+#### `/suche/index.html`
+- Client-side static search over generated pages and posts
+- Uses `build/site/search-index.json`
+
+#### `/barrierefreiheit/index.html`
+- Accessibility notes for the website
+
+#### `/jugendschutz/index.html`
+- Youth protection contact routes and related links
 
 ### Bogenschießen
 
@@ -206,6 +260,10 @@ sv-fasanenhof/
 - Schedule (3 sessions, Di/Mi 18–20)
 - Full AGBs, booking
 
+#### `/bogenschiessen/trainer.html`
+- Training supervision and entry contact
+- Links to Schnupperkurse and Training
+
 #### `/bogenschiessen/ausruestung.html`
 - Bow types in detail
 - Rental equipment (Leihmaterial)
@@ -214,6 +272,9 @@ sv-fasanenhof/
 - Shooting regulations
 - Safety guidelines
 - Facility usage rules
+
+#### `/bogenschiessen/faq.html`
+- Entry, material, age range, bow types and training access FAQ
 
 #### `/bogenschiessen/meisterschaften/index.html`
 - Recent results (2025, 2024) with structured entries
@@ -235,6 +296,10 @@ sv-fasanenhof/
 #### `/bogenschiessen/wissen/{regelkunde,sachkunde,wusstest-du,boschi-mit-rolli,boschi-im-alter,bedienungsanleitungen,webinare}.html`
 - Article per topic
 
+#### `/bogenschiessen/links-und-verbaende.html`
+- Links to Bogensportverband Stuttgart and Württembergischer Schützenverband
+- Links back into internal knowledge pages
+
 #### `/bogenschiessen/aktuelles/index.html`
 - BSG news feed (chronological)
 
@@ -248,14 +313,32 @@ sv-fasanenhof/
 ### Fußball
 
 #### `/fussball/index.html`
-- Department overview with current training blocks, Jugend-Spielgemeinschaft and Ansprechpartner
+- Department overview with links into Mannschaften, Training, Aktuelles, Sponsoren and FAQ
 - `aktuelles/` exists as a separate section for football news
+
+#### `/fussball/mannschaften.html`
+- Aktive, Jugendgruppen and Spielgemeinschaft
+
+#### `/fussball/training.html`
+- Football training times, trainer and location
+
+#### `/fussball/sponsoren.html`
+- Sponsoring contact for the football department
+
+#### `/fussball/faq.html`
+- Entry, training and venue FAQ
 
 ### Tischtennis
 
 #### `/tischtennis/index.html`
-- Department overview with training location, schedule, Ansprechpartner and the current sporting anchor
+- Department overview with current sporting anchor and links into Training, Aktuelles and FAQ
 - `aktuelles/` exists as a separate section for table-tennis news
+
+#### `/tischtennis/training.html`
+- Training time, location and Ansprechpartner
+
+#### `/tischtennis/faq.html`
+- Entry, training and school-holiday FAQ
 
 ### Service
 
@@ -280,20 +363,30 @@ sv-fasanenhof/
 ```
 content/
 ├── index.md
+├── aktuelles/index.md
+├── termine/index.md
+├── mitglied-werden/index.md
+├── suche/index.md
+├── barrierefreiheit/index.md
+├── jugendschutz/index.md
 ├── verein/
 │   ├── index.md
 │   ├── historie.md
 │   ├── vorstand.md
 │   ├── satzung.md
-│   └── beitraege.md
+│   ├── beitraege.md
+│   ├── gaststaette.md
+│   └── faq.md
 ├── standort/
 │   └── index.md
 ├── bogenschiessen/
 │   ├── index.md
 │   ├── training.md
 │   ├── schnupperkurse.md
+│   ├── trainer.md
 │   ├── ausruestung.md
 │   ├── schiessordnung.md
+│   ├── faq.md
 │   ├── meisterschaften/
 │   │   ├── index.md
 │   │   └── archiv.md
@@ -306,12 +399,25 @@ content/
 │   ├── aktuelles/
 │   │   ├── index.md
 │   │   └── posts/*.md
+│   ├── links-und-verbaende.md
 │   ├── presse.md
 │   └── sponsoren.md
 ├── fussball/
-│   └── index.md
+│   ├── index.md
+│   ├── mannschaften.md
+│   ├── training.md
+│   ├── sponsoren.md
+│   ├── faq.md
+│   └── aktuelles/
+│       ├── index.md
+│       └── posts/*.md
 ├── tischtennis/
-│   └── index.md
+│   ├── index.md
+│   ├── training.md
+│   ├── faq.md
+│   └── aktuelles/
+│       ├── index.md
+│       └── posts/*.md
 ├── kontakt/index.md
 ├── impressum/index.md
 └── datenschutz/index.md
@@ -328,6 +434,7 @@ content/
 - Template system (header/footer/navigation)
 - Markdown to HTML conversion with frontmatter
 - Asset bundling
-- Cross-department news aggregator for home page (pulls from `*/aktuelles/posts/*.md`)
+- Cross-department news aggregator for home page and `/aktuelles/` (pulls from `*/aktuelles/posts/*.md`)
+- Static search index generation (`search-index.json`) and `/suche/` template
 - Development server with live reload
 - Section-specific dropdown navigation beneath the main header for areas with deeper structure

@@ -50,7 +50,7 @@ Die Teilnahme ist nach Altmaterial an einen **Schießausweis** gebunden. Da die 
 
 ## Ausbilder und Betreuung
 
-Das Training wird innerhalb der Abteilung durch mehrere verantwortliche Trainerinnen, Trainer und erfahrene Schützinnen und Schützen getragen. Neue Interessierte werden nicht einfach in den laufenden Betrieb geworfen, sondern nach Kontaktaufnahme in passende Gruppen und Zeiten eingeordnet.
+Das Training wird innerhalb der Abteilung durch mehrere verantwortliche Trainerinnen, Trainer und erfahrene Schützinnen und Schützen getragen. Weitere Hinweise stehen unter [Trainer und Übungsleiter](trainer.html).
 
 Fragen zu Einstieg, Trainingsgruppen und Einweisung laufen über die Abteilungsleitung:
 

@@ -11,8 +11,10 @@ Der Hauptverein bildet das Dach für Fußball, Tischtennis und Bogensport. Hier 
 
 - [Historie](historie.html)
 - [Vorstand](vorstand.html)
-- [Satzung](satzung.html)
+- [Satzung und Ordnungen](satzung.html)
 - [Beiträge und Beitritt](beitraege.html)
+- [Gaststätte](gaststaette.html)
+- [Vereins-FAQ](faq.html)
 
 ## Vereinsverständnis
 

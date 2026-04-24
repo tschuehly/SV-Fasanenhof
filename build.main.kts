@@ -72,6 +72,14 @@ data class NewsPost(
     val dateLabel: String,
 )
 
+data class SearchItem(
+    val title: String,
+    val url: String,
+    val section: String,
+    val summary: String,
+    val text: String,
+)
+
 data class NavItem(
     val label: String,
     val url: String,
@@ -110,13 +118,15 @@ val sectionNavGroups = mapOf(
             listOf(
                 SectionNavEntry("Überblick", "/verein/"),
                 SectionNavEntry("Historie", "/verein/historie.html"),
+                SectionNavEntry("Gaststätte", "/verein/gaststaette.html"),
+                SectionNavEntry("FAQ", "/verein/faq.html"),
             ),
         ),
         SectionNavGroup(
             "Organisation",
             listOf(
                 SectionNavEntry("Vorstand", "/verein/vorstand.html"),
-                SectionNavEntry("Satzung", "/verein/satzung.html"),
+                SectionNavEntry("Satzung und Ordnungen", "/verein/satzung.html"),
                 SectionNavEntry("Beiträge und Beitritt", "/verein/beitraege.html"),
             ),
         ),
@@ -134,7 +144,9 @@ val sectionNavGroups = mapOf(
             listOf(
                 SectionNavEntry("Training", "/bogenschiessen/training.html"),
                 SectionNavEntry("Schnupperkurse", "/bogenschiessen/schnupperkurse.html"),
+                SectionNavEntry("Trainer und Übungsleiter", "/bogenschiessen/trainer.html"),
                 SectionNavEntry("Ausrüstung", "/bogenschiessen/ausruestung.html"),
+                SectionNavEntry("FAQ", "/bogenschiessen/faq.html"),
                 SectionNavEntry("Schießordnung", "/bogenschiessen/schiessordnung.html"),
             ),
         ),
@@ -149,6 +161,7 @@ val sectionNavGroups = mapOf(
             "Abteilung",
             listOf(
                 SectionNavEntry("Wissen", "/bogenschiessen/wissen/"),
+                SectionNavEntry("Links und Verbände", "/bogenschiessen/links-und-verbaende.html"),
                 SectionNavEntry("Presse", "/bogenschiessen/presse.html"),
                 SectionNavEntry("Sponsoren", "/bogenschiessen/sponsoren.html"),
             ),
@@ -159,7 +172,11 @@ val sectionNavGroups = mapOf(
             "Fußball",
             listOf(
                 SectionNavEntry("Überblick", "/fussball/"),
+                SectionNavEntry("Mannschaften", "/fussball/mannschaften.html"),
+                SectionNavEntry("Trainingszeiten", "/fussball/training.html"),
                 SectionNavEntry("Aktuelles", "/fussball/aktuelles/"),
+                SectionNavEntry("Sponsoren", "/fussball/sponsoren.html"),
+                SectionNavEntry("FAQ", "/fussball/faq.html"),
             ),
         ),
     ),
@@ -168,7 +185,9 @@ val sectionNavGroups = mapOf(
             "Tischtennis",
             listOf(
                 SectionNavEntry("Überblick", "/tischtennis/"),
+                SectionNavEntry("Trainingszeiten", "/tischtennis/training.html"),
                 SectionNavEntry("Aktuelles", "/tischtennis/aktuelles/"),
+                SectionNavEntry("FAQ", "/tischtennis/faq.html"),
             ),
         ),
     ),
@@ -207,6 +226,7 @@ fun generateSite() {
         page.outputPath.writeText(html)
     }
 
+    writeSearchIndex(pages)
     outputRoot.resolve(".nojekyll").writeText("")
     println("Generated ${pages.size} pages into ${outputRoot.absolutePathString()}")
 }
@@ -282,7 +302,8 @@ fun parseMarkdown(raw: String): MarkdownDocument {
 fun renderPage(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<NewsPost>): String {
     val content = when (page.template) {
         "home" -> renderHome(page, pagesByUrl, allNewsPosts)
-        "news-index" -> renderNewsIndex(page, allNewsPosts.filter { it.departmentKey == page.sectionKey })
+        "news-index" -> renderNewsIndex(page, newsPostsForPage(page, allNewsPosts))
+        "search" -> renderSearchPage(page)
         else -> renderStandardPage(page)
     }
 
@@ -310,6 +331,14 @@ fun renderPage(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
         </body>
         </html>
     """.trimIndent()
+}
+
+fun newsPostsForPage(page: Page, allNewsPosts: List<NewsPost>): List<NewsPost> {
+    return if (page.sectionKey == "aktuelles") {
+        allNewsPosts
+    } else {
+        allNewsPosts.filter { it.departmentKey == page.sectionKey }
+    }
 }
 
 fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<NewsPost>): String {
@@ -348,6 +377,7 @@ fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
             <p class="lead">${escapeHtml(page.lead)}</p>
             <div class="hero-actions">
               <a class="button button-primary" href="${linkTo(page, "/bogenschiessen/schnupperkurse.html")}">Schnupperkurs ansehen</a>
+              <a class="button button-secondary" href="${linkTo(page, "/mitglied-werden/")}">Mitglied werden</a>
               <a class="button button-secondary" href="${linkTo(page, "/standort/")}">Zum Standort</a>
             </div>
           </div>
@@ -364,7 +394,7 @@ fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
         <section class="shell section">
           <div class="section-head">
             <span class="kicker">Aktuelles</span>
-            <h2>Neuigkeiten aus den Abteilungen</h2>
+            <h2><a href="${linkTo(page, "/aktuelles/")}">Neuigkeiten aus den Abteilungen</a></h2>
           </div>
           <div class="news-grid">$latestNews</div>
         </section>
@@ -390,16 +420,25 @@ fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
 
 fun renderNewsIndex(page: Page, posts: List<NewsPost>): String {
     val bodyHtml = rewriteEmbeddedAssetPaths(page, page.bodyHtml)
-    val newsHtml = posts.joinToString("") { post ->
-        """
-            <article class="news-row">
-              <div class="news-date">${escapeHtml(post.dateLabel)}</div>
-              <div>
-                <h3><a href="${linkTo(page, post.page.urlPath)}">${escapeHtml(post.page.title)}</a></h3>
-                <p>${escapeHtml(post.page.summary)}</p>
-              </div>
-            </article>
-        """.trimIndent()
+    val newsHtml = if (posts.isEmpty()) {
+        """<p>Aktuell sind hier noch keine Meldungen veröffentlicht.</p>"""
+    } else {
+        posts.joinToString("") { post ->
+            val meta = if (page.sectionKey == "aktuelles") {
+                "${post.departmentLabel} · ${post.dateLabel}"
+            } else {
+                post.dateLabel
+            }
+            """
+                <article class="news-row">
+                  <div class="news-date">${escapeHtml(meta)}</div>
+                  <div>
+                    <h3><a href="${linkTo(page, post.page.urlPath)}">${escapeHtml(post.page.title)}</a></h3>
+                    <p>${escapeHtml(post.page.summary)}</p>
+                  </div>
+                </article>
+            """.trimIndent()
+        }
     }
 
     return """
@@ -415,6 +454,147 @@ fun renderNewsIndex(page: Page, posts: List<NewsPost>): String {
           <div class="news-list">$newsHtml</div>
         </section>
     """.trimIndent()
+}
+
+fun renderSearchPage(page: Page): String {
+    val bodyHtml = rewriteEmbeddedAssetPaths(page, page.bodyHtml)
+    return """
+        ${renderHero(page)}
+        <section class="shell prose-block">
+          ${renderBreadcrumbs(page)}
+          <article class="prose">
+            $bodyHtml
+            <form class="search-form" role="search">
+              <label for="site-search">Suchbegriff</label>
+              <input id="site-search" type="search" autocomplete="off" placeholder="Training, Beiträge, Kontakt ...">
+            </form>
+            <div class="search-status" aria-live="polite"></div>
+            <div class="search-results"></div>
+          </article>
+        </section>
+        <script>
+          (function () {
+            var input = document.getElementById('site-search');
+            var status = document.querySelector('.search-status');
+            var results = document.querySelector('.search-results');
+            if (!input || !status || !results) return;
+
+            var pages = [];
+            var searchIndexUrl = '${linkTo(page, "/search-index.json")}';
+            var siteRoot = new URL(searchIndexUrl, window.location.href);
+            siteRoot.pathname = siteRoot.pathname.replace(/search-index\.json$/, '');
+
+            function normalize(value) {
+              return value.toLocaleLowerCase('de-DE').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            }
+
+            function linkFor(url) {
+              return new URL(url.replace(/^\/+/, ''), siteRoot).toString();
+            }
+
+            function render(matches, query) {
+              results.innerHTML = '';
+              if (!query) {
+                status.textContent = 'Suchbegriff eingeben.';
+                return;
+              }
+              if (!matches.length) {
+                status.textContent = 'Keine Treffer gefunden.';
+                return;
+              }
+              status.textContent = matches.length + (matches.length === 1 ? ' Treffer' : ' Treffer');
+              matches.slice(0, 12).forEach(function (item) {
+                var article = document.createElement('article');
+                var section = document.createElement('span');
+                var heading = document.createElement('h3');
+                var link = document.createElement('a');
+                var summary = document.createElement('p');
+                article.className = 'search-result';
+                section.textContent = item.section;
+                link.href = linkFor(item.url);
+                link.textContent = item.title;
+                summary.textContent = item.summary;
+                heading.appendChild(link);
+                article.appendChild(section);
+                article.appendChild(heading);
+                article.appendChild(summary);
+                results.appendChild(article);
+              });
+            }
+
+            function runSearch() {
+              var query = input.value.trim();
+              var terms = normalize(query).split(/\s+/).filter(Boolean);
+              if (!terms.length) {
+                render([], '');
+                return;
+              }
+              var matches = pages
+                .map(function (item) {
+                  var haystack = normalize([item.title, item.section, item.summary, item.text].join(' '));
+                  var score = terms.reduce(function (sum, term) {
+                    if (normalize(item.title).indexOf(term) >= 0) return sum + 4;
+                    if (normalize(item.summary).indexOf(term) >= 0) return sum + 2;
+                    if (haystack.indexOf(term) >= 0) return sum + 1;
+                    return sum;
+                  }, 0);
+                  return { item: item, score: score };
+                })
+                .filter(function (match) { return match.score >= terms.length; })
+                .sort(function (a, b) { return b.score - a.score || a.item.title.localeCompare(b.item.title, 'de-DE'); })
+                .map(function (match) { return match.item; });
+              render(matches, query);
+            }
+
+            fetch(searchIndexUrl)
+              .then(function (response) { return response.json(); })
+              .then(function (data) {
+                pages = data;
+                runSearch();
+                input.addEventListener('input', runSearch);
+              })
+              .catch(function () {
+                status.textContent = 'Die Suche konnte nicht geladen werden.';
+              });
+          })();
+        </script>
+    """.trimIndent()
+}
+
+fun writeSearchIndex(pages: List<Page>) {
+    val items = pages
+        .filterNot { it.template == "search" }
+        .map { page ->
+            SearchItem(
+                title = page.title,
+                url = page.urlPath,
+                section = sectionLabel(page.sectionKey),
+                summary = page.summary,
+                text = searchableText(page),
+            )
+        }
+    val json = items.joinToString(prefix = "[\n", postfix = "\n]", separator = ",\n") { item ->
+        """
+          {
+            "title": "${jsonEscape(item.title)}",
+            "url": "${jsonEscape(item.url)}",
+            "section": "${jsonEscape(item.section)}",
+            "summary": "${jsonEscape(item.summary)}",
+            "text": "${jsonEscape(item.text)}"
+          }
+        """.trimIndent()
+    }
+    outputRoot.resolve("search-index.json").writeText(json)
+}
+
+fun searchableText(page: Page): String {
+    return page.bodyHtml
+        .replace(Regex("<script[\\s\\S]*?</script>", RegexOption.IGNORE_CASE), " ")
+        .replace(Regex("<style[\\s\\S]*?</style>", RegexOption.IGNORE_CASE), " ")
+        .replace(Regex("<[^>]+>"), " ")
+        .replace(Regex("\\s+"), " ")
+        .trim()
+        .take(1400)
 }
 
 fun renderStandardPage(page: Page): String {
@@ -525,9 +705,13 @@ fun renderFooter(page: Page): String {
             <div>
               <h4>Schnellzugriff</h4>
               <ul>
+                <li><a href="${linkTo(page, "/aktuelles/")}">Aktuelles</a></li>
+                <li><a href="${linkTo(page, "/termine/")}">Termine</a></li>
+                <li><a href="${linkTo(page, "/mitglied-werden/")}">Mitglied werden</a></li>
                 <li><a href="${linkTo(page, "/verein/")}">Verein</a></li>
                 <li><a href="${linkTo(page, "/standort/")}">Standort</a></li>
                 <li><a href="${linkTo(page, "/kontakt/")}">Kontakt</a></li>
+                <li><a href="${linkTo(page, "/suche/")}">Suche</a></li>
               </ul>
             </div>
             <div>
@@ -543,6 +727,8 @@ fun renderFooter(page: Page): String {
               <ul>
                 <li><a href="${linkTo(page, "/impressum/")}">Impressum</a></li>
                 <li><a href="${linkTo(page, "/datenschutz/")}">Datenschutz</a></li>
+                <li><a href="${linkTo(page, "/barrierefreiheit/")}">Barrierefreiheit</a></li>
+                <li><a href="${linkTo(page, "/jugendschutz/")}">Jugendschutz</a></li>
               </ul>
             </div>
           </div>
@@ -635,12 +821,37 @@ fun departmentLabel(key: String): String = when (key) {
     else -> key.replaceFirstChar { it.titlecase(Locale.GERMAN) }
 }
 
+fun sectionLabel(key: String): String = when (key) {
+    "home" -> "Start"
+    "verein" -> "Verein"
+    "standort" -> "Standort"
+    "bogenschiessen" -> "Bogenschießen"
+    "fussball" -> "Fußball"
+    "tischtennis" -> "Tischtennis"
+    "aktuelles" -> "Aktuelles"
+    "termine" -> "Termine"
+    "mitglied-werden" -> "Mitglied werden"
+    "suche" -> "Suche"
+    "barrierefreiheit" -> "Barrierefreiheit"
+    "jugendschutz" -> "Jugendschutz"
+    "kontakt" -> "Kontakt"
+    "impressum" -> "Impressum"
+    "datenschutz" -> "Datenschutz"
+    else -> key.replace('-', ' ').replaceFirstChar { it.titlecase(Locale.GERMAN) }
+}
+
 fun pathLabel(part: String): String = when (part.removeSuffix(".html")) {
     "verein" -> "Verein"
     "standort" -> "Standort"
     "bogenschiessen" -> "Bogenschießen"
     "fussball" -> "Fußball"
     "tischtennis" -> "Tischtennis"
+    "aktuelles" -> "Aktuelles"
+    "termine" -> "Termine"
+    "mitglied-werden" -> "Mitglied werden"
+    "suche" -> "Suche"
+    "barrierefreiheit" -> "Barrierefreiheit"
+    "jugendschutz" -> "Jugendschutz"
     "kontakt" -> "Kontakt"
     "impressum" -> "Impressum"
     "datenschutz" -> "Datenschutz"
@@ -648,15 +859,19 @@ fun pathLabel(part: String): String = when (part.removeSuffix(".html")) {
     "archiv" -> "Archiv"
     "galerie" -> "Galerie"
     "wissen" -> "Wissen"
-    "aktuelles" -> "Aktuelles"
     "schnupperkurse" -> "Schnupperkurse"
     "ausruestung" -> "Ausrüstung"
     "schiessordnung" -> "Schießordnung"
     "training" -> "Training"
+    "trainer" -> "Trainer und Übungsleiter"
     "vorstand" -> "Vorstand"
     "historie" -> "Historie"
     "satzung" -> "Satzung"
     "beitraege" -> "Beiträge"
+    "gaststaette" -> "Gaststätte"
+    "faq" -> "FAQ"
+    "mannschaften" -> "Mannschaften"
+    "links-und-verbaende" -> "Links und Verbände"
     "presse" -> "Presse"
     "sponsoren" -> "Sponsoren"
     else -> part.removeSuffix(".html").replace('-', ' ').replaceFirstChar { it.titlecase(Locale.GERMAN) }
@@ -787,6 +1002,23 @@ fun escapeHtml(value: String): String = buildString(value.length) {
                 '"' -> "&quot;"
                 '\'' -> "&#39;"
                 else -> char
+            },
+        )
+    }
+}
+
+fun jsonEscape(value: String): String = buildString(value.length) {
+    value.forEach { char ->
+        append(
+            when (char) {
+                '\\' -> "\\\\"
+                '"' -> "\\\""
+                '\b' -> "\\b"
+                '\u000C' -> "\\f"
+                '\n' -> "\\n"
+                '\r' -> "\\r"
+                '\t' -> "\\t"
+                else -> if (char.code < 0x20) "\\u%04x".format(char.code) else char
             },
         )
     }

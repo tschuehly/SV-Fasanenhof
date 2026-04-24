@@ -25,8 +25,10 @@ Der 1. SV Fasanenhof ist seit 1965 im Stadtteil verwurzelt. Auf dem Vereinsgelä
 ## Auf einen Blick
 
 - Verein, Geschichte und Mitgliedschaft
+- [Mitglied werden](mitglied-werden/) und Beiträge
+- [Aktuelles](aktuelles/) aus allen Abteilungen
+- [Termine](termine/) und wiederkehrende Trainingszeiten
 - Standort, Trainingsorte und Anfahrt
-- aktuelle Meldungen aus den Abteilungen
 - direkte Wege zu Schnupperkurs, Training und Kontakt
 
 ## Der Verein heute

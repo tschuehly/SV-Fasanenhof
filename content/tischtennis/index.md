@@ -27,13 +27,15 @@ Die Mannschaft wurde in der Saison **2024/25 Meister in ihrer Gruppe** und ist d
 
 ## Trainingszeiten
 
-- **Mittwoch** von 19.30 bis 22.00 Uhr
-- Turnhalle der Anne-Frank-Gemeinschaftsschule und Realschule
-- Hechinger Straße 73, Stuttgart-Möhringen
-- in den Schulferien geschlossen
+Die bestätigten Trainingsdaten stehen auf der eigenen [Trainingsseite](training.html).
 
 ## Ansprechpartner
 
 **Herbert Lang**  
 Telefon: 0711 70 67 73  
 E-Mail: Lang-He@web.de
+
+Weitere Einstiege:
+
+- [Aktuelles](aktuelles/)
+- [Tischtennis-FAQ](faq.html)

@@ -28,8 +28,9 @@ Die Bogensportabteilung des 1. SV Fasanenhof begrüßt alle, die Bogenschießen 
 
 - Einstieg über [Schnupperkurse](schnupperkurse.html) mit Leihmaterial
 - regelmäßiges [Training](training.html) an drei Orten im Jahresverlauf
+- Betreuung durch [Trainer und Übungsleiter](trainer.html)
 - verschiedene Bogenklassen vom Freizeit- bis zum Wettkampfbereich
-- Zugang zu [Meisterschaften](meisterschaften/index.html), [Galerie](galerie/index.html) und [Wissen](wissen/index.html)
+- Zugang zu [Meisterschaften](meisterschaften/index.html), [Galerie](galerie/index.html), [Wissen](wissen/index.html) und [FAQ](faq.html)
 
 ## Bogentypen im Verein
 
@@ -51,6 +52,8 @@ Die Bilder zeigen ziemlich gut, was die BSG tatsächlich ausmacht: Training auf 
 Niemand muss mit eigener Vollausrüstung erscheinen oder schon wissen, welche Bogenklasse am besten passt. Die Abteilung versteht sich bewusst als Ort, an dem man den Sport von Grund auf lernen kann, ob einfach aus Freude am Schießen oder mit Blick auf Wettkämpfe und Turniere.
 
 Trainiert wird auf dem Vereinsgelände und in Hallen in Stuttgart-Möhringen. Das Gelände ist mit der **U6 über die Haltestelle Europaplatz** gut zu erreichen; zusätzlich steht ein großer Parkplatz zur Verfügung.
+
+Weiterführende Informationen zu Verbänden und internen Wissensseiten stehen unter [Links und Verbände](links-und-verbaende.html).
 
 ## Kontakt
 

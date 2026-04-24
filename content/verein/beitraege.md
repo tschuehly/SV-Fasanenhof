@@ -50,3 +50,5 @@ Wer speziell wegen Bogenschießen einsteigen möchte, kann sich zusätzlich an d
 - **Birgit Dirksmöller**
 - Telefon: 0711 71 21 70
 - E-Mail: birgit.svfasanenhof@gmx.net
+
+Eine kurze Einstiegsübersicht steht zusätzlich unter [Mitglied werden](../mitglied-werden/).

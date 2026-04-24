@@ -1,11 +1,11 @@
 ---
-title: Satzung
-description: Satzung des 1. SV Fasanenhof 1965 e.V.
+title: Satzung und Ordnungen
+description: Satzung, Regeln und Ordnungen des 1. SV Fasanenhof 1965 e.V.
 kicker: Vereinsordnung
-lead: Die Vereinssatzung regelt Zweck, Mitgliedschaft, Organe und Auflösung des Vereins.
-summary: Satzung mit Vereinszweck, Mitgliedschaft, Vorstand, Abteilungen und Inkrafttreten.
+lead: Die Vereinssatzung regelt Zweck, Mitgliedschaft, Organe und Auflösung des Vereins; weitere Regeln betreffen Gelände, Jugend und Abteilungen.
+summary: Satzung und Ordnungen mit Vereinszweck, Mitgliedschaft, Vorstand, Abteilungen, Platzregeln und weiteren Rechtsthemen.
 ---
-> Hinweis: Diese Fassung basiert auf dem vorhandenen Vereinsmaterial und sollte vor Veröffentlichung noch mit dem aktuellen Registerstand abgeglichen werden.
+Diese Seite bündelt die formalen Grundlagen des Vereins und verweist auf die Regeln, die für Gelände und Abteilungen öffentlich relevant sind.
 
 ## Grunddaten des Vereins
 
@@ -43,3 +43,10 @@ Für die im Verein betriebenen Sportarten bestehen Abteilungen. Diese verwalten 
 ## Inkrafttreten
 
 Die vorliegende Satzung wurde laut Vereinsmaterial auf der Mitgliederversammlung vom **27. März 1992** beschlossen und ersetzte die bis dahin geltende Satzung.
+
+## Weitere Regeln und Hinweise
+
+- Die öffentliche Nutzung des Vereinsgeländes ist unter [Standort](../standort/) beschrieben.
+- Die Schießordnung der Bogensportabteilung steht unter [Schießordnung](../bogenschiessen/schiessordnung.html).
+- Hinweise zu Jugendschutz und Verantwortung stehen unter [Jugendschutz](../jugendschutz/).
+- Hinweise zur Zugänglichkeit der Webseite stehen unter [Barrierefreiheit](../barrierefreiheit/).

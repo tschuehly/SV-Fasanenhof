@@ -21,20 +21,13 @@ Die Fußballabteilung gehört seit der Gründung des Vereins zum Kern des 1. SV 
   </div>
 </div>
 
-## Training und Mannschaften
+## Einstieg in die Abteilung
 
-### Aktive
-
-- 1. Mannschaft: Dienstag und Donnerstag 19.30 bis 22.00 Uhr
-- zusätzlicher Trainingsblock am Samstag 18.00 bis 20.00 Uhr
-- Trainer: **Zurab Pirtskhalaishvili**
-
-### Jugend
-
-Nach den vorhandenen Vereinsangaben trainieren aktuell insbesondere:
-
-- **Bambini**: Mittwoch 18.00 bis 19.00 Uhr
-- **E- und F-Jugend** in Spielgemeinschaft mit HNK Slaven Stuttgart: Mittwoch und Freitag ab 18.00 Uhr
+- [Mannschaften](mannschaften.html)
+- [Trainingszeiten](training.html)
+- [Aktuelles](aktuelles/)
+- [Sponsoren](sponsoren.html)
+- [Fußball-FAQ](faq.html)
 
 ## Im Fokus
 
@@ -42,3 +35,5 @@ Nach den vorhandenen Vereinsangaben trainieren aktuell insbesondere:
 - Jugendangebote und Spielgemeinschaften
 - Heimspiele und Nutzung des Geländes
 - aktuelle Meldungen aus der Abteilung
+
+Für konkrete Trainingszeiten und Gruppen gibt es die eigene [Trainingsseite](training.html).
