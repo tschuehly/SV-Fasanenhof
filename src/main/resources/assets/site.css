@@ -1008,6 +1008,18 @@ iframe {
   color: var(--footer-muted);
 }
 
+.site-footer h3 {
+  margin: 0 0 0.65rem;
+}
+
+.site-footer h4 {
+  margin: 0 0 0.35rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
 .site-footer ul {
   list-style: none;
   padding: 0;
@@ -1015,7 +1027,7 @@ iframe {
 }
 
 .site-footer li + li {
-  margin-top: 0.45rem;
+  margin-top: 0.15rem;
 }
 
 .site-footer a {

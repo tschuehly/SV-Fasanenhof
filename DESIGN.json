@@ -16,6 +16,12 @@
         "canonical": "#fffdf8",
         "usage": "Main paper-like content surfaces."
       },
+      "paper-strong": {
+        "role": "neutral",
+        "displayName": "Reinpapier",
+        "canonical": "#fffefa",
+        "usage": "Strongest warm surface, mostly for media and search results."
+      },
       "ink": {
         "role": "neutral",
         "displayName": "Vereinsink",
@@ -57,7 +63,7 @@
       "ambientSurface": "0 20px 60px rgba(21, 21, 21, 0.08)",
       "raisedMenu": "0 18px 44px rgba(21, 21, 21, 0.1), 0 3px 10px rgba(21, 21, 21, 0.05)",
       "photoSurface": "0 16px 38px rgba(21, 21, 21, 0.08)",
-      "focusRing": "0 0 0 4px rgba(47, 107, 59, 0.14)"
+      "focusRing": "outline: 3px solid rgba(47, 107, 59, 0.42); outline-offset: 4px"
     },
     "motion": {
       "hoverLift": "transform 0.2s ease",

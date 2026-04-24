@@ -6,7 +6,7 @@ colors:
   background-top: "#faf7f0"
   background-bottom: "#f2ecdf"
   paper: "#fffdf8"
-  paper-strong: "#ffffff"
+  paper-strong: "#fffefa"
   ink: "#151515"
   ink-soft: "#3f3f3f"
   ink-muted: "#66604f"
@@ -112,7 +112,7 @@ The palette is warm, grounded, and Vereinsheim-like: cream paper, deep green, mu
 
 - **Geländesand** (`#f5f1e8`): Base page background.
 - **Warmpapier** (`#fffdf8`): Main surface color for hero copy and content panels.
-- **Reinpapier** (`#ffffff`): Strongest surface, mostly for media and search results.
+- **Reinpapier** (`#fffefa`): Strongest surface, mostly for media and search results.
 - **Vereinsink** (`#151515`): Primary text and dark footer surface.
 - **Weichink** (`#3f3f3f`): Body-adjacent copy and quieter supporting text.
 - **Notizgrau** (`#66604f`): Muted metadata, labels, and secondary brand text.
@@ -155,7 +155,7 @@ The system uses a hybrid of borders, warm surfaces, and soft ambient shadows. El
 - **Ambient Surface** (`0 20px 60px rgba(21, 21, 21, 0.08)`): Main hero copy, feature cards, news cards, prose blocks, news lists, and rows.
 - **Raised Menu** (`0 18px 44px rgba(21, 21, 21, 0.1), 0 3px 10px rgba(21, 21, 21, 0.05)`): Dropdown menus and image media blocks.
 - **Photo Surface** (`0 16px 38px rgba(21, 21, 21, 0.08)`): Prose images, gallery figures, and year cards.
-- **Focus Ring** (`0 0 0 4px rgba(47, 107, 59, 0.14)`): Search inputs and form focus states.
+- **Focus Ring** (`outline: 3px solid rgba(47, 107, 59, 0.42); outline-offset: 4px` plus contextual soft rings): Keyboard focus states across links, summaries, buttons, and fields.
 
 ### Named Rules
 
@@ -167,7 +167,7 @@ The system uses a hybrid of borders, warm surfaces, and soft ambient shadows. El
 
 - **Shape:** Square-cornered text buttons by default, no decorative pill styling in the current implementation.
 - **Primary:** `#2f6b3b` background, white text, `0.9rem 1.2rem` padding, `900` weight.
-- **Hover / Focus:** Translate up by `1px`; primary hover switches to `#151515`.
+- **Hover / Focus:** Translate up by `1px`; primary hover switches to `#151515`; keyboard focus uses the shared green outline.
 - **Secondary:** Transparent background with `2px` ink border and ink text; hover fills ink with white text.
 
 ### Cards / Containers
@@ -180,7 +180,7 @@ The system uses a hybrid of borders, warm surfaces, and soft ambient shadows. El
 
 ### Inputs / Fields
 
-- **Style:** Full-width field, `2px` warm border, `#ffffff` background, inherited font, `0.8rem 1rem` padding.
+- **Style:** Full-width field, `2px` warm border, `#fffefa` background, inherited font, `0.8rem 1rem` padding.
 - **Focus:** Border switches to Vereinsgrün with a soft green focus ring.
 - **Error / Disabled:** Not yet defined in shipped V1. Add explicit states before introducing forms beyond search.
 
@@ -208,12 +208,13 @@ The system uses a hybrid of borders, warm surfaces, and soft ambient shadows. El
 - **Do** keep Fußball and Tischtennis concise until real content exists.
 - **Do** update `SITE-SPEC.md` whenever IA, navigation, or page structure changes.
 - **Do** preserve clear focus states and readable contrast.
+- **Do** keep touch targets at least `44px` high for navigation, dropdowns, footer links, and buttons.
 
 ### Don't:
 
 - **Don't** add migration notes, placeholders, curation comments, or internal editorial process to production copy.
 - **Don't** use generic sports-club templates, neon performance-sports styling, dark betting-site energy, glossy startup marketing, or premium lifestyle-brand polish.
-- **Don't** use gradient text, decorative glassmorphism, side-stripe card accents, or hero-metric templates.
+- **Don't** use gradient text, decorative glassmorphism, side-stripe card or blockquote accents, or hero-metric templates.
 - **Don't** turn every page into identical icon-card grids.
 - **Don't** invent department content when real source material is missing.
 - **Don't** bury practical routes such as Training, Mitglied werden, Kontakt, Standort, or Schnupperkurse behind decorative sections.
