@@ -304,7 +304,7 @@ fun renderPage(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
         "home" -> renderHome(page, pagesByUrl, allNewsPosts)
         "news-index" -> renderNewsIndex(page, newsPostsForPage(page, allNewsPosts))
         "search" -> renderSearchPage(page)
-        else -> renderStandardPage(page)
+        else -> renderStandardPage(page, pagesByUrl)
     }
 
     return """
@@ -597,16 +597,58 @@ fun searchableText(page: Page): String {
         .take(1400)
 }
 
-fun renderStandardPage(page: Page): String {
+fun renderStandardPage(page: Page, pagesByUrl: Map<String, Page>): String {
     val bodyHtml = rewriteEmbeddedAssetPaths(page, page.bodyHtml)
+    val sectionDirectory = renderSectionDirectory(page, pagesByUrl)
     return """
         ${renderHero(page)}
         <section class="shell prose-block">
           ${renderBreadcrumbs(page)}
           <article class="prose">
             $bodyHtml
+            $sectionDirectory
           </article>
         </section>
+    """.trimIndent()
+}
+
+fun renderSectionDirectory(page: Page, pagesByUrl: Map<String, Page>): String {
+    val groups = sectionNavGroups[page.sectionKey] ?: return ""
+    val sectionRoot = navItems.firstOrNull { it.sectionKey == page.sectionKey }?.url ?: return ""
+    if (page.urlPath != sectionRoot) return ""
+
+    val groupsHtml = groups.mapNotNull { group ->
+        val entries = group.entries
+            .filter { it.url != page.urlPath }
+            .mapNotNull { entry ->
+                val target = pagesByUrl[entry.url] ?: return@mapNotNull null
+                """
+                    <li>
+                      <a href="${linkTo(page, target.urlPath)}">${escapeHtml(entry.label)}</a>
+                      <span>${escapeHtml(target.summary)}</span>
+                    </li>
+                """.trimIndent()
+            }
+
+        if (entries.isEmpty()) return@mapNotNull null
+
+        """
+            <div class="section-directory-group">
+              <h3>${escapeHtml(group.label)}</h3>
+              <ul>${entries.joinToString("")}</ul>
+            </div>
+        """.trimIndent()
+    }
+
+    if (groupsHtml.isEmpty()) return ""
+
+    return """
+        <nav class="section-directory" aria-labelledby="section-directory-title">
+          <h2 id="section-directory-title">Alle Seiten in diesem Bereich</h2>
+          <div class="section-directory-grid">
+            ${groupsHtml.joinToString("")}
+          </div>
+        </nav>
     """.trimIndent()
 }
 
@@ -651,17 +693,25 @@ fun renderSectionNav(page: Page, pagesByUrl: Map<String, Page>): String {
     val groups = sectionNavEntriesFor(page, pagesByUrl)
     if (groups.isEmpty()) return ""
 
-    val navHtml = groups.joinToString("") { group ->
-        val linksHtml = group.entries.joinToString("") { entry ->
+    val navHtml = if (page.sectionKey == "fussball" || page.sectionKey == "tischtennis") {
+        val linksHtml = groups.flatMap { it.entries }.joinToString("") { entry ->
             val active = if (isSectionNavActive(page.urlPath, entry.url)) "active" else ""
             """<li><a class="$active" href="${linkTo(page, entry.url)}">${escapeHtml(entry.label)}</a></li>"""
         }
-        """
-            <details class="section-nav-group">
-              <summary>${escapeHtml(group.label)}</summary>
-              <ul class="section-nav-menu">$linksHtml</ul>
-            </details>
-        """.trimIndent()
+        """<ul class="section-nav-flat">$linksHtml</ul>"""
+    } else {
+        groups.joinToString("") { group ->
+            val linksHtml = group.entries.joinToString("") { entry ->
+                val active = if (isSectionNavActive(page.urlPath, entry.url)) "active" else ""
+                """<li><a class="$active" href="${linkTo(page, entry.url)}">${escapeHtml(entry.label)}</a></li>"""
+            }
+            """
+                <details class="section-nav-group">
+                  <summary>${escapeHtml(group.label)}</summary>
+                  <ul class="section-nav-menu">$linksHtml</ul>
+                </details>
+            """.trimIndent()
+        }
     }
 
     return """
@@ -677,11 +727,8 @@ fun sectionNavEntriesFor(page: Page, pagesByUrl: Map<String, Page>): List<Sectio
     val groups = sectionNavGroups[page.sectionKey] ?: return emptyList()
     return groups.mapNotNull { group ->
         val entries = group.entries.mapNotNull { entry ->
-            val linkedPage = pagesByUrl[entry.url] ?: return@mapNotNull null
-            SectionNavEntry(
-                label = if (entry.label == linkedPage.title || entry.label == "Überblick") entry.label else entry.label,
-                url = entry.url,
-            )
+            pagesByUrl[entry.url] ?: return@mapNotNull null
+            SectionNavEntry(entry.label, entry.url)
         }
         if (entries.isEmpty()) null else SectionNavGroup(group.label, entries)
     }

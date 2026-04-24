@@ -10,6 +10,7 @@
   --green-dark: #173c1f;
   --green-soft: #dceadf;
   --gold: #d6ab45;
+  --footer-muted: #d9d4c8;
   --shadow: 0 20px 60px rgba(21, 21, 21, 0.08);
 }
 
@@ -162,6 +163,27 @@ iframe {
 
 .section-nav-group {
   position: relative;
+}
+
+.section-nav-flat {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.section-nav-flat li {
+  margin: 0;
+}
+
+.section-nav-flat a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0.15rem 0;
 }
 
 .section-nav-group summary {
@@ -542,6 +564,50 @@ iframe {
   margin-top: 0.4rem;
 }
 
+.section-directory {
+  margin-top: 2.4rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line);
+}
+
+.section-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+}
+
+.section-directory-group h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+}
+
+.section-directory-group ul {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.section-directory-group li {
+  margin: 0;
+}
+
+.section-directory-group a {
+  display: inline-block;
+  font-weight: 900;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.section-directory-group span {
+  display: block;
+  margin-top: 0.1rem;
+  color: var(--ink-soft);
+  font-size: 0.96rem;
+  line-height: 1.45;
+}
+
 .prose table {
   width: 100%;
   max-width: 100%;
@@ -590,6 +656,15 @@ iframe {
 .prose .photo-showcase {
   grid-template-columns: 1.35fr 0.85fr;
   align-items: stretch;
+}
+
+.prose .photo-showcase .photo-grid {
+  margin: 0;
+}
+
+.prose .photo-showcase .photo-hero img {
+  height: 100%;
+  aspect-ratio: auto;
 }
 
 .prose .photo-grid,
@@ -736,6 +811,11 @@ iframe {
   color: white;
 }
 
+.site-footer p,
+.site-footer li {
+  color: var(--footer-muted);
+}
+
 .site-footer ul {
   list-style: none;
   padding: 0;
@@ -756,6 +836,12 @@ iframe {
   .split-section,
   .footer-grid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .section-directory-grid {
+    grid-template-columns: 1fr;
   }
 }
 

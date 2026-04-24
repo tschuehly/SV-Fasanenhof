@@ -22,9 +22,44 @@ build() {
   fi
 }
 
+port_pids() {
+  if command -v lsof &>/dev/null; then
+    lsof -tiTCP:"$PORT" -sTCP:LISTEN 2>/dev/null || true
+  elif command -v fuser &>/dev/null; then
+    fuser "$PORT"/tcp 2>/dev/null || true
+  fi
+}
+
+free_port() {
+  local pids
+  pids="$(port_pids | tr '\n' ' ')"
+
+  if [[ -z "${pids// }" ]]; then
+    return
+  fi
+
+  echo "Port $PORT is already in use by PID(s): $pids"
+  echo "Stopping existing listener(s)..."
+  kill $pids 2>/dev/null || true
+
+  for _ in {1..20}; do
+    if [[ -z "$(port_pids)" ]]; then
+      return
+    fi
+    sleep 0.1
+  done
+
+  pids="$(port_pids | tr '\n' ' ')"
+  if [[ -n "${pids// }" ]]; then
+    echo "Force-stopping remaining listener(s): $pids"
+    kill -9 $pids 2>/dev/null || true
+  fi
+}
+
 echo "Building..."
 build
 
+free_port
 python3 "$ROOT_DIR/devserver.py" --port "$PORT" --directory "$DIST_DIR" &
 HTTP_PID=$!
 trap "kill $HTTP_PID 2>/dev/null" EXIT
