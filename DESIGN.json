@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-04-24T00:00:00+02:00",
+  "title": "Design System: 1. SV Fasanenhof Website",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "role": "neutral",
+        "displayName": "Geländesand",
+        "canonical": "#f5f1e8",
+        "usage": "Base page background."
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warmpapier",
+        "canonical": "#fffdf8",
+        "usage": "Main paper-like content surfaces."
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Vereinsink",
+        "canonical": "#151515",
+        "usage": "Primary text and dark footer surface."
+      },
+      "green": {
+        "role": "primary",
+        "displayName": "Vereinsgrün",
+        "canonical": "#2f6b3b",
+        "usage": "Navigation, active states, links, buttons, and focus borders."
+      },
+      "gold": {
+        "role": "secondary",
+        "displayName": "Jubiläumsgold",
+        "canonical": "#d6ab45",
+        "usage": "Small heritage accent."
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home and major page hero headlines."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section and department feature headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Readable German content, practical site copy, and prose."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Kickers, metadata, breadcrumbs, dates, and compact cues."
+      }
+    },
+    "elevation": {
+      "ambientSurface": "0 20px 60px rgba(21, 21, 21, 0.08)",
+      "raisedMenu": "0 18px 44px rgba(21, 21, 21, 0.1), 0 3px 10px rgba(21, 21, 21, 0.05)",
+      "photoSurface": "0 16px 38px rgba(21, 21, 21, 0.08)",
+      "focusRing": "0 0 0 4px rgba(47, 107, 59, 0.14)"
+    },
+    "motion": {
+      "hoverLift": "transform 0.2s ease",
+      "menuIn": "0.18s cubic-bezier(0.2, 0, 0, 1)",
+      "principle": "Animate opacity and transform only; do not animate layout properties."
+    },
+    "breakpoints": {
+      "tablet": "1024px",
+      "narrow": "900px",
+      "mobile": "720px"
+    },
+    "northStar": "The Vereinsheim Noticeboard",
+    "rules": [
+      "Use green where it helps visitors move, identify active location, or act.",
+      "Use gold as a small heritage accent, not a luxury palette.",
+      "Use real club imagery whenever possible.",
+      "Keep production copy free of migration notes and internal process commentary."
+    ]
+  }
+}
