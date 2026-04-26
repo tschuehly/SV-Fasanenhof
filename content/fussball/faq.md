@@ -24,4 +24,4 @@ Nach den vorhandenen Angaben gibt es Bambini-Training sowie E- und F-Jugend in S
 
 ## Darf der Platz außerhalb des Vereinsbetriebs genutzt werden?
 
-Für die öffentliche Nutzung des Vereinsgeländes gelten die Regeln auf der [Standortseite](../standort/). Organisierter Trainings- und Spielbetrieb hat Vorrang.
+Für die öffentliche Nutzung des Vereinsgeländes gelten die Regeln auf der [Standortseite](../verein/standort.html). Organisierter Trainings- und Spielbetrieb hat Vorrang.

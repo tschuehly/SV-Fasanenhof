@@ -22,4 +22,4 @@ Die Gaststätte liegt direkt am Vereinsgelände:
 **Logauweg 21**
 70565 Stuttgart
 
-Informationen zu Anfahrt, Parkplatz und öffentlicher Nutzung stehen auf der [Standortseite](../standort/).
+Informationen zu Anfahrt, Parkplatz und öffentlicher Nutzung stehen auf der [Standortseite](standort.html).

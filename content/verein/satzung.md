@@ -46,7 +46,7 @@ Die vorliegende Satzung wurde laut Vereinsmaterial auf der Mitgliederversammlung
 
 ## Weitere Regeln und Hinweise
 
-- Die öffentliche Nutzung des Vereinsgeländes ist unter [Standort](../standort/) beschrieben.
+- Die öffentliche Nutzung des Vereinsgeländes ist unter [Standort](standort.html) beschrieben.
 - Die Schießordnung der Bogensportabteilung steht unter [Schießordnung](../bogenschiessen/schiessordnung.html).
 - Hinweise zu Jugendschutz und Verantwortung stehen unter [Jugendschutz](../jugendschutz/).
 - Hinweise zur Zugänglichkeit der Webseite stehen unter [Barrierefreiheit](../barrierefreiheit/).

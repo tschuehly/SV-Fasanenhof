@@ -18,7 +18,7 @@ This document now describes the shipped **V1** site structure. It should track t
 
 ## Information Architecture
 
-**Department-first IA.** A thin club shell (identity, governance, venue, contact) plus three self-contained department sub-sites. Each department owns its training, news, results, gallery, and courses at whatever depth its content justifies. The home page aggregates cross-department signals (latest news, next Schnupperkurs, training-times teaser).
+**Department-first IA.** The root page is the Verein overview and primary club entry. It combines club identity, department entry points, venue, news, and membership/service links. The departments then operate as self-contained sub-sites at whatever depth their content justifies.
 
 Rationale: ~95% of substantive content is archery-specific. A topic-first IA (top-level `/meisterschaften/`, `/bilder-medien/`, `/training-kurse/`) would imply club-wide scope while hiding the fact that those sections are BSG-only, and would force duplicated paths between `/bogenschiessen/training` and `/training-kurse/`. Department-first avoids the duplication and scales cleanly as Fußball and Tischtennis grow.
 
@@ -28,7 +28,7 @@ Rationale: ~95% of substantive content is archery-specific. A topic-first IA (to
 
 ```
 sv-fasanenhof/
-├── index.html                          Home: hero, image-led department sections, cross-dept news, venue teaser, CTAs
+├── index.html                          Verein overview: hero, departments, cross-dept news, venue teaser, CTAs
 ├── aktuelles/index.html                Aggregated news from all departments
 ├── termine/index.html                  Recurring training anchors and event pointers
 ├── mitglied-werden/index.html          Membership entry, fees and contacts
@@ -42,11 +42,9 @@ sv-fasanenhof/
 │   ├── vorstand.html                   Main board + dept leads (anchors per dept)
 │   ├── satzung.html                    Statutes and linked rules
 │   ├── beitraege.html                  Fees & Beitritt
+│   ├── standort.html                   Logauweg 21, public-access rules, Anfahrt (U6), Parken
 │   ├── gaststaette.html                Da Angelo
 │   └── faq.html                        Membership and contact FAQ
-│
-├── standort/
-│   └── index.html                      Logauweg 21, Da Angelo, public-access rules, Anfahrt (U6), Parken
 │
 ├── bogenschiessen/                     BSG (deep)
 │   ├── index.html                      Landing: 65 Schützen, Alter 8–80, Bogentypen, CTAs
@@ -107,11 +105,11 @@ sv-fasanenhof/
 **Notes on placement decisions:**
 
 - **Presse remains under `/bogenschiessen/`** because today's press content is archery-only. Sponsoring is department-scoped where a department needs a page.
-- **News is per-department**, with the home page aggregating. Simpler than a club-wide feed with tags, and matches who writes what.
+- **News is per-department**, with the Verein overview aggregating. Simpler than a club-wide feed with tags, and matches who writes what.
 - **A root news page exists as a read view**, aggregating department feeds without changing where posts are authored.
 - **Calendar and search are static V1 features.** `/termine/` is editorial, while `/suche/` uses generated `search-index.json`.
 - **Educational content lives at `/bogenschiessen/wissen/`**, not a top-level `/infos-service/`. All of it is archery pedagogy.
-- **Training locations are described on `/bogenschiessen/training.html`**, not as separate pages per venue. The public-facing venue page (`/standort/`) focuses on the Hauptgelände; the schools are training sites used only by BSG.
+- **Training locations are described on `/bogenschiessen/training.html`**, not as separate pages per venue. The public-facing venue page (`/verein/standort.html`) lives under the club section and focuses on the Hauptgelände; the schools are training sites used only by BSG.
 
 ---
 
@@ -122,10 +120,9 @@ sv-fasanenhof/
 | Old URL                             | New Path                                        | Notes                            |
 |-------------------------------------|-------------------------------------------------|----------------------------------|
 | **sv-fasanenhof.de**                |                                                 |                                  |
-| `/`                                 | `/index.html`                                   | Main homepage                    |
-|                                     | `/verein/index.html`                            | Club info landing                |
+| `/`                                 | `/index.html`                                   | Verein overview and main entry   |
 |                                     | `/bogenschiessen/index.html`                    | Archery landing                  |
-|                                     | `/standort/index.html`                          | Venue + Da Angelo + access rules |
+|                                     | `/verein/standort.html`                         | Venue + Da Angelo + access rules |
 |                                     | `/kontakt/index.html`                           | Contact info                     |
 | **bsg-fasanenhof.jimdofree.com**    |                                                 |                                  |
 | `/home/`                            | `/bogenschiessen/index.html`                    | Main archery content             |
@@ -169,7 +166,7 @@ sv-fasanenhof/
 
 ## Page Content Summary
 
-### Home
+### Verein Overview
 
 #### `/index.html`
 - 60-year celebration hero
@@ -180,11 +177,6 @@ sv-fasanenhof/
 - Location section with Vereinsheim image, Standort link and maps route link
 
 ### Club Shell
-
-#### `/verein/index.html`
-- Overview of the club
-- Links to sub-pages (history, board, statutes/rules, fees, Gaststätte, FAQ)
-- Contact teaser
 
 #### `/verein/historie.html`
 - Club history since 1965
@@ -210,7 +202,7 @@ sv-fasanenhof/
 #### `/verein/faq.html`
 - Membership, fees and contact FAQ
 
-#### `/standort/index.html`
+#### `/verein/standort.html`
 - Logauweg 21, 70565 Stuttgart + map
 - Anfahrt: U6 Europaplatz, parking
 - Da Angelo restaurant (daily 17:00–22:30)
@@ -375,10 +367,9 @@ content/
 │   ├── vorstand.md
 │   ├── satzung.md
 │   ├── beitraege.md
+│   ├── standort.md
 │   ├── gaststaette.md
 │   └── faq.md
-├── standort/
-│   └── index.md
 ├── bogenschiessen/
 │   ├── index.md
 │   ├── training.md
@@ -434,7 +425,7 @@ content/
 - Template system (header/footer/navigation)
 - Markdown to HTML conversion with frontmatter
 - Asset bundling
-- Cross-department news aggregator for home page and `/aktuelles/` (pulls from `*/aktuelles/posts/*.md`)
+- Cross-department news aggregator for Verein overview and `/aktuelles/` (pulls from `*/aktuelles/posts/*.md`)
 - Static search index generation (`search-index.json`) and `/suche/` template
 - Development server with live reload
 - Section-specific dropdown navigation beneath the main header for areas with deeper structure

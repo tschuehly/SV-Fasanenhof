@@ -113,9 +113,7 @@ data class SectionNavGroup(
 )
 
 val navItems = listOf(
-    NavItem("Start", "/", "home"),
-    NavItem("Verein", "/verein/", "verein"),
-    NavItem("Standort", "/standort/", "standort"),
+    NavItem("Verein", "/", "verein"),
     NavItem("Bogenschießen", "/bogenschiessen/", "bogenschiessen"),
     NavItem("Fußball", "/fussball/", "fussball"),
     NavItem("Tischtennis", "/tischtennis/", "tischtennis"),
@@ -125,9 +123,16 @@ val navItems = listOf(
 val sectionNavGroups = mapOf(
     "verein" to listOf(
         SectionNavGroup(
-            "Überblick",
+            "Standort",
+            listOf(SectionNavEntry("Standort", "/verein/standort.html")),
+        ),
+        SectionNavGroup(
+            "Beiträge",
+            listOf(SectionNavEntry("Beiträge", "/verein/beitraege.html")),
+        ),
+        SectionNavGroup(
+            "Vereinsleben",
             listOf(
-                SectionNavEntry("Überblick", "/verein/"),
                 SectionNavEntry("Historie", "/verein/historie.html"),
                 SectionNavEntry("Gaststätte", "/verein/gaststaette.html"),
                 SectionNavEntry("FAQ", "/verein/faq.html"),
@@ -138,18 +143,10 @@ val sectionNavGroups = mapOf(
             listOf(
                 SectionNavEntry("Vorstand", "/verein/vorstand.html"),
                 SectionNavEntry("Satzung und Ordnungen", "/verein/satzung.html"),
-                SectionNavEntry("Beiträge und Beitritt", "/verein/beitraege.html"),
             ),
         ),
     ),
     "bogenschiessen" to listOf(
-        SectionNavGroup(
-            "Überblick",
-            listOf(
-                SectionNavEntry("Überblick", "/bogenschiessen/"),
-                SectionNavEntry("Aktuelles", "/bogenschiessen/aktuelles/"),
-            ),
-        ),
         SectionNavGroup(
             "Mitmachen",
             listOf(
@@ -169,6 +166,10 @@ val sectionNavGroups = mapOf(
             ),
         ),
         SectionNavGroup(
+            "Aktuelles",
+            listOf(SectionNavEntry("Aktuelles", "/bogenschiessen/aktuelles/")),
+        ),
+        SectionNavGroup(
             "Abteilung",
             listOf(
                 SectionNavEntry("Wissen", "/bogenschiessen/wissen/"),
@@ -180,12 +181,20 @@ val sectionNavGroups = mapOf(
     ),
     "fussball" to listOf(
         SectionNavGroup(
-            "Fußball",
+            "Training",
+            listOf(SectionNavEntry("Training", "/fussball/training.html")),
+        ),
+        SectionNavGroup(
+            "Mannschaften",
+            listOf(SectionNavEntry("Mannschaften", "/fussball/mannschaften.html")),
+        ),
+        SectionNavGroup(
+            "Aktuelles",
+            listOf(SectionNavEntry("Aktuelles", "/fussball/aktuelles/")),
+        ),
+        SectionNavGroup(
+            "Abteilung",
             listOf(
-                SectionNavEntry("Überblick", "/fussball/"),
-                SectionNavEntry("Mannschaften", "/fussball/mannschaften.html"),
-                SectionNavEntry("Trainingszeiten", "/fussball/training.html"),
-                SectionNavEntry("Aktuelles", "/fussball/aktuelles/"),
                 SectionNavEntry("Sponsoren", "/fussball/sponsoren.html"),
                 SectionNavEntry("FAQ", "/fussball/faq.html"),
             ),
@@ -193,11 +202,16 @@ val sectionNavGroups = mapOf(
     ),
     "tischtennis" to listOf(
         SectionNavGroup(
-            "Tischtennis",
+            "Training",
+            listOf(SectionNavEntry("Training", "/tischtennis/training.html")),
+        ),
+        SectionNavGroup(
+            "Aktuelles",
+            listOf(SectionNavEntry("Aktuelles", "/tischtennis/aktuelles/")),
+        ),
+        SectionNavGroup(
+            "Infos",
             listOf(
-                SectionNavEntry("Überblick", "/tischtennis/"),
-                SectionNavEntry("Trainingszeiten", "/tischtennis/training.html"),
-                SectionNavEntry("Aktuelles", "/tischtennis/aktuelles/"),
                 SectionNavEntry("FAQ", "/tischtennis/faq.html"),
             ),
         ),
@@ -478,7 +492,7 @@ fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
               <h2>Logauweg 21 als gemeinsamer Treffpunkt</h2>
               <p>${escapeHtml(venueSnippet)}</p>
               <div class="location-actions">
-                <a class="button button-primary" href="${linkTo(page, "/standort/")}">Standort ansehen</a>
+                <a class="button button-primary" href="${linkTo(page, "/verein/standort.html")}">Standort ansehen</a>
                 <a class="button button-secondary" href="$mapsUrl" target="_blank" rel="noopener">Route in Google Maps</a>
               </div>
             </div>
@@ -766,35 +780,38 @@ fun renderSectionNav(page: Page, pagesByUrl: Map<String, Page>): String {
     val groups = sectionNavEntriesFor(page, pagesByUrl)
     if (groups.isEmpty()) return ""
 
-    val navHtml = if (page.sectionKey == "verein" || page.sectionKey == "fussball" || page.sectionKey == "tischtennis") {
-        val linksHtml = groups.flatMap { it.entries }.joinToString("") { entry ->
+    val desktopLinksHtml = groups.flatMap { it.entries }.distinctBy { it.url }.joinToString("") { entry ->
+        val active = if (isSectionNavActive(page.urlPath, entry.url)) "active" else ""
+        """<li><a class="$active" href="${linkTo(page, entry.url)}">${escapeHtml(entry.label)}</a></li>"""
+    }
+    val desktopNavHtml = """<ul class="section-nav-flat section-nav-desktop">$desktopLinksHtml</ul>"""
+
+    val mobileNavHtml = groups.joinToString("") { group ->
+        val groupActive = group.entries.any { entry -> isSectionNavActive(page.urlPath, entry.url) }
+        val linksHtml = group.entries.joinToString("") { entry ->
             val active = if (isSectionNavActive(page.urlPath, entry.url)) "active" else ""
             """<li><a class="$active" href="${linkTo(page, entry.url)}">${escapeHtml(entry.label)}</a></li>"""
         }
-        """<ul class="section-nav-flat">$linksHtml</ul>"""
-    } else {
-        groups.joinToString("") { group ->
-            val linksHtml = group.entries.joinToString("") { entry ->
-                val active = if (isSectionNavActive(page.urlPath, entry.url)) "active" else ""
-                """<li><a class="$active" href="${linkTo(page, entry.url)}">${escapeHtml(entry.label)}</a></li>"""
-            }
-            if (group.label == "Überblick") {
-                """<ul class="section-nav-flat">$linksHtml</ul>"""
-            } else {
-                """
-                    <details class="section-nav-group">
-                      <summary>${escapeHtml(group.label)}</summary>
-                      <ul class="section-nav-menu">$linksHtml</ul>
-                    </details>
-                """.trimIndent()
-            }
+        if (group.entries.size == 1) {
+            """<ul class="section-nav-flat section-nav-mobile">$linksHtml</ul>"""
+        } else {
+        val summaryActive = if (groupActive) "active" else ""
+        """
+            <details class="section-nav-group">
+              <summary class="$summaryActive">${escapeHtml(group.label)}</summary>
+              <ul class="section-nav-menu">$linksHtml</ul>
+            </details>
+        """.trimIndent()
         }
     }
 
     return """
-        <nav class="section-nav" aria-label="Bereichsnavigation">
+        <nav class="section-nav section-nav-${page.sectionKey}" aria-label="Bereichsnavigation">
           <div class="shell section-nav-shell">
-            $navHtml
+            $desktopNavHtml
+            <div class="section-nav-mobile-groups">
+              $mobileNavHtml
+            </div>
           </div>
         </nav>
     """.trimIndent()
@@ -832,8 +849,8 @@ fun renderFooter(page: Page): String {
                 <li><a href="${linkTo(page, "/aktuelles/")}">Aktuelles</a></li>
                 <li><a href="${linkTo(page, "/termine/")}">Termine</a></li>
                 <li><a href="${linkTo(page, "/mitglied-werden/")}">Mitglied werden</a></li>
-                <li><a href="${linkTo(page, "/verein/")}">Verein</a></li>
-                <li><a href="${linkTo(page, "/standort/")}">Standort</a></li>
+                <li><a href="${linkTo(page, "/")}">Verein</a></li>
+                <li><a href="${linkTo(page, "/verein/standort.html")}">Standort</a></li>
                 <li><a href="${linkTo(page, "/kontakt/")}">Kontakt</a></li>
                 <li><a href="${linkTo(page, "/suche/")}">Suche</a></li>
               </ul>
@@ -871,12 +888,13 @@ fun renderBreadcrumbs(page: Page): String {
 fun breadcrumbsFor(page: Page): List<Crumb> {
     val rawParts = page.urlPath.trim('/').split('/').filter { it.isNotBlank() }
     val parts = rawParts.filterNot { it == "posts" }
-    if (page.urlPath == "/") return listOf(Crumb("Start", "/"))
+    if (page.urlPath == "/") return listOf(Crumb("Verein", "/"))
 
-    val crumbs = mutableListOf(Crumb("Start", "/"))
+    val crumbs = mutableListOf(Crumb("Verein", "/"))
     var current = ""
     parts.forEachIndexed { index, part ->
         current += "/$part"
+        if (index == 0 && part == "verein") return@forEachIndexed
         val isLast = index == parts.lastIndex
         val normalizedPart = part.removeSuffix(".html")
         val isFileLike = normalizedPart != part || (!isLast && rawParts.contains("${normalizedPart}.html"))
@@ -892,7 +910,7 @@ fun breadcrumbsFor(page: Page): List<Crumb> {
 
 fun sectionKeyFor(relative: Path): String {
     val first = relative.iterator().asSequence().firstOrNull()?.toString() ?: return "home"
-    return if (first == "index.md") "home" else first
+    return if (first == "index.md") "verein" else first
 }
 
 fun inferredTemplate(relative: Path): String {
@@ -946,7 +964,7 @@ fun departmentLabel(key: String): String = when (key) {
 }
 
 fun sectionLabel(key: String): String = when (key) {
-    "home" -> "Start"
+    "home" -> "Verein"
     "verein" -> "Verein"
     "standort" -> "Standort"
     "bogenschiessen" -> "Bogenschießen"

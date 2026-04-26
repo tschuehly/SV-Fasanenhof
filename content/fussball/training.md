@@ -29,4 +29,4 @@ Die E- und F-Jugend findet in Spielgemeinschaft mit HNK Slaven Stuttgart statt.
 Logauweg 21
 70565 Stuttgart
 
-Weitere Hinweise zum Gelände stehen unter [Standort](../standort/).
+Weitere Hinweise zum Gelände stehen unter [Standort](../verein/standort.html).
