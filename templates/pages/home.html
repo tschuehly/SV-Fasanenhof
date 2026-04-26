@@ -1,0 +1,46 @@
+        {{hero}}
+
+        <section class="shell section department-intro">
+          <div class="section-head">
+            <span class="kicker">Abteilungen</span>
+            <h2>Drei Abteilungen, ein Verein</h2>
+          </div>
+        </section>
+        {{departmentSections}}
+
+        <section class="shell section">
+          <div class="section-head">
+            <span class="kicker">Aktuelles</span>
+            <h2><a href="{{url.aktuelles}}">Neuigkeiten aus den Abteilungen</a></h2>
+          </div>
+          <div class="news-grid">{{latestNews}}</div>
+        </section>
+
+        <section class="shell section training-teaser">
+          <article class="feature-card">
+            <span class="pill">Training</span>
+            <h3><a href="{{url.bogenschiessenTraining}}">Zeiten und Orte im Blick</a></h3>
+            <p>Für den Bogensport sind Außenplatz, Schulhalle und Wintertraining klar gegliedert. So sieht man auf einen Blick, wann am Logauweg oder in den Hallen trainiert wird.</p>
+          </article>
+        </section>
+
+        <section class="location-band">
+          <div class="shell location-layout">
+            <figure class="location-media">
+              <img src="{{image.vereinsheim}}" alt="Vereinsheim des 1. SV Fasanenhof mit Terrasse am Logauweg">
+            </figure>
+            <div class="location-copy">
+              <span class="kicker">Standort</span>
+              <h2>Logauweg 21 als gemeinsamer Treffpunkt</h2>
+              <p>Am Logauweg 21 liegen Kunstrasenplatz, Vereinsheim, Terrasse und Vereinsgaststätte direkt beieinander. Die Anlage ist mit der U6 über den Europaplatz erreichbar; vor Ort gibt es Parkplätze für Training, Spieltage und Gäste.</p>
+              <div class="location-actions">
+                <a class="button button-primary" href="{{url.standort}}">Standort ansehen</a>
+                <a class="button button-secondary" href="https://maps.app.goo.gl/HWWacL3amrz386ir8" target="_blank" rel="noopener">Route in Google Maps</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="shell prose-block home-summary">
+          {{body}}
+        </section>

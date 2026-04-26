@@ -72,6 +72,7 @@ if [[ "$WATCHER" == "fswatch" ]]; then
     "$ROOT_DIR/build.main.kts" \
     "$ROOT_DIR/devserver.py" \
     "$ROOT_DIR/src/main/resources/assets/" \
+    "$ROOT_DIR/templates/" \
     "$ROOT_DIR/content/" \
   | while read -r; do
     echo ""
@@ -84,6 +85,7 @@ elif [[ "$WATCHER" == "inotifywait" ]]; then
       "$ROOT_DIR/build.main.kts" \
       "$ROOT_DIR/devserver.py" \
       "$ROOT_DIR/src/main/resources/assets/" \
+      "$ROOT_DIR/templates/" \
       "$ROOT_DIR/content/" 2>/dev/null
     echo ""
     echo "Change detected, rebuilding..."
@@ -91,8 +93,8 @@ elif [[ "$WATCHER" == "inotifywait" ]]; then
   done
 else
   get_hash() {
-    find "$ROOT_DIR/content" "$ROOT_DIR/src/main/resources/assets" \
-      -type f \( -name '*.md' -o -name '*.css' -o -name '*.png' -o -name '*.kts' -o -name '*.py' \) 2>/dev/null | \
+    find "$ROOT_DIR/content" "$ROOT_DIR/src/main/resources/assets" "$ROOT_DIR/templates" \
+      -type f \( -name '*.md' -o -name '*.html' -o -name '*.css' -o -name '*.png' -o -name '*.kts' -o -name '*.py' \) 2>/dev/null | \
       xargs stat -f '%m' 2>/dev/null || \
       xargs stat -c '%Y' 2>/dev/null || echo ""
   }

@@ -30,6 +30,7 @@ import kotlin.io.path.writeText
 
 val projectRoot = __FILE__.absoluteFile.parentFile.toPath()
 val contentRoot = projectRoot.resolve("content")
+val templatesRoot = projectRoot.resolve("templates")
 val outputRoot = projectRoot.resolve("build/site")
 val assetsOutput = outputRoot.resolve("assets")
 val liveReload = args.contains("--live-reload")
@@ -111,6 +112,19 @@ data class SectionNavGroup(
     val label: String,
     val entries: List<SectionNavEntry>,
 )
+
+data class Template(
+    val name: String,
+    val source: String,
+) {
+    fun render(values: Map<String, String>): String {
+        return source.replace(Regex("""\{\{([A-Za-z0-9_.-]+)}}""")) { match ->
+            val key = match.groupValues[1]
+            require(values.containsKey(key)) { "Missing value '$key' while rendering template '$name'" }
+            values.getValue(key)
+        }
+    }
+}
 
 val navItems = listOf(
     NavItem("Verein", "/", "verein"),
@@ -217,6 +231,8 @@ val sectionNavGroups = mapOf(
         ),
     ),
 )
+
+val templateCache = mutableMapOf<String, Template>()
 
 generateSite()
 
@@ -332,30 +348,19 @@ fun renderPage(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
         else -> renderStandardPage(page, pagesByUrl)
     }
 
-    return """
-        <!DOCTYPE html>
-        <html lang="de">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>${escapeHtml(page.title)} — 1. SV Fasanenhof 1965 e.V.</title>
-          <meta name="description" content="${escapeHtml(page.description.ifBlank { page.summary })}">
-          <link rel="preconnect" href="https://fonts.googleapis.com">
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-          <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-          <link rel="stylesheet" href="${linkTo(page, "/assets/site.css")}">
-        </head>
-        <body>
-          ${renderHeader(page, pagesByUrl)}
-          <main class="site-main">
-            $content
-          </main>
-          ${renderFooter(page)}
-          ${navigationScript()}
-          ${liveReloadScript()}
-        </body>
-        </html>
-    """.trimIndent()
+    return renderTemplate(
+        "layout",
+        mapOf(
+            "page.title" to escapeHtml(page.title),
+            "page.description" to escapeHtml(page.description.ifBlank { page.summary }),
+            "assets.css" to linkTo(page, "/assets/site.css"),
+            "header" to renderHeader(page, pagesByUrl),
+            "content" to content,
+            "footer" to renderFooter(page),
+            "navigationScript" to navigationScript(),
+            "liveReloadScript" to liveReloadScript(),
+        ),
+    )
 }
 
 fun newsPostsForPage(page: Page, allNewsPosts: List<NewsPost>): List<NewsPost> {
@@ -446,63 +451,19 @@ fun renderHome(page: Page, pagesByUrl: Map<String, Page>, allNewsPosts: List<New
         """.trimIndent()
     }.joinToString("")
 
-    val venueSnippet = "Am Logauweg 21 liegen Kunstrasenplatz, Vereinsheim, Terrasse und Vereinsgaststätte direkt beieinander. Die Anlage ist mit der U6 über den Europaplatz erreichbar; vor Ort gibt es Parkplätze für Training, Spieltage und Gäste."
-    val mapsUrl = "https://maps.app.goo.gl/HWWacL3amrz386ir8"
-
-    return """
-        <section class="hero shell">
-          <div class="hero-copy">
-            <span class="kicker">${escapeHtml(page.kicker)}</span>
-            <h1>${escapeHtml(page.title)}</h1>
-            <p class="lead">${escapeHtml(page.lead)}</p>
-          </div>
-        </section>
-
-        <section class="shell section department-intro">
-          <div class="section-head">
-            <span class="kicker">Abteilungen</span>
-            <h2>Drei Abteilungen, ein Verein</h2>
-          </div>
-        </section>
-        $departmentSections
-
-        <section class="shell section">
-          <div class="section-head">
-            <span class="kicker">Aktuelles</span>
-            <h2><a href="${linkTo(page, "/aktuelles/")}">Neuigkeiten aus den Abteilungen</a></h2>
-          </div>
-          <div class="news-grid">$latestNews</div>
-        </section>
-
-        <section class="shell section training-teaser">
-          <article class="feature-card">
-            <span class="pill">Training</span>
-            <h3><a href="${linkTo(page, "/bogenschiessen/training.html")}">Zeiten und Orte im Blick</a></h3>
-            <p>Für den Bogensport sind Außenplatz, Schulhalle und Wintertraining klar gegliedert. So sieht man auf einen Blick, wann am Logauweg oder in den Hallen trainiert wird.</p>
-          </article>
-        </section>
-
-        <section class="location-band">
-          <div class="shell location-layout">
-            <figure class="location-media">
-              <img src="${linkTo(page, "/assets/home/vereinsheim.jpg")}" alt="Vereinsheim des 1. SV Fasanenhof mit Terrasse am Logauweg">
-            </figure>
-            <div class="location-copy">
-              <span class="kicker">Standort</span>
-              <h2>Logauweg 21 als gemeinsamer Treffpunkt</h2>
-              <p>${escapeHtml(venueSnippet)}</p>
-              <div class="location-actions">
-                <a class="button button-primary" href="${linkTo(page, "/verein/standort.html")}">Standort ansehen</a>
-                <a class="button button-secondary" href="$mapsUrl" target="_blank" rel="noopener">Route in Google Maps</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="shell prose-block home-summary">
-          $bodyHtml
-        </section>
-    """.trimIndent()
+    return renderTemplate(
+        "pages/home",
+        mapOf(
+            "hero" to renderHomeHero(page),
+            "departmentSections" to departmentSections,
+            "latestNews" to latestNews,
+            "url.aktuelles" to linkTo(page, "/aktuelles/"),
+            "url.bogenschiessenTraining" to linkTo(page, "/bogenschiessen/training.html"),
+            "url.standort" to linkTo(page, "/verein/standort.html"),
+            "image.vereinsheim" to linkTo(page, "/assets/home/vereinsheim.jpg"),
+            "body" to bodyHtml,
+        ),
+    )
 }
 
 fun renderNewsIndex(page: Page, posts: List<NewsPost>): String {
@@ -528,124 +489,31 @@ fun renderNewsIndex(page: Page, posts: List<NewsPost>): String {
         }
     }
 
-    return """
-        ${renderHero(page)}
-        <section class="shell prose-block">
-          $bodyHtml
-        </section>
-        <section class="shell section">
-          <div class="section-head">
-            <span class="kicker">Beiträge</span>
-            <h2>Chronologische Meldungen</h2>
-          </div>
-          <div class="news-list">$newsHtml</div>
-        </section>
-    """.trimIndent()
+    return renderTemplate(
+        "pages/news-index",
+        mapOf(
+            "hero" to renderHero(page),
+            "body" to bodyHtml,
+            "newsList" to newsHtml,
+        ),
+    )
 }
 
 fun renderSearchPage(page: Page): String {
     val bodyHtml = rewriteEmbeddedAssetPaths(page, page.bodyHtml)
-    return """
-        ${renderHero(page)}
-        <section class="shell prose-block">
-          ${renderBreadcrumbs(page)}
-          <article class="prose">
-            $bodyHtml
-            <form class="search-form" role="search">
-              <label for="site-search">Suchbegriff</label>
-              <input id="site-search" type="search" autocomplete="off" placeholder="Training, Beiträge, Kontakt ...">
-            </form>
-            <div class="search-status" aria-live="polite"></div>
-            <div class="search-results"></div>
-          </article>
-        </section>
-        <script>
-          (function () {
-            var input = document.getElementById('site-search');
-            var status = document.querySelector('.search-status');
-            var results = document.querySelector('.search-results');
-            if (!input || !status || !results) return;
-
-            var pages = [];
-            var searchIndexUrl = '${linkTo(page, "/search-index.json")}';
-            var siteRoot = new URL(searchIndexUrl, window.location.href);
-            siteRoot.pathname = siteRoot.pathname.replace(/search-index\.json$/, '');
-
-            function normalize(value) {
-              return value.toLocaleLowerCase('de-DE').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            }
-
-            function linkFor(url) {
-              return new URL(url.replace(/^\/+/, ''), siteRoot).toString();
-            }
-
-            function render(matches, query) {
-              results.innerHTML = '';
-              if (!query) {
-                status.textContent = 'Suchbegriff eingeben.';
-                return;
-              }
-              if (!matches.length) {
-                status.textContent = 'Keine Treffer gefunden.';
-                return;
-              }
-              status.textContent = matches.length + (matches.length === 1 ? ' Treffer' : ' Treffer');
-              matches.slice(0, 12).forEach(function (item) {
-                var article = document.createElement('article');
-                var section = document.createElement('span');
-                var heading = document.createElement('h3');
-                var link = document.createElement('a');
-                var summary = document.createElement('p');
-                article.className = 'search-result';
-                section.textContent = item.section;
-                link.href = linkFor(item.url);
-                link.textContent = item.title;
-                summary.textContent = item.summary;
-                heading.appendChild(link);
-                article.appendChild(section);
-                article.appendChild(heading);
-                article.appendChild(summary);
-                results.appendChild(article);
-              });
-            }
-
-            function runSearch() {
-              var query = input.value.trim();
-              var terms = normalize(query).split(/\s+/).filter(Boolean);
-              if (!terms.length) {
-                render([], '');
-                return;
-              }
-              var matches = pages
-                .map(function (item) {
-                  var haystack = normalize([item.title, item.section, item.summary, item.text].join(' '));
-                  var score = terms.reduce(function (sum, term) {
-                    if (normalize(item.title).indexOf(term) >= 0) return sum + 4;
-                    if (normalize(item.summary).indexOf(term) >= 0) return sum + 2;
-                    if (haystack.indexOf(term) >= 0) return sum + 1;
-                    return sum;
-                  }, 0);
-                  return { item: item, score: score };
-                })
-                .filter(function (match) { return match.score >= terms.length; })
-                .sort(function (a, b) { return b.score - a.score || a.item.title.localeCompare(b.item.title, 'de-DE'); })
-                .map(function (match) { return match.item; });
-              render(matches, query);
-            }
-
-            fetch(searchIndexUrl)
-              .then(function (response) { return response.json(); })
-              .then(function (data) {
-                pages = data;
-                runSearch();
-                input.addEventListener('input', runSearch);
-              })
-              .catch(function () {
-                status.textContent = 'Die Suche konnte nicht geladen werden.';
-              });
-          })();
-        </script>
-    """.trimIndent()
+    val searchScript = renderTemplate(
+        "partials/search-script",
+        mapOf("searchIndexUrl" to linkTo(page, "/search-index.json")),
+    )
+    return renderTemplate(
+        "pages/search",
+        mapOf(
+            "hero" to renderHero(page),
+            "breadcrumbs" to renderBreadcrumbs(page),
+            "body" to bodyHtml,
+            "searchScript" to searchScript,
+        ),
+    )
 }
 
 fun writeSearchIndex(pages: List<Page>) {
@@ -687,16 +555,15 @@ fun searchableText(page: Page): String {
 fun renderStandardPage(page: Page, pagesByUrl: Map<String, Page>): String {
     val bodyHtml = rewriteEmbeddedAssetPaths(page, page.bodyHtml)
     val sectionDirectory = renderSectionDirectory(page, pagesByUrl)
-    return """
-        ${renderHero(page)}
-        <section class="shell prose-block">
-          ${renderBreadcrumbs(page)}
-          <article class="prose">
-            $bodyHtml
-            $sectionDirectory
-          </article>
-        </section>
-    """.trimIndent()
+    return renderTemplate(
+        "pages/page",
+        mapOf(
+            "hero" to renderHero(page),
+            "breadcrumbs" to renderBreadcrumbs(page),
+            "body" to bodyHtml,
+            "sectionDirectory" to sectionDirectory,
+        ),
+    )
 }
 
 fun renderSectionDirectory(page: Page, pagesByUrl: Map<String, Page>): String {
@@ -740,15 +607,25 @@ fun renderSectionDirectory(page: Page, pagesByUrl: Map<String, Page>): String {
 }
 
 fun renderHero(page: Page): String {
-    return """
-        <section class="hero shell">
-          <div class="hero-copy">
-            <span class="kicker">${escapeHtml(page.kicker)}</span>
-            <h1>${escapeHtml(page.title)}</h1>
-            <p class="lead">${escapeHtml(page.lead)}</p>
-          </div>
-        </section>
-    """.trimIndent()
+    return renderTemplate(
+        "partials/hero",
+        mapOf(
+            "page.kicker" to escapeHtml(page.kicker),
+            "page.title" to escapeHtml(page.title),
+            "page.lead" to escapeHtml(page.lead),
+        ),
+    )
+}
+
+fun renderHomeHero(page: Page): String {
+    return renderTemplate(
+        "partials/home-hero",
+        mapOf(
+            "page.kicker" to escapeHtml(page.kicker),
+            "page.title" to escapeHtml(page.title),
+            "page.lead" to escapeHtml(page.lead),
+        ),
+    )
 }
 
 fun renderHeader(page: Page, pagesByUrl: Map<String, Page>): String {
@@ -757,23 +634,16 @@ fun renderHeader(page: Page, pagesByUrl: Map<String, Page>): String {
         """<li><a class="$active" href="${linkTo(page, item.url)}">${escapeHtml(item.label)}</a></li>"""
     }
     val sectionNav = renderSectionNav(page, pagesByUrl)
-    return """
-        <header class="site-header">
-          <div class="shell header-shell">
-            <a class="brand" href="${linkTo(page, "/")}">
-              <img src="${linkTo(page, "/assets/logo.png")}" alt="Logo 1. SV Fasanenhof">
-              <span>
-                <strong>1. SV Fasanenhof <em>1965 e.V.</em></strong>
-                <small>Sport und Gemeinschaft im Fasanenhof</small>
-              </span>
-            </a>
-            <nav class="site-nav" aria-label="Hauptnavigation">
-              <ul>$navHtml</ul>
-            </nav>
-          </div>
-        </header>
-        $sectionNav
-    """.trimIndent()
+    val templateName = if (sectionNav.isBlank()) "partials/header" else "partials/header-with-section"
+    return renderTemplate(
+        templateName,
+        mapOf(
+            "home.url" to linkTo(page, "/"),
+            "logo.url" to linkTo(page, "/assets/logo.png"),
+            "mainNav" to navHtml,
+            "sectionNav" to sectionNav,
+        ),
+    )
 }
 
 fun renderSectionNav(page: Page, pagesByUrl: Map<String, Page>): String {
@@ -805,16 +675,15 @@ fun renderSectionNav(page: Page, pagesByUrl: Map<String, Page>): String {
         }
     }
 
-    return """
-        <nav class="section-nav section-nav-${page.sectionKey}" aria-label="Bereichsnavigation">
-          <div class="shell section-nav-shell">
-            $desktopNavHtml
-            <div class="section-nav-mobile-groups">
-              $mobileNavHtml
-            </div>
-          </div>
-        </nav>
-    """.trimIndent()
+    val templateName = if (mobileNavHtml.contains("<details")) "partials/section-nav" else "partials/section-nav-flat"
+    return renderTemplate(
+        templateName,
+        mapOf(
+            "section.key" to page.sectionKey,
+            "desktopSectionNav" to desktopNavHtml,
+            "mobileSectionNav" to mobileNavHtml,
+        ),
+    )
 }
 
 fun sectionNavEntriesFor(page: Page, pagesByUrl: Map<String, Page>): List<SectionNavGroup> {
@@ -836,45 +705,25 @@ fun isSectionNavActive(currentUrl: String, targetUrl: String): Boolean {
 }
 
 fun renderFooter(page: Page): String {
-    return """
-        <footer class="site-footer">
-          <div class="shell footer-grid">
-            <div>
-              <h3>1. SV Fasanenhof 1965 e.V.</h3>
-              <p>Logauweg 21, 70565 Stuttgart. Gemeinsamer Auftritt für Verein, Fußball, Tischtennis und Bogensport.</p>
-            </div>
-            <div>
-              <h4>Schnellzugriff</h4>
-              <ul>
-                <li><a href="${linkTo(page, "/aktuelles/")}">Aktuelles</a></li>
-                <li><a href="${linkTo(page, "/termine/")}">Termine</a></li>
-                <li><a href="${linkTo(page, "/mitglied-werden/")}">Mitglied werden</a></li>
-                <li><a href="${linkTo(page, "/")}">Verein</a></li>
-                <li><a href="${linkTo(page, "/verein/standort.html")}">Standort</a></li>
-                <li><a href="${linkTo(page, "/kontakt/")}">Kontakt</a></li>
-                <li><a href="${linkTo(page, "/suche/")}">Suche</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4>Abteilungen</h4>
-              <ul>
-                <li><a href="${linkTo(page, "/fussball/")}">Fußball</a></li>
-                <li><a href="${linkTo(page, "/tischtennis/")}">Tischtennis</a></li>
-                <li><a href="${linkTo(page, "/bogenschiessen/")}">Bogenschießen</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4>Rechtliches</h4>
-              <ul>
-                <li><a href="${linkTo(page, "/impressum/")}">Impressum</a></li>
-                <li><a href="${linkTo(page, "/datenschutz/")}">Datenschutz</a></li>
-                <li><a href="${linkTo(page, "/barrierefreiheit/")}">Barrierefreiheit</a></li>
-                <li><a href="${linkTo(page, "/jugendschutz/")}">Jugendschutz</a></li>
-              </ul>
-            </div>
-          </div>
-        </footer>
-    """.trimIndent()
+    return renderTemplate(
+        "partials/footer",
+        mapOf(
+            "url.aktuelles" to linkTo(page, "/aktuelles/"),
+            "url.termine" to linkTo(page, "/termine/"),
+            "url.mitgliedWerden" to linkTo(page, "/mitglied-werden/"),
+            "url.verein" to linkTo(page, "/"),
+            "url.standort" to linkTo(page, "/verein/standort.html"),
+            "url.kontakt" to linkTo(page, "/kontakt/"),
+            "url.suche" to linkTo(page, "/suche/"),
+            "url.fussball" to linkTo(page, "/fussball/"),
+            "url.tischtennis" to linkTo(page, "/tischtennis/"),
+            "url.bogenschiessen" to linkTo(page, "/bogenschiessen/"),
+            "url.impressum" to linkTo(page, "/impressum/"),
+            "url.datenschutz" to linkTo(page, "/datenschutz/"),
+            "url.barrierefreiheit" to linkTo(page, "/barrierefreiheit/"),
+            "url.jugendschutz" to linkTo(page, "/jugendschutz/"),
+        ),
+    )
 }
 
 fun renderBreadcrumbs(page: Page): String {
@@ -1030,6 +879,15 @@ fun copyStaticAssets() {
                 Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING)
             }
     }
+}
+
+fun renderTemplate(name: String, values: Map<String, String>): String {
+    val template = templateCache.getOrPut(name) {
+        val path = templatesRoot.resolve("$name.html")
+        require(path.exists()) { "Missing template: ${path.absolutePathString()}" }
+        Template(name, path.readText().removeSuffix("\n"))
+    }
+    return template.render(values)
 }
 
 fun rewriteEmbeddedAssetPaths(page: Page, html: String): String {

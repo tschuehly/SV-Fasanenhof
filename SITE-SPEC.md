@@ -4,6 +4,7 @@
 
 - Static HTML site
 - Build script: Kotlin script SSG (`build.main.kts`)
+- HTML templates: `templates/` (`layout.html`, page templates and partials)
 - Hosting: GitHub Pages
 - Local development: `./watch.sh` with live reload on `http://localhost:8091`
 - No CMS required
@@ -13,6 +14,8 @@
 ## Status
 
 This document now describes the shipped **V1** site structure. It should track the real implementation closely and should not describe speculative features as if they already exist.
+
+The canonical editable page content lives in `content/**/*.md`. The Kotlin script parses Markdown and frontmatter, generates derived structures such as navigation, breadcrumbs, news lists and search data, and composes them into HTML templates from `templates/`.
 
 ---
 
